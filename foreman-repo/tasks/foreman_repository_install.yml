@@ -1,0 +1,32 @@
+---
+
+#- name: puppetlabs - Main - foreman_repository - foreman_repository_install - Dump all variables start
+#  debug:
+#    var: vars
+
+- name: puppetlabs - Main - foreman_repository - foreman_repository_install - Set {{ foreman_version }} repository source for Fedora systems
+  set_fact:
+    foreman_repository_source: "http://yum.theforeman.org/releases/{{ foreman_version }}/f{{ ansible_distribution_major_version }}/x86_64/{{ foreman_package_name }}.rpm"
+  when:                ansible_distribution == 'Fedora'
+
+- name: puppetlabs - Main - foreman_repository - foreman_repository_install - Set {{ foreman_version }} repository source for {{ ansible_distribution }} systems
+  set_fact:
+    foreman_repository_source: "http://yum.theforeman.org/releases/{{ foreman_version }}/el{{ ansible_distribution_major_version }}/x86_64/{{ foreman_package_name }}.rpm"
+  when:                foreman_repository_source is not defined
+
+#- name: puppetlabs - Main - foreman_repository_install - Dump all variables end
+#  debug:
+#    var: foreman_repository_source
+
+- name: puppetlabs - Main - foreman_repository - foreman_repository_install - Install {{ foreman_version }} repository
+  yum:
+    name={{ foreman_repository_source }}
+    state=installed
+  register: foremane_install
+  when: foreman_repository_source is defined
+  become: true
+  become_user: root
+
+#- name: puppetlabs - Main - foreman_repository_install - Dump all variables end
+#  debug:
+#    var: vars

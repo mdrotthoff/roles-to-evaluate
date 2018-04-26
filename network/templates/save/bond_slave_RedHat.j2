@@ -1,0 +1,21 @@
+NAME={{ item.1.device }}
+DEVICE={{ item.1.device }}
+TYPE=Ethernet
+BOOTPROTO=none
+MASTER={{ item.0.device }}
+SLAVE=yes
+{% if item.0.onboot is defined %}
+ONBOOT={{ item.0.onboot | bool | ternary("yes", "no") }}
+{% endif %}
+{% if item.0.userctl is defined %}
+USERCTL={{ item.0.userctl | bool | ternary("yes", "no") }}
+{% endif %}
+{% if item.1.uuid is defined %}
+UUID={{ item.1.uuid }}
+{% endif %}
+{% if item.0.nm_controlled is defined %}
+NM_CONTROLLED={{ item.0.nm_controlled | bool | ternary("yes", "no") }}
+{% endif %}
+{% if item.0.mtu is defined %}
+MTU={{ item.0.mtu }}
+{% endif %}

@@ -1,0 +1,19 @@
+# Bonding parameters
+TYPE=Bond
+BONDING_MASTER=yes
+BONDING_OPTS="mode={{ item.bond.mode }} 
+{%- if item.bond.arp is defined %}
+ arp_ip_target={{ item.bond.arp.target }} arp_interval={{ item.bond.arp.interval }}
+{%- endif -%}
+{%- if item.bond.miimon is defined %}
+ miimon={{ item.bond.miimon }}
+{%- endif -%}
+{%- if item.bond.downdelay is defined %}
+ downdelay={{ item.bond.downdelay }}
+{%- endif -%}
+{%- if item.bond.updelay is defined %}
+ updelay={{ item.bond.updelay }}
+{%- endif -%}
+{%- if item.bond.primary is defined %}
+ primary={{ item.bond.primary }}
+{%- endif %}"

@@ -1,0 +1,20 @@
+---
+
+- name: Check if user exists
+  action: shell /usr/bin/getent passwd {{ item }} | /usr/bin/wc -l | tr -d ' '
+  register: group_exist
+  with_items: user_management_removed_users
+  changed_when: False
+
+- name: Find and chown all files owned by the removed group(s)
+  command: "chown -R --from=:{{item.item}} :root /"
+  when: user_management_removed_users is defined and user_management_removed_users|length > 0 and user_management_chown_removed and item.stdout == '1'
+  with_items: group_exist.results
+  ignore_errors: yes
+
+- name: Remove groups
+  group:
+    name: "{{item}}"
+    state: absent
+  with_items:
+    removed_groups

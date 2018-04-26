@@ -1,0 +1,9 @@
+{% for route in item.ipv4.route %}
+ADDRESS{{ loop.index - 1 }}={{ route.network }}
+NETMASK{{ loop.index - 1 }}={{ route.netmask }}
+GATEWAY{{ loop.index - 1 }}={{ route.gateway }}
+{% if route.metric is defined %}
+METRIC{{ loop.index - 1 }}={{ route.metric }}
+{% endif %}
+{% endfor %}
+

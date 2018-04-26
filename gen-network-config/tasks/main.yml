@@ -1,0 +1,8 @@
+---
+# tasks file for gen-network-config
+
+- name: Create the network configuration file for network devices
+  template: src=device.j2 dest=/tmp/{{ ansible_fqdn }}-netconfig.dmr
+  with_items:
+  - "{{ ansible_facts }}"
+  delegate_to: localhost

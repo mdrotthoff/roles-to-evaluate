@@ -1,0 +1,17 @@
+---
+
+- name: Update all packages to latest version
+  package:
+    name=*
+    state=latest
+
+- name: Check kernel is up-to-date
+  shell:        LAST_KERNEL=$(rpm -q --last kernel | perl -pe 's/^kernel-(\S+).*/$1/' | head -1); CURRENT_KERNEL=$(uname -r); if [ $LAST_KERNEL != $CURRENT_KERNEL ]; then echo 'reboot'; else echo 'no'; fi
+  register:     reboot_hint
+  changed_when: reboot_hint.stdout == "reboot"
+  notify:       Reboot system
+#  ignore_errors: true
+
+#- name: Reboot if the kernel is not current
+#  include_tasks: reboot.yml
+#  when:          reboot_hint.stdout == "reboot"

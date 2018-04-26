@@ -1,0 +1,80 @@
+---
+# $Author:   David Rotthoff <david.rotthoff@vauto.com> $
+# $Date:     2016-12-01 14:12:37 -0600 $
+# $Source:   roles/backup/defaults/main.yml $
+
+# defaults file for backup
+
+# Contains the target directory the backup should be written to.  Value is concantenated with
+# the backup_target_root variable unless overridden with a fully specificed target directory name.
+# Either this or backup_target_root must be defined.
+# backup_target_dest: Null
+
+# List of one or more source directories the backup should be read from.  Value is a fully specificed
+# source directory name.  This variable must be supplied.
+# backup_source_path: Null
+
+# A list of one or more shell or regex patterns to be used in filtering the initial source file list.
+# If a regex pattern is supplied, then backup_source_regex must be set to true.
+# backup_source_patterns: Null
+
+# Boolean flag indicating whether or not the list provided in variable backup_source_patterns is a
+# regex pattern.
+#   True - the supplied file pattern is a regex pattern
+#   False - the supplied file pattern is a shell pattern
+backup_source_use_regex: false
+
+# Contains the target directory the backup should be written to.  Value is calculated using both
+# the backup_target_root and backup_dest variables unless overridden with a fully specificed
+# target directory name.
+# backup_target_dir: Null
+
+# Root of where the backup files will be written.  Concantented with
+# variable backup_dest for the full path
+backup_target_root: "/var/opt/ansible/{{ ansible_fqdn }}"
+
+# Boolean value indicating whether any existing target directory should be purge prior
+# to executing the actual backup.
+#   True - remove any existing directory
+#   False - merge the backup into the existing directory
+backup_target_purge: false
+
+# Boolean flag indicating whether or not source subdirectories should be followed when finding
+# the source files to backup.
+backup_source_recurse: false
+
+# Boolean flag indicating whether or not hidden files should be included in the the source files to backup.
+backup_source_hidden: false
+
+# Boolean flag indicating whether or not symlinks should be followed in the the source files to backup.
+backup_source_follow: no
+
+# Variable containing the file owner used to create the backup destination and any
+# files backed up
+backup_target_owner: 'mdrotthoff'
+
+# Variable containing the group owner used to create the backup destination and any
+# files backed up
+backup_target_group: 'users'
+
+# Variable containing the file permissions used to create the backup destination and any
+# files backed up
+backup_target_file_mode: '0755'
+
+# Boolean flag indicating whether or not debugging output should
+# be included
+#   True - include debugging tasks in the workflow
+#   False - bypass debugging tasks in the workflow
+backup_debug: false
+
+# Boolean flag indicating whether or not the fetch action should fail when a planned
+# source file is not found.
+#   True - fail if a source file is missing
+#   False - ignore missing source files
+backup_source_fail_on_missing: false
+
+# Boolean flag determining whether or not the normal fetch action includes it's own
+# file system heirarchy within the target directory.
+#   True - use the fetch actions additional file system hierarchy
+#   False - do not use the fetch actions additional file system hierarchy
+backup_target_flat: true

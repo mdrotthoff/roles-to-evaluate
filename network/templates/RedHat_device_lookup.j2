@@ -1,0 +1,12 @@
+# DNS Lookup Parameters
+{% if item.dns_nameservers is defined %}
+{% for dns_nameserver in item.dns_nameservers %}
+{% if loop.index == 4 %}
+# WARNING: Generally only the first three name servers are used
+{% endif %}
+DNS{{ loop.index }}={{ dns_nameserver }}
+{% endfor %}
+{% endif %}
+{% if item.search_domains is defined %}
+DOMAIN="{% for domain in item.search_domains %}{% if loop.index > 1 %} {% endif %}{{ domain.domain }}{% endfor %}"
+{% endif %}

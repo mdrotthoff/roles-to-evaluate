@@ -1,0 +1,4 @@
+{% for i in item.route %}
+    up ip route add {{ i.network }}/{{ i.netmask }} via {{ i.gateway }} dev {{ item.device }}
+{% endfor %}
+

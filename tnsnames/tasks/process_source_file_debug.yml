@@ -1,0 +1,25 @@
+---
+# $Author:   david_rotthoff <david_rotthoff@rotthoff.home> $
+# $Date:     2017-03-25 17:39:53 -0500 $
+# $Source:   roles/tnsnames/tasks/process_source_file_debug.yml $
+
+- name: Tnsnames - Main - Process Source File - Process Source File debug - Display the item parameter
+  debug:
+    var: item
+
+- name: Tnsnames - Main - Process Source File - Process Source File debug - Display the tnsnames_directory parameter
+  debug:
+    var: tnsnames_directory
+
+- name: Tnsnames - Main - Process Source File - Process Source File debug - Display the tnsnames_owner parameter
+  debug:
+    var: tnsnames_owner
+
+- name: Tnsnames - Main - Process Source File - Process Source File debug - Display the tnsnames_group parameter
+  debug:
+    var: tnsnames_group
+
+- name: Tnsnames - Main - Process Source File - Process Source File debug - Display the tnsnames_file_mode parameter
+  debug:
+    var: tnsnames_file_mode
+    

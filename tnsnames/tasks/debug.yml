@@ -1,0 +1,8 @@
+---
+# $Author:   David Rotthoff <david.rotthoff@vauto.com> $
+# $Date:     2017-04-14 09:57:44 -0500 $
+# $Source:   roles/tnsnames/tasks/debug.yml $
+
+- name: Tnsnames - Main - Main Debug - Display the TNS names default target directory
+  debug:
+    var: vars

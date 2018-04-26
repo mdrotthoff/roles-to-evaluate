@@ -1,0 +1,41 @@
+---
+# $Author:   David Rotthoff <david.rotthoff@vauto.com> $
+# $Date:     2017-05-02 14:46:58 -0500 $
+# $Source:   roles/common/tasks/copy_files.yml $
+
+- name: Dump variables at the start of copy_files
+  debug:
+    var: vars
+  when:  copy_files_debug|default(False)
+
+- name: Initialize the list of files to copy
+  set_fact:
+    copy_files_list: []
+
+- name: Build the list of files to copy
+  set_fact:
+    copy_files_list: >
+                     {{ copy_files_list|default([]) + [ {
+                     'file_src':      item.src_directory|default(copy_files_defaults.src_directory) + '/' + item.source,
+                     'file_dest':     item.dest_directory|default(copy_files_defaults.dest_directory) + '/' + item.target|default(item.source),
+                     'file_owner':    item.file_owner|default(copy_files_defaults.file_owner),
+                     'file_group':    item.file_group|default(copy_files_defaults.file_group),
+                     'file_mode':     item.file_mode|default(copy_files_defaults.file_mode),
+                     'file_backup':   item.file_backup|default(copy_files_defaults.file_backup)|default(False),
+                     } ] }}
+  with_items: "{{ copy_files_sources }}"
+
+- name: Copy source files to target
+  copy:
+    src:       "{{ item.file_src }}"
+    dest:      "{{ item.file_dest }}"
+    owner:     "{{ item.file_owner|default(null) }}"
+    group:     "{{ item.file_group }}"
+    mode:      "{{ item.file_mode }}"
+    backup:    "{{ item.file_backup }}"
+  with_items:  "{{ copy_files_list }}"
+
+- name: Dump variables at the end of copy_files
+  debug:
+    var: vars
+  when:  copy_files_debug|default(False)

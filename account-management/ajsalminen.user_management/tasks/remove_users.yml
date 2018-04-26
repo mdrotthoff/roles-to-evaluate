@@ -1,0 +1,29 @@
+---
+
+    - include: chown_files_of_removed.yml
+      when: user_management_chown_removed == true
+
+    - name: remove user(s)
+      user:
+        name: "{{ item.name }}"
+        remove: "{{item.remove|default('no')}}"
+        state: absent
+      with_items: user_management_removed_users
+      when: user_management_removed_users is defined
+
+    - name: remove authorized key(s) from root for removed users
+      authorized_key:
+        user: root
+        key: "{{ lookup('file', user_management_ssh_keys_path ~ user_management_users[item.name].public_key ) }}"
+        state: absent
+      with_items: user_management_removed_users
+      when: user_management_users[item].public_key is defined
+
+
+    - name: remove additional authorized key(s) from root for removed users
+      authorized_key:
+        user: root
+        key: "{{ lookup('file', user_management_ssh_keys_path ~ user_management_users[item.name].additional_public_key ) }}"
+        state: absent
+      with_items: user_management_removed_users
+      when: user_management_users[item].additional_public_key is defined

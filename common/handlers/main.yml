@@ -1,0 +1,6 @@
+---
+# $Author:   David Rotthoff <david.rotthoff@vauto.com> $
+# $Date:     2017-04-11 09:54:38 -0500 $
+# $Source:   roles/common/handlers/main.yml $
+
+# handlers file for role commons

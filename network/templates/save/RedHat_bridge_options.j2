@@ -1,0 +1,17 @@
+# Bonding parameters
+TYPE=Bridge
+BRIDGING_OPTS=" 
+{%- if item.bridge.priority is defined %}
+ priority={{ item.bridge.priority }}
+{%- else -%}
+ priority=32760
+{%- endif -%}
+{%- if item.bridge.hello_time is defined %}
+ hello_time={{ item.brige.hello_time }}
+{%- endif -%}
+{%- if item.bridge.max_age is defined %}
+ downdelay={{ item.bridge.max_age }}
+{%- endif -%}
+{%- if item.bridge.ageing_time is defined %}
+ updelay={{ item.bridge.ageing_time }}
+{%- endif -%}"

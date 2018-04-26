@@ -1,0 +1,24 @@
+---
+# $Author:   David Rotthoff <david.rotthoff@vauto.com> $
+# $Date:     2017-04-14 09:57:44 -0500 $
+# $Source:   roles/tnsnames/tasks/process_source_file.yml $
+
+- name: Tnsnames - Main - Process Source File - Include debugging of process_source_file.yml
+  include: debug.yml
+  static: false
+  when:   tnsnames_debug
+
+- name: Tnsnames - Main - Process Source File - Copy {{ item.source }} to {{ item.target|default(item.source) }}
+  copy:
+    src:       "{{ item.source }}"
+    dest:      "{{ item.directory|default(tnsnames_defaults.directory) }}/{{ item.target|default(item.source) }}"
+    owner:     "{{ item.owner|default(tnsnames_defaults.owner) }}"
+    group:     "{{ item.group|default(tnsnames_defaults.group) }}"
+    mode:      "{{ item.file_mode|default(tnsnames_defaults.file_mode) }}"
+    backup:    true
+  become_user: "{{ tnsnames_parameters.user_name }}"
+
+- name: Tnsnames - Main - Process Source File - Include debugging of process_source_file.yml
+  include: debug.yml
+  static: false
+  when:   tnsnames_debug

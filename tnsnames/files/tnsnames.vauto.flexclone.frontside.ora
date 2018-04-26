@@ -1,0 +1,81 @@
+# $Author:   mdrotthoff <david.rotthoff@vauto.com> $
+# $Date:     2017-04-21 15:57:45 -0500 $
+# $Source:   roles/tnsnames/files/tnsnames.vauto.flexclone.frontside.ora $
+
+#################################################
+# Start Environment: Flex Clone                 #
+# Location: AutoTrader's Duke Datacenter        #
+# Interface: Front side                         #
+#################################################
+
+#################################################
+# DB1 Database                                  #
+#################################################
+FCPDB01.VAUTO.COM=
+  (DESCRIPTION=
+    (ADDRESS_LIST=
+      (ADDRESS=(PROTOCOL=TCP)(HOST=pvatpdbc01n01.vauto.int)(PORT=1521))
+    )
+    (CONNECT_DATA=(SERVER=dedicated)(SERVICE_NAME=fcpm1))
+  )
+
+#################################################
+# DB2 Database                                  #
+#################################################
+FCPDB02.VAUTO.COM=
+  (DESCRIPTION=
+    (ADDRESS_LIST=
+      (ADDRESS=(PROTOCOL=TCP)(HOST=pvatpdbc01n02.vauto.int)(PORT=1521))
+    )
+    (CONNECT_DATA=(SERVER=dedicated)(SERVICE_NAME=fcpld1))
+  )
+
+#################################################
+# Worker Database                               #
+#################################################
+FCPWDB.VAUTO.COM =
+  (DESCRIPTION=
+    (ADDRESS_LIST=
+      (ADDRESS=(PROTOCOL=TCP)(HOST=pvatpwdb01.vauto.int)(PORT=1521))
+    )
+    (CONNECT_DATA=(SERVER=dedicated)(SERVICE_NAME=vatpwdb.vauto.com))
+  )
+
+FCPWDB01.VAUTO.COM =
+  (DESCRIPTION=
+    (ADDRESS_LIST=
+      (ADDRESS=(PROTOCOL=TCP)(HOST=pvatpwdb01.vauto.int)(PORT=1521))
+    )
+    (CONNECT_DATA=(SERVER=dedicated)(SERVICE_NAME=vapwdb1.vauto.com))
+  )
+
+FCPWDB02.VAUTO.COM =
+  (DESCRIPTION=
+    (ADDRESS_LIST=
+      (ADDRESS=(PROTOCOL=TCP)(HOST=pvatpwdb02.vauto.int)(PORT=1521))
+    )
+    (CONNECT_DATA=(SERVER=dedicated)(SERVICE_NAME=vapwdb2.vauto.com))
+  )
+
+FCPWDB03.VAUTO.COM =
+  (DESCRIPTION=
+    (ADDRESS_LIST=
+      (ADDRESS=(PROTOCOL=TCP)(HOST=pvatpwdb03.vauto.int)(PORT=1521))
+    )
+    (CONNECT_DATA=(SERVER=dedicated)(SERVICE_NAME=vapwdb3.vauto.com))
+  )
+
+#################################################
+# Omni Database                                 #
+#################################################
+FCPDBOMNI01.VAUTO.COM=
+  (DESCRIPTION=
+    (ADDRESS_LIST=
+      (ADDRESS=(PROTOCOL=TCP)(HOST=pvatpdbc01n03.vauto.int)(PORT=1521))
+    )
+    (CONNECT_DATA=(SERVER=dedicated)(SERVICE_NAME=fcpomni))
+  )
+
+#################################################
+# EndEnvironment: Flex Clone                    #
+#################################################

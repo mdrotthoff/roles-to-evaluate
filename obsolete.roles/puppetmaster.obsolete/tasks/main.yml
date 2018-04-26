@@ -1,0 +1,6 @@
+---
+
+- name: Install Puppet Master
+  command: /bin/echo "Installing Puppet master"
+  register: puppet_master_install
+

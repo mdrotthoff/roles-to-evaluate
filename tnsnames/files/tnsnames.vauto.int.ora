@@ -1,0 +1,40 @@
+# $Author:   root <root@ansible.mdrotthoff.austin.vauto.com> $
+# $Date:     2017-05-02 16:11:24 -0500 $
+# $Source:   roles/tnsnames/files/tnsnames.vauto.int.ora $
+
+#################################################
+# Environment: Internal Database Server         #
+# Location: AutoTrader's Duke Drive Datacenter  #
+# Purpose: Internal tools database servers only #
+#################################################
+
+#################################################
+# Start Environment: Production                 #
+#################################################
+# ifile=/var/opt/oracle/tnsnames.vauto.flexclone.frontside.ora
+# ifile=/var/opt/oracle/tnsnames.vauto.flexclone.backside.DDC.ora
+ifile=/var/opt/oracle/tnsnames.vauto.production.frontside.ora
+# ifile=/var/opt/oracle/tnsnames.vauto.production.backside.DDC.ora
+# ifile=/var/opt/oracle/tnsnames.vauto.production.backside.SDC.ora
+ifile=/var/opt/oracle/tnsnames.vauto.production.frontside.active.ora
+ifile=/var/opt/oracle/tnsnames.vauto.production.frontside.passive.ora
+
+#################################################
+# Start Environment: Internal Tools             #
+#################################################
+ifile=/var/opt/oracle/tnsnames.vauto.internal.frontside.ora
+# ifile=/var/opt/oracle/tnsnames.vauto.internal.backside.ora
+
+#################################################
+# Start Environment: Alpha / Staging            #
+# Location: AutoTrader's Duke Drive Datacenter  #
+#################################################
+ifile=/var/opt/oracle/tnsnames.vauto.alpha.frontside.ora
+# ifile=/var/opt/oracle/tnsnames.vauto.alpha.backside.ora
+
+#################################################
+# Start Environment: Development                #
+# Location: AutoTrader's Duke Drive Datacenter  #
+#################################################
+ifile=/var/opt/oracle/tnsnames.vauto.development.frontside.ora
+# ifile=/var/opt/oracle/tnsnames.vauto.development.backside.ora

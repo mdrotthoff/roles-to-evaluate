@@ -1,0 +1,35 @@
+---
+# $Author:   David Rotthoff <david.rotthoff@vauto.com> $
+# $Date:     2017-09-29 17:31:00 -0500 $
+# $Source:   roles/tnsnames/tasks/remove_source_backup.yml $
+
+- name: Tnsnames - Main - Remove Source Backup File Task - Include debugging of main.yml
+  include: debug.yml
+  static:  false
+  when:    tnsnames_debug
+
+- name: Tnsnames - Main - Remove Source Backup File Task - Find backups files for {{ item.source }} in the target directory
+  find:
+    path:    "{{ tnsnames_defaults.directory }}"
+    pattern: "{{ item.target|default(item.source) }}.*~"
+    recurse: no
+  register:  files_to_remove
+
+- name: Tnsnames - Main - Remove Source Backup File Task - Include debugging of main.yml
+  include: remove_source_backup_debug.yml
+  static:  false
+  when:    tnsnames_debug
+
+- name: Tnsnames - Main - Remove Source Backup File Task - Removed pre-existing backup files for {{ item.source }}
+  file:
+    path:     "{{ path_item.path }}"
+    state:    absent
+  when:       files_to_remove.files is defined
+  with_items: "{{ files_to_remove.files|default([]) }}"
+  loop_control:
+    loop_var: path_item
+
+- name: Tnsnames - Main - Remove Source Backup File Task - Include debugging of main.yml
+  include: debug.yml
+  static:  false
+  when:    tnsnames_debug

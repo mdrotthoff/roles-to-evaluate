@@ -1,0 +1,20 @@
+{% if item.bond is defined %}
+{% include "RedHat_bond_options.j2" %}
+
+{% elif item.vlan is defined %}
+{% include  "RedHat_vlan_options.j2" %}
+
+{% elif item.bridge_options is defined %}
+{% include  "RedHat_bridging_options.j2" %}
+
+{% elif item.bridge is defined %}
+{% include  "RedHat_bridge_options.j2" %}
+
+{% else %}
+# Device parameters
+{% if item.type is defined %}
+TYPE={{ item.type }}
+{% else %}
+TYPE=Ethernet
+{% endif %}
+{% endif %}

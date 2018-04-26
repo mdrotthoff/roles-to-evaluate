@@ -1,0 +1,383 @@
+---
+
+network_ether_interfaces:
+- device: eth0.ipv4
+  type: Ethernet
+  bootproto: static
+  onboot: yes
+  mtu: 1500
+  user_control: no
+  nm_controlled: yes
+  peerdns: no
+  peerroutes: no
+  bridge_options:
+    name: bridge0
+    priority: 128
+    path_code: 100
+    hairpin_mode: 1
+  uuid: "e437cf9f-f743=433a-b337-da1293c35fca"
+  dns_nameservers: [192.168.35.1, 192.168.35.10, 192.168.35.20, 192.168.35.30]
+  search_domains:
+  - domain: "david-laptop.rotthoff.home"
+  - domain: "rotthoff.home"
+  - domain: "datacenter.rotthoff.home"
+  ipv4:  
+    failure_fatal: no
+    defroute: yes
+    peerdns: no
+    peerroutes: no
+    cidr: 192.168.10.18/24
+    gateway: 192.168.10.1
+    addresses:
+    - cidr: 192.168.10.18/24
+      gateway: 192.168.10.1
+    - address: 192.168.20.18
+      netmask: 255.255.255.0
+      gateway: 192.168.20.1
+    - address: 192.168.30.18
+      netmask: 255.255.255.0
+      gateway: 192.168.30.1
+    route:
+    - network: 192.168.200.0
+      netmask: 255.255.255.0
+      gateway: 192.168.10.1
+    - network: 192.168.220.0
+      netmask: 255.255.255.0
+      gateway: 192.168.20.1
+
+- device: eth0.ipv6
+  type: Ethernet
+  bootproto: static
+  onboot: yes
+  mtu: 1500
+  user_control: no
+  nm_controlled: yes
+  peerdns: no
+  peerroutes: no
+  uuid: "e437cf9f-f743=433a-b337-da1293c35fca"
+  dns_nameservers: [192.168.35.1, 192.168.35.10, 192.168.35.20, 192.168.35.30]
+  search_domains:
+  - domain: "david-laptop.rotthoff.home"
+  - domain: "rotthoff.home"
+  - domain: "datacenter.rotthoff.home"
+  ipv6:
+    failure_fatal: no
+    autoconf: yes
+    address: "aaaa:bbbb:cccc:dddd:dead:beef::1/64"
+    gateway: "aaaa:bbbb:cccc:dddd::1"
+    secondary_addresses:
+    - address: "aaaa:bbbb:cccc:eeee:dead:beef::1/64"
+    - address: "aaaa:bbbb:cccc:ffff:dead:beef::1/64"
+    defroute: yes
+    peerdns: yes
+    peerroutes: yes
+    privacy: yes
+    addr_gen_mode: "stable-private"
+
+- device: eth0.neither
+  type: Ethernet
+  bootproto: static
+  onboot: yes
+  mtu: 1500
+  user_control: no
+  nm_controlled: yes
+  peerdns: no
+  peerroutes: no
+  uuid: "e437cf9f-f743=433a-b337-da1293c35fca"
+  dns_nameservers: [192.168.35.1, 192.168.35.10, 192.168.35.20, 192.168.35.30]
+  search_domains:
+  - domain: "david-laptop.rotthoff.home"
+  - domain: "rotthoff.home"
+  - domain: "datacenter.rotthoff.home"
+
+- device: eth0.both
+  type: Ethernet
+  bootproto: static
+  onboot: yes
+  mtu: 1500
+  user_control: no
+  nm_controlled: yes
+  peerdns: no
+  peerroutes: no
+  uuid: "e437cf9f-f743=433a-b337-da1293c35fca"
+  dns_nameservers: [192.168.35.1, 192.168.35.10, 192.168.35.20, 192.168.35.30]
+  search_domains:
+  - domain: "david-laptop.rotthoff.home"
+  - domain: "rotthoff.home"
+  - domain: "datacenter.rotthoff.home"
+  ipv4:
+    failure_fatal: no
+    defroute: yes
+    peerdns: no
+    peerroutes: no
+    cidr: 192.168.10.18/24
+    gateway: 192.168.10.1
+    addresses:
+    - address: 192.168.20.18
+      netmask: 255.255.255.0
+      gateway: 192.168.20.1
+    - address: 192.168.30.18
+      netmask: 255.255.255.0
+      gateway: 192.168.30.1
+    route:
+    - network: 192.168.200.0
+      netmask: 255.255.255.0
+      gateway: 192.168.10.1
+      metric: 100
+    - network: 192.168.220.0
+      netmask: 255.255.255.0
+      gateway: 192.168.20.1
+      metric: 1000
+  ipv6:
+    failure_fatal: no
+    autoconf: yes
+    address: "aaaa:bbbb:cccc:dddd:dead:beef::1/64"
+    gateway: "aaaa:bbbb:cccc:dddd::1"
+    secondary_addresses:
+    - address: "aaaa:bbbb:cccc:eeee:dead:beef::1/64"
+    - address: "aaaa:bbbb:cccc:ffff:dead:beef::1/64"
+    defroute: yes
+    peerdns: yes
+    peerroutes: yes
+    privacy: yes
+    addr_gen_mode: "stable-private"
+
+network_bond_interfaces:
+- device: bond0.ipv4
+  bootproto: static
+  onboot: yes
+  mtu: 1500
+  user_control: yes
+  nm_controlled: yes
+  peerdns: no
+  peerroutes: no
+  bridge_options:
+    bridge_name: bridge1
+    priority: 128
+    path_code: 100
+    hairpin_mode: 1
+  uuid: "e437cf9f-f743=433a-b337-da1293c35fca"
+  dns_nameservers: [192.168.35.1, 192.168.35.10, 192.168.35.20, 192.168.35.30]
+  search_domains:
+  - domain: "david-laptop.rotthoff.home"
+  - domain: "rotthoff.home"
+  - domain: "datacenter.rotthoff.home"
+  bond:
+    mode: 802.3ad
+    miimon: 100
+    slaves:
+    - device: eth1
+      uuid: "e437cf9f-f743=433a-b337-da1293c35fcb"
+    - device: eth2
+      uuid: "e437cf9f-f743=433a-b337-da1293c35fcc"
+  ipv4:  
+    failure_fatal: no
+    defroute: yes
+    peerdns: no
+    peerroutes: no
+    cidr: 192.168.10.18/24
+    gateway: 192.168.10.1
+    addresses:
+    - cidr: 192.168.10.18/24
+      gateway: 192.168.10.1
+    - address: 192.168.20.18
+      netmask: 255.255.255.0
+      gateway: 192.168.20.1
+    - address: 192.168.30.18
+      netmask: 255.255.255.0
+      gateway: 192.168.30.1
+    route:
+    - network: 192.168.200.0
+      netmask: 255.255.255.0
+      gateway: 192.168.10.1
+    - network: 192.168.220.0
+      netmask: 255.255.255.0
+      gateway: 192.168.20.1
+
+- device: bond0.ipv6
+  bootproto: static
+  onboot: yes
+  mtu: 1500
+  user_control: yes
+  nm_controlled: yes
+  peerdns: no
+  peerroutes: no
+  uuid: "e437cf9f-f743=433a-b337-da1293c35fca"
+  dns_nameservers: [192.168.35.1, 192.168.35.10, 192.168.35.20, 192.168.35.30]
+  search_domains:
+  - domain: "david-laptop.rotthoff.home"
+  - domain: "rotthoff.home"
+  - domain: "datacenter.rotthoff.home"
+  bond:
+    mode: active-backup
+    miimon: 100
+    slaves:
+    - device: eth3
+      uuid: "e437cf9f-f743=433a-b337-da1293c35fcb"
+    - device: eth4
+      uuid: "e437cf9f-f743=433a-b337-da1293c35fcc"
+  ipv6:
+    failure_fatal: no
+    autoconf: yes
+    address: "aaaa:bbbb:cccc:dddd:dead:beef::1/64"
+    gateway: "aaaa:bbbb:cccc:dddd::1"
+    secondary_addresses:
+    - address: "aaaa:bbbb:cccc:eeee:dead:beef::1/64"
+    - address: "aaaa:bbbb:cccc:ffff:dead:beef::1/64"
+    defroute: yes
+    peerdns: yes
+    peerroutes: yes
+    privacy: yes
+    addr_gen_mode: "stable-private"
+
+- device: bond0.both
+  bootproto: static
+  onboot: yes
+  mtu: 1500
+  user_control: yes
+  nm_controlled: yes
+  peerdns: no
+  peerroutes: no
+  uuid: "e437cf9f-f743=433a-b337-da1293c35fca"
+  dns_nameservers: [192.168.35.1, 192.168.35.10, 192.168.35.20, 192.168.35.30]
+  search_domains:
+  - domain: "david-laptop.rotthoff.home"
+  - domain: "rotthoff.home"
+  - domain: "datacenter.rotthoff.home"
+  bond:
+    mode: active-backup
+    primary: eth5
+    miimon: 100
+    updelay: 100
+    downdelay: 100
+    arp:
+      target: 192.168.35.254
+      interval: 1000
+    slaves:
+    - device: eth5
+      uuid: "e437cf9f-f743=433a-b337-da1293c35fcb"
+    - device: eth6
+      uuid: "e437cf9f-f743=433a-b337-da1293c35fcc"
+  ipv4:  
+    failure_fatal: no
+    defroute: yes
+    peerdns: no
+    peerroutes: no
+    cidr: 192.168.10.18/24
+    gateway: 192.168.10.1
+    addresses:
+    - cidr: 192.168.10.18/24
+      gateway: 192.168.10.1
+    - address: 192.168.20.18
+      netmask: 255.255.255.0
+      gateway: 192.168.20.1
+    - address: 192.168.30.18
+      netmask: 255.255.255.0
+      gateway: 192.168.30.1
+    route:
+    - network: 192.168.200.0
+      netmask: 255.255.255.0
+      gateway: 192.168.10.1
+    - network: 192.168.220.0
+      netmask: 255.255.255.0
+      gateway: 192.168.20.1
+  ipv6:
+    failure_fatal: no
+    autoconf: yes
+    address: "aaaa:bbbb:cccc:dddd:dead:beef::1/64"
+    gateway: "aaaa:bbbb:cccc:dddd::1"
+    secondary_addresses:
+    - address: "aaaa:bbbb:cccc:eeee:dead:beef::1/64"
+    - address: "aaaa:bbbb:cccc:ffff:dead:beef::1/64"
+    defroute: yes
+    peerdns: yes
+    peerroutes: yes
+    privacy: yes
+    addr_gen_mode: "stable-private"
+
+- device: bond0.neither
+  bootproto: dhcp
+  onboot: yes
+  mtu: 1500
+  user_control: yes
+  nm_controlled: yes
+  peerdns: no
+  peerroutes: no
+  uuid: "e437cf9f-f743=433a-b337-da1293c35fca"
+  dns_nameservers: [192.168.35.1, 192.168.35.10, 192.168.35.20, 192.168.35.30]
+  search_domains:
+  - domain: "david-laptop.rotthoff.home"
+  - domain: "rotthoff.home"
+  - domain: "datacenter.rotthoff.home"
+  bond:
+    mode: active-backup
+    miimon: 100
+    slaves:
+    - device: eth7
+      uuid: "e437cf9f-f743=433a-b337-da1293c35fcb"
+    - device: eth8
+      uuid: "e437cf9f-f743=433a-b337-da1293c35fcc"
+
+network_vlan_interfaces:
+- device: eth0.2
+  bootproto: dhcp
+  onboot: yes
+  mtu: 1500
+  user_control: yes
+  nm_controlled: yes
+  peerdns: no
+  peerroutes: no
+  uuid: "e437cf9f-f743=433a-b337-da1293c35fca"
+  dns_nameservers: [192.168.35.1, 192.168.35.10, 192.168.35.20, 192.168.35.30]
+  search_domains:
+  - domain: "david-laptop.rotthoff.home"
+  - domain: "rotthoff.home"
+  - domain: "datacenter.rotthoff.home"
+  vlan:
+    id: 2
+    phydev: eth9
+    reorder_hdr: yes
+    gvrp: no
+    mvrp: no
+    
+- device: eth0.4
+  bootproto: dhcp
+  onboot: yes
+  mtu: 1500
+  user_control: yes
+  nm_controlled: yes
+  peerdns: no
+  peerroutes: no
+  uuid: "e437cf9f-f743=433a-b337-da1293c35fca"
+  dns_nameservers: [192.168.35.1, 192.168.35.10, 192.168.35.20, 192.168.35.30]
+  search_domains:
+  - domain: "david-laptop.rotthoff.home"
+  - domain: "rotthoff.home"
+  - domain: "datacenter.rotthoff.home"
+  vlan:
+    reorder_hdr: yes
+    gvrp: no
+    mvrp: no
+
+network_bridge_interfaces:
+- device: bridge0
+  bootproto: dhcp
+  onboot: yes
+  mtu: 1500
+  user_control: yes
+  nm_controlled: yes
+  peerdns: no
+  peerroutes: no
+  uuid: "e437cf9f-f743=433a-b337-da1293c35fca"
+  dns_nameservers: [192.168.35.1, 192.168.35.10, 192.168.35.20, 192.168.35.30]
+  search_domains:
+  - domain: "david-laptop.rotthoff.home"
+  - domain: "rotthoff.home"
+  - domain: "datacenter.rotthoff.home"
+  bridge:
+    ageing_time: 300 
+    priority: 32768
+    hello_time: 2
+    max_age: 20
+    stp: "on"
+    delay: "5 eth10"

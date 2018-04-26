@@ -1,0 +1,14 @@
+# Bridging parameters
+TYPE=Ethernet
+BRIDGE={{ item.bridge_options.name }}
+BRIDGING_OPTS="
+{%- if item.bridge_options.priority is defined %}
+ priority={{ item.bridge_options.priority }}
+{%- endif -%}
+{%- if item.bridge_options.path_cost is defined %}
+ priority={{ item.bridge_options.path_cost }}
+{%- endif -%}
+{%- if item.bridge_options.hairpin_mode is defined %}
+ hairpin_mode={{ item.bridge_options.hairpin_mode }}
+{%- endif -%}
+"

@@ -1,0 +1,43 @@
+---
+# $Author:   david_rotthoff <david_rotthoff@rotthoff.home> $
+# $Date:     2017-04-09 20:41:54 -0500 $
+# $Source:   roles/common/tasks/main.yml $
+
+# Consider building copy_files.vauto.ora dynamically based on the
+# files copied across.
+
+# Add deployment of the sqlnet.ora file
+
+- name: copy_files - Main - Main Debug - Display the copy_files default target directory
+  debug:
+    var: copy_files_debug
+
+- name: copy_files - Main - Include debugging of main.yml
+  include: main_debug.yml
+  static:  false
+  when:    copy_files_debug
+
+- name: copy_files - Main - Ensure the target directory exists
+  file:
+     path:  "{{ copy_files_defaults.directory }}"
+     state: directory
+     group: "{{ copy_files_defaults.group }}"
+     owner: "{{ copy_files_defaults.owner }}"
+     mode:  "{{ copy_files_defaults.dir_mode }}"
+
+- name: copy_files - Main - Remove source backup files
+  include:    remove_source_backup.yml
+  static:     false
+  with_items: "{{ copy_files_sources }}"
+  when:       copy_files_parameters.purge_backup
+
+- name: copy_files - Main - Pause prior to copying files to {{ ansible_fqdn }} for {{ copy_files_parameters.pause_delay }} min
+  pause:
+    prompt:  "Processing {{ ansible_fqdn }}"
+    minutes: "{{ copy_files_parameters.pause_delay }}"
+  when:      copy_files_parameters.pause_before_copy
+
+- name: copy_files - Main - Process the source files
+  include:    process_source_file.yml
+  static:     false
+  with_items: "{{ copy_files_sources }}"

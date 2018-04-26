@@ -1,0 +1,37 @@
+---
+# tasks file for inkatze.network
+
+- name: Set server hostname
+  hostname: name={{ network_server_hostname }}
+
+- name: Enable networking
+  lineinfile:
+    dest: /etc/sysconfig/network
+    regexp: ^NETWORKING=
+    line: NETWORKING=yes
+    owner: root
+    group: root
+    mode: 0644
+  notify: restart network
+
+- name: Set server hostname in the network configuration
+  lineinfile:
+    dest: /etc/sysconfig/network
+    regexp: ^HOSTNAME=
+    line: HOSTNAME={{ network_server_hostname }}
+    owner: root
+    group: root
+    mode: 0644
+  notify: restart network
+
+- name: Set server hostname in the hosts file
+  lineinfile:
+    dest: /etc/hosts
+    regexp: ^127.0.0.1 {{ network_server_hostname }}
+    line: 127.0.0.1 {{ network_server_hostname }}
+    owner: root
+    group: root
+    mode: 0644
+
+- name: Enable and start firewalld
+  service: name=firewalld state=started enabled=yes

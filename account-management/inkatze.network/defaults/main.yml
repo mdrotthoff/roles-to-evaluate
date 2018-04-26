@@ -1,0 +1,4 @@
+---
+# defaults file for inkatze.network
+
+network_server_hostname: "{{ inventory_hostname }}"

@@ -1,0 +1,17 @@
+---
+# $Author:   david_rotthoff <david_rotthoff@rotthoff.home> $
+# $Date:     2017-04-23 14:03:46 -0500 $
+# $Source:   roles/common/defaults/main.yml $
+
+# defaults file for copy_files
+
+#copy_files_directory: "/var/opt/oracle"
+copy_files_purge_backup: false
+#copy_files_owner: "oracle"
+#copy_files_group: "dba"
+#copy_files_file_mode: "0644"
+
+copy_files_serial: 1
+copy_files_pause_before_copy: false
+copy_files_pause_delay: 5
+copy_files_debug: false

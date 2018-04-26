@@ -1,0 +1,50 @@
+---
+
+#- name: Check kernel is up-to-date
+#  shell: LAST_KERNEL=$(rpm -q --last kernel | perl -pe 's/^kernel-(\S+).*/$1/' | head -1); CURRENT_KERNEL=$(uname -r); if [ $LAST_KERNEL != $CURRENT_KERNEL ]; then echo 'reboot'; else echo 'no'; fi
+#  ignore_errors: true
+#  register: reboot_hint
+#  changed_when: reboot_hint.stdout == "reboot"
+#  notify:
+#    - Reboot Sequence
+
+- name: Reboot Sequence
+  command: /bin/date +%s
+  register: before_reboot
+  changed_when: true
+  notify:
+    - Reboot System
+    - Wait for Server to Come Back
+    - Verify Reboot Succeeded
+
+- name: Reboot System
+  shell: sleep 2 && /sbin/shutdown -r now "Rebooting now...."
+#  shell: /usr/bin/systemd-run --on-active=10 /usr/bin/systemctl reboot
+  async: 1
+  poll: 0
+  become: true
+  ignore_errors: true
+#  register: reboot_cmd
+
+#- name: Reboot command output
+#  debug:
+#    var: reboot_cmd
+
+- name: Wait for Server to Come Back
+  local_action:
+    module: wait_for
+       connect_timeout=10
+       host={{ inventory_hostname }}
+       state=started
+       port=22
+       delay=10
+       timeout=300
+  become: false
+
+- name: Verify Reboot Succeeded
+  shell: (( `date +%s` - `awk -F . '{print $1}' /proc/uptime` > {{ before_reboot.stdout }} ))
+  register: reboot_check
+
+- name: Verify Reboot Succeeded
+  debug:
+    var: reboot_check

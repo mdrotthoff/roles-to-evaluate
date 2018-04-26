@@ -1,0 +1,21 @@
+# $Author:   David Rotthoff <david.rotthoff@vauto.com> $
+# $Date:     2017-04-18 13:14:02 -0500 $
+# $Source:   roles/tnsnames/files/tnsnames.vauto.internal.frontside.ora $
+
+#################################################
+# Start Environment: Internal Tools             #
+# Location: AutoTrader's Duke Drive Datacenter  #
+# Interface: Front side                         #
+#################################################
+
+VATIDB01.VAUTO.COM=
+  (DESCRIPTION=
+    (ADDRESS_LIST=
+      (ADDRESS=(PROTOCOL=TCP)(HOST=vatidb01.vauto.int)(PORT=1521))
+    )
+    (CONNECT_DATA=(SERVER=dedicated)(SERVICE_NAME=intdb01.vauto.com))
+  )
+
+#################################################
+# End Environment: Internal Tools               #
+#################################################

@@ -1,0 +1,14 @@
+---
+# tasks file for oracle-db
+
+#  - name: Dump oracle-db variables at start
+#    debug:
+#      var: vars
+
+- name: Deploy TNS files
+  include: tnsnames-deploy.yml
+  when:    tnsnames_deploy_sources is defined
+
+#  - name: Dump oracle-db variables at end
+#    debug:
+#      var: vars

@@ -1,0 +1,44 @@
+# IPV6 properties
+{% if item.ipv6 is not defined %}
+# IPV6 section is not configured
+IPV6INIT=no
+IPV6_AUTOCONF=no
+{% elif item.ipv6 == None %}
+# IPV6 section has an empty configuration
+IPV6INIT=no
+IPV6_AUTOCONF=no
+{% else %}
+IPV6INIT=yes
+{% if item.ipv6.defroute is defined %}
+IPV6_AUTOCONF={{ item.ipv6.autoconf | bool | ternary("yes", "no") }}
+{% endif %}
+{% if item.ipv6.defroute is defined %}
+IPV6_DEFROUTE={{ item.ipv6.defroute | bool | ternary("yes", "no") }}
+{% endif %}
+{% if item.ipv6.failure_fatal is defined %}
+IPV6_FAILURE_FATAL={{ item.ipv6.failure_fatal | bool | ternary("yes", "no") }}
+{% else %}
+IPV6_FAILURE_FATAL=no
+{% endif %}
+{% if item.ipv6.forwarding is defined %}
+IPV6_FORWARDING={{ item.ipv6.forwarding | bool | ternary("yes", "no") }}
+{% endif %}
+{% if item.ipv6.peerdns is defined %}
+IPV6_PEERDNS={{ item.ipv6.peerdns | bool | ternary("yes", "no") }}
+{% endif %}
+{% if item.ipv6.peerroutes is defined %}
+IPV6_PEERROUTES={{ item.ipv6.peerroutes | bool | ternary("yes", "no") }}
+{% endif %}
+{% if item.ipv6.privacy is defined %}
+IPV6_PRIVACY={{ item.ipv6.privacy | bool | ternary("yes", "no") }}
+{% endif %}
+{% if item.ipv6.address is defined %}
+IPV6ADDR={{ item.ipv6.address }}
+{% endif %}
+{% if item.ipv6.gateway is defined %}
+IPV6_DEFAULTGW="{{ item.ipv6.gateway }}"
+{% endif %}
+{% if item.ipv6.secondary_addresses is defined %}
+IPV6ADDR_SECONDARIES="{% for secondary_address in item.ipv6.secondary_addresses %}{% if loop.index > 1 %} {% endif %}{{ secondary_address.address }}{% endfor %}"
+{% endif %}
+{% endif %}

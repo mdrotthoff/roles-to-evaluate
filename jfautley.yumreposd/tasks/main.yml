@@ -1,0 +1,65 @@
+---
+- name: Test we're on a compatible distribution
+  assert:
+    that: ansible_os_family == 'RedHat'
+
+- name: Configure repo snippets in yum.repos.d (legacy)
+  template:
+    src: yumrepo.j2
+    dest: "{{ yumreposd_destdir }}/{{ item.key }}.repo"
+  with_dict: "{{yumreposd_repos}}"
+  when:
+    - yumreposd_repos.keys() | length > 0
+    - "{{ ansible_version | version_compare('2.1', '<') }}"
+  notify:
+    - yum expire-cache
+
+- name: Configure repo snippets in yum.repos.d (yum_repository builtin)
+  yum_repository:
+    name: "{{ item.key }}"
+    description: "{{ item.value.name | default(omit) }}"
+    baseurl: "{{ item.value.baseurl | default(omit) }}"
+    mirrorlist: "{{ item.mirrorlist | default(omit) }}"
+    gpgkey: "{{ item.value.gpgkey | default(omit) }}"
+    gpgcheck: "{{ item.value.gpgcheck | default('no') }}"
+    enabled: "{{ item.value.enabled | default('yes') }}"
+  with_dict: "{{yumreposd_repos}}"
+  when:
+    - yumreposd_repos.keys() | length > 0
+    - "{{ ansible_version | version_compare('2.1', '>=') }}"
+
+- name: Generate list of GPG keys to import
+  set_fact:
+    import_gpgkeys: >
+      {%- set keylist = [] %}
+      {%- for repo in yumreposd_repos %}
+      {%-   if yumreposd_repos[repo].has_key('gpgkey') and yumreposd_repos[repo]['gpgcheck'] and not yumreposd_repos[repo]['gpgkey'] in keylist %}
+      {%-     set _ = keylist.append(yumreposd_repos[repo]['gpgkey']) %}
+      {%-   endif %}
+      {%- endfor %}
+      {{- keylist -}}
+
+- name: Import GPG keys to RPM database
+  rpm_key:
+    state: present
+    key: "{{ item |
+             replace('$releasever', ansible_distribution_major_version) |
+             replace('$arch', ansible_architecture) |
+             replace('$basearch', ansible_architecture) |
+             replace('file://', '') }}"
+  with_items: "{{ import_gpgkeys | default() }}"
+  when: yumreposd_importgpgkeys
+
+- name: Get all configured yum repo files
+  shell: >
+    for repo in {{ yumreposd_destdir }}/*.repo; do echo $(basename $repo .repo); done
+  register: yumrepos_configured
+  changed_when: False
+
+- name: Remove unmanaged yum repos
+  file: path="{{ yumreposd_destdir }}/{{ item }}.repo" state=absent
+  with_items: "{{ yumrepos_configured.stdout_lines | default(None) }}"
+  when:
+    - item not in yumreposd_repos.keys()
+    - item not in yumreposd_preserve
+    - yumreposd_delete_unmanaged

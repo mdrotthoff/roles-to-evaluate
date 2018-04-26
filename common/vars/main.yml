@@ -1,0 +1,6 @@
+---
+# $Author:   david_rotthoff <david_rotthoff@rotthoff.home> $
+# $Date:     2017-04-09 20:41:54 -0500 $
+# $Source:   roles/common/vars/main.yml $
+
+# vars file for copy_files

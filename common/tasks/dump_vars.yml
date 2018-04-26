@@ -1,0 +1,8 @@
+---
+# $Author:   David Rotthoff <david.rotthoff@vauto.com> $
+# $Date:     2017-09-29 17:31:00 -0500 $
+# $Source:   roles/common/tasks/dump_vars.yml $
+
+- name: Dump all variables defined
+  debug:
+    var: vars

@@ -1,0 +1,29 @@
+---
+
+- name: Debug True
+  command: "/bin/true"
+  register: debug_true
+
+- debug:
+    var: debug_true
+
+- name: Debug False
+  command: "/bin/false"
+  register: debug_false
+  ignore_errors: true
+
+- debug:
+    var: debug_false
+
+- name: Debug True both
+  command: "/bin/true"
+  register: debug_result
+
+- name: Debug False both
+  command: "/bin/false"
+  register: debug_result
+  ignore_errors: true
+
+- debug:
+    var: debug_result
+      

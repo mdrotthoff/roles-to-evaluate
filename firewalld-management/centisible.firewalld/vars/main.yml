@@ -1,0 +1,12 @@
+## ensure packages are installed
+firewalld_packages_list: [ 'firewalld' ]
+firewalld_packages_state: 'present'
+firewalld_packages_disable_gpg_check: 'no'
+firewalld_packages_update_cache: 'yes'
+firewalld_packages_validate_certs: 'yes'
+
+
+## ensure services are running:
+firewalld_services_list: [ 'firewalld' ]
+firewalld_services_enabled: 'yes'
+firewalld_services_state: 'started'

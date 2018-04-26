@@ -1,0 +1,199 @@
+# $Author:   David Rotthoff <david.rotthoff@vauto.com> $
+# $Date:     2017-04-18 13:14:02 -0500 $
+# $Source:   roles/tnsnames/files/tnsnames.vauto.production.backside.DDC.ora $
+
+#################################################
+# Start Environment: Production                 #
+# Location: AutoTrader's DDC Datacenter         #
+# Interface: Back side                          #
+#################################################
+
+#################################################
+# DB1 Database                                  #
+#################################################
+VATPDB01.VAUTO.COM=
+  (DESCRIPTION=
+    (ADDRESS_LIST=
+      (ADDRESS=(PROTOCOL=TCP)(HOST=p03x07gncd10001-link-vip.vauto.int)(PORT=1525))
+      (ADDRESS=(PROTOCOL=TCP)(HOST=p03x07gncd10002-link-vip.vauto.int)(PORT=1525))
+      (ADDRESS=(PROTOCOL=TCP)(HOST=p03x07gncd10003-link-vip.vauto.int)(PORT=1525))
+      (FAILOVER = ON)
+    )
+    (CONNECT_DATA=(SERVER=dedicated)(SERVICE_NAME=vapm1_dblink))
+  )
+
+PRDDB01.VAUTO.COM=
+  (DESCRIPTION=
+    (ADDRESS_LIST=
+      (ADDRESS=(PROTOCOL=TCP)(HOST=p03x07gncd10001-link-vip.vauto.int)(PORT=1525))
+      (ADDRESS=(PROTOCOL=TCP)(HOST=p03x07gncd10002-link-vip.vauto.int)(PORT=1525))
+      (ADDRESS=(PROTOCOL=TCP)(HOST=p03x07gncd10003-link-vip.vauto.int)(PORT=1525))
+      (FAILOVER = ON)
+    )
+    (CONNECT_DATA=(SERVER=dedicated)(SERVICE_NAME=vapm1_dblink))
+  )
+
+#################################################
+# DB1 RAC Instance #1                           #
+#################################################
+VATPDB01_01.VAUTO.COM=
+  (DESCRIPTION=
+    (ADDRESS_LIST=
+      (ADDRESS=(PROTOCOL=TCP)(HOST=p03x07gncd10001-link-vip.vauto.int)(PORT=1525))
+      (ADDRESS=(PROTOCOL=TCP)(HOST=p03x07gncd10002-link-vip.vauto.int)(PORT=1525))
+      (ADDRESS=(PROTOCOL=TCP)(HOST=p03x07gncd10003-link-vip.vauto.int)(PORT=1525))
+    )
+    (CONNECT_DATA=(SERVER=dedicated)(SERVICE_NAME=vapm1)(INSTANCE_NAME=vapm11))
+  )
+
+PRDDB01_01.VAUTO.COM=
+  (DESCRIPTION=
+    (ADDRESS_LIST=
+      (ADDRESS=(PROTOCOL=TCP)(HOST=p03x07gncd10001-link-vip.vauto.int)(PORT=1525))
+      (ADDRESS=(PROTOCOL=TCP)(HOST=p03x07gncd10002-link-vip.vauto.int)(PORT=1525))
+      (ADDRESS=(PROTOCOL=TCP)(HOST=p03x07gncd10003-link-vip.vauto.int)(PORT=1525))
+    )
+    (CONNECT_DATA=(SERVER=dedicated)(SERVICE_NAME=vapm1)(INSTANCE_NAME=vapm11))
+  )
+
+#################################################
+# DB1 RAC Instance #2                           #
+#################################################
+VATPDB01_02.VAUTO.COM=
+  (DESCRIPTION=
+    (ADDRESS_LIST=
+      (ADDRESS=(PROTOCOL=TCP)(HOST=p03x07gncd10001-link-vip.vauto.int)(PORT=1525))
+      (ADDRESS=(PROTOCOL=TCP)(HOST=p03x07gncd10002-link-vip.vauto.int)(PORT=1525))
+      (ADDRESS=(PROTOCOL=TCP)(HOST=p03x07gncd10003-link-vip.vauto.int)(PORT=1525))
+    )
+    (CONNECT_DATA=(SERVER=dedicated)(SERVICE_NAME=vapm1)(INSTANCE_NAME=vapm12))
+  )
+
+PRDDB01_02.VAUTO.COM=
+  (DESCRIPTION=
+    (ADDRESS_LIST=
+      (ADDRESS=(PROTOCOL=TCP)(HOST=p03x07gncd10001-link-vip.vauto.int)(PORT=1525))
+      (ADDRESS=(PROTOCOL=TCP)(HOST=p03x07gncd10002-link-vip.vauto.int)(PORT=1525))
+      (ADDRESS=(PROTOCOL=TCP)(HOST=p03x07gncd10003-link-vip.vauto.int)(PORT=1525))
+    )
+    (CONNECT_DATA=(SERVER=dedicated)(SERVICE_NAME=vapm1)(INSTANCE_NAME=vapm12))
+  )
+
+#################################################
+# DB2 Database                                  #
+#################################################
+VATPDB02.VAUTO.COM=
+  (DESCRIPTION=
+    (ADDRESS_LIST=
+      (ADDRESS=(PROTOCOL=TCP)(HOST=p03x07gncd10001-link-vip.vauto.int)(PORT=1525))
+      (ADDRESS=(PROTOCOL=TCP)(HOST=p03x07gncd10002-link-vip.vauto.int)(PORT=1525))
+      (ADDRESS=(PROTOCOL=TCP)(HOST=p03x07gncd10003-link-vip.vauto.int)(PORT=1525))
+      (FAILOVER = ON)
+    )
+    (CONNECT_DATA=(SERVER=dedicated)(SERVICE_NAME=vapld1_dblink))
+  )
+
+PRDDB02.VAUTO.COM=
+  (DESCRIPTION=
+    (ADDRESS_LIST=
+      (ADDRESS=(PROTOCOL=TCP)(HOST=p03x07gncd10001-link-vip.vauto.int)(PORT=1525))
+      (ADDRESS=(PROTOCOL=TCP)(HOST=p03x07gncd10002-link-vip.vauto.int)(PORT=1525))
+      (ADDRESS=(PROTOCOL=TCP)(HOST=p03x07gncd10003-link-vip.vauto.int)(PORT=1525))
+      (FAILOVER = ON)
+    )
+    (CONNECT_DATA=(SERVER=dedicated)(SERVICE_NAME=vapld1_dblink))
+  )
+
+#################################################
+# Worker Database                               #
+#################################################
+VATPWDB.VAUTO.COM =
+  (DESCRIPTION=
+    (ADDRESS_LIST=
+      (ADDRESS=(PROTOCOL=TCP)(HOST=p03x07wkrda0001-link.vauto.int)(PORT=1521))
+      (ADDRESS=(PROTOCOL=TCP)(HOST=p03x07wkrda0002-link.vauto.int)(PORT=1521))
+      (ADDRESS=(PROTOCOL=TCP)(HOST=p03x07wkrda0003-link.vauto.int)(PORT=1521))
+      (LOAD_BALANCE = ON)(FAILOVER = ON)
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)(SERVICE_NAME=vatpwdb.vauto.com)
+      (FAILOVER_MODE = (TYPE = SELECT)(METHOD = BASIC)(RETRIES = 180)(DELAY = 5))
+    )
+  )
+
+#################################################
+# WDB Database #1                               #
+#################################################
+VATPWDB01.VAUTO.COM =
+  (DESCRIPTION=
+    (ADDRESS_LIST=
+      (ADDRESS=(PROTOCOL=TCP)(HOST=p03x07wkrda0001-link.vauto.int)(PORT=1521))
+    )
+    (CONNECT_DATA=(SERVER=dedicated)(SERVICE_NAME=vapwdb1.vauto.com))
+  )
+
+#################################################
+# WDB Database #2                               #
+#################################################
+VATPWDB02.VAUTO.COM =
+  (DESCRIPTION=
+    (ADDRESS_LIST=
+      (ADDRESS=(PROTOCOL=TCP)(HOST=p03x07wkrda0002-link.vauto.int)(PORT=1521))
+    )
+    (CONNECT_DATA=(SERVER=dedicated)(SERVICE_NAME=vapwdb2.vauto.com))
+  )
+
+#################################################
+# WDB Database #3                               #
+#################################################
+VATPWDB03.VAUTO.COM =
+  (DESCRIPTION=
+    (ADDRESS_LIST=
+      (ADDRESS=(PROTOCOL=TCP)(HOST=p03x07wkrda0003-link.vauto.int)(PORT=1521))
+    )
+    (CONNECT_DATA=(SERVER=dedicated)(SERVICE_NAME=vapwdb3.vauto.com))
+  )
+
+#################################################
+# Omni Database                                 #
+#################################################
+VATPDBOMNI01.VAUTO.COM=
+  (DESCRIPTION=
+    (ADDRESS_LIST=
+      (ADDRESS=(PROTOCOL=TCP)(HOST=p03x07gncd10001-link-vip.vauto.int)(PORT=1525))
+      (ADDRESS=(PROTOCOL=TCP)(HOST=p03x07gncd10002-link-vip.vauto.int)(PORT=1525))
+      (ADDRESS=(PROTOCOL=TCP)(HOST=p03x07gncd10003-link-vip.vauto.int)(PORT=1525))
+      (FAILOVER = ON)
+    )
+    (CONNECT_DATA=(SERVER=dedicated)(SERVICE_NAME=vapomni_dblink))
+  )
+
+#################################################
+# Omni RAC Instance #1                          #
+#################################################
+VATPDBOMNI01_01.VAUTO.COM=
+  (DESCRIPTION=
+    (ADDRESS_LIST=
+      (ADDRESS=(PROTOCOL=TCP)(HOST=p03x07gncd10001-link-vip.vauto.int)(PORT=1525))
+      (ADDRESS=(PROTOCOL=TCP)(HOST=p03x07gncd10002-link-vip.vauto.int)(PORT=1525))
+      (ADDRESS=(PROTOCOL=TCP)(HOST=p03x07gncd10003-link-vip.vauto.int)(PORT=1525))
+    )
+    (CONNECT_DATA=(SERVER=dedicated)(SERVICE_NAME=vapomni)(INSTANCE_NAME=vapomni1))
+  )
+
+#################################################
+# Omni RAC Instance #2                          #
+#################################################
+VATPDBOMNI01_02.VAUTO.COM=
+  (DESCRIPTION=
+    (ADDRESS_LIST=
+      (ADDRESS=(PROTOCOL=TCP)(HOST=p03x07gncd10001-link-vip.vauto.int)(PORT=1525))
+      (ADDRESS=(PROTOCOL=TCP)(HOST=p03x07gncd10002-link-vip.vauto.int)(PORT=1525))
+      (ADDRESS=(PROTOCOL=TCP)(HOST=p03x07gncd10003-link-vip.vauto.int)(PORT=1525))
+    )
+    (CONNECT_DATA=(SERVER=dedicated)(SERVICE_NAME=vapomni)(INSTANCE_NAME=vapomni2))
+  )
+
+#################################################
+# EndEnvironment: Production                    #
+#################################################

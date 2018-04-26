@@ -1,0 +1,36 @@
+---
+# $Author:   David Rotthoff <david.rotthoff@vauto.com> $
+# $Date:     2017-07-25 15:29:54 -0500 $
+# $Source:   roles/oracle-db/tasks/tnsnames-deploy.yml $
+
+- name: Dump variables at the start of tnsnames-deploy
+  debug:
+    var: vars
+  when:
+    - tnsnames_deploy_parameters.debug|default(false)
+
+- name: Ensure target TNS Names directory exists
+  file:
+    path:   "{{ tnsnames_deploy_defaults.dest_directory }}"
+    state:  directory
+    owner:  "{{ tnsnames_deploy_defaults.file_owner }}"
+    group:  "{{ tnsnames_deploy_defaults.file_group }}"
+    mode:   "{{ tnsnames_deploy_defaults.dir_mode }}"
+
+- name: Deploy TNS Names Files
+  include_role:
+    name:                    common
+    tasks_from:              copy_files.yml
+    defaults_from:           copy_files.yml
+  vars:
+    copy_files_backup:       "{{ tnsnames_deploy_parameters.backup|default(True) }}"
+    copy_files_purge_backup: "{{ tnsnames_deploy_parameters.purge_backup|default(False) }}"
+    copy_files_debug:        "{{ tnsnames_deploy_parameters.detail_debug|default(True) }}"
+    copy_files_defaults:     "{{ tnsnames_deploy_defaults }}"
+    copy_files_sources:      "{{ tnsnames_deploy_sources }}"
+
+- name: Dump variables at the end of tnsnames-deploy
+  debug:
+    var: vars
+  when:
+    - tnsnames_deploy_parameters.debug|default(false)

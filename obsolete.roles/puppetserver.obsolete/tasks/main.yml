@@ -1,0 +1,6 @@
+---
+
+- name: Install Puppet Server
+  command: /bin/true
+  register: puppetserver_install
+

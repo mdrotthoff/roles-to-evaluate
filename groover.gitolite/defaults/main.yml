@@ -1,0 +1,149 @@
+---
+# gitolite service user
+gitolite_user_group: git
+gitolite_user_name: git
+gitolite_user_home: /srv/git
+
+# gitolite installation directory
+gitolite_install_dir: /usr/local/gitolite
+
+# gitolite hostname configuration
+gitolite_hostname: localhost
+gitolite_domainname: localdomain
+
+
+# gitolite service user git configuration
+gitolite_gitconfig_user_name: 'Git Service'
+gitolite_gitconfig_user_email: "{{ gitolite_user_name }}@{{ gitolite_hostname }}.{{ gitolite_domainname }}"
+  # TODO [kusch] This shall get updated to 'simple' but requires git 1.9.1 Thu 27 Mar 2014 03:49:26 PM CET
+gitolite_gitconfig_push_default: current
+
+
+# gitolite.rc
+#   default umask for gitolite to create files and directories
+gitolite_gitoliterc_umask: '0027'
+
+#   see git-config in the gitolite documenation
+gitolite_gitoliterc_git_config_keys: ""
+
+#   verbose log information
+gitolite_gitoliterc_log_extra: true
+
+#   Tell the user about system CPU cycles used
+gitolite_gitoliterc_display_cpu_time: true
+#   Show a warning when CPU user cycles used more than VALUE time
+gitolite_gitoliterc_cpu_time_warn_limit: '0.2'
+
+#   Configure a site information string
+gitolite_gitoliterc_site_info: ""
+
+#   Allow the WRITERS role to update descriptions
+gitolite_gitoliterc_writer_can_update_desc: false
+
+#   Configure the sites hostname. Manadatory for the mirroring feature.
+gitolite_gitoliterc_hostname: "{{ gitolite_hostname }}.{{ gitolite_domainname }}"
+
+#   List of users which are shell accounts. Mandatory when 'Shell' is enabled.
+gitolite_gitoliterc_shell_user_list: []
+
+#   gitolite roles.
+gitolite_gitoliterc_roles: ['READERS', 'WRITERS']
+
+#   gitolite LOCAL CODE
+gitolite_gitoliterc_local_code: ''
+
+#   gitolite custom triggers
+gitolite_gitoliterc_triggers: {}
+
+#   features to enable
+gitolite_gitoliterc_enable_features:
+  - help
+  - desc
+  - info
+  - perms
+  - writable
+  - ssh-authkeys
+  - git-config
+  - daemon
+  - gitweb
+#    list of existing features disabled by default
+# - create
+# - fork
+# - mirror
+# - sskm
+# - D
+# - no-create-on-read
+# - no-auto-create
+# - Alias
+# - Shell
+# - set-default-roles
+# - Mirroring
+# - ssh-authkeys-split
+# - partial-copy
+# - upstream
+# - cgit
+# - repo-specific-hooks
+# - renice
+# - CpuTime
+# - continuation-lines
+# - keysubdirs-as-groups
+# - macros
+
+
+# gitolite repositories
+#   Repositories management will take place if both
+#   - gitolite_repositories
+#   - gitolite_repositories_custom
+#   are configured.
+
+# Default gitolite repositories
+gitolite_repositories:
+  - repo: gitolite-admin
+    admin:
+      users: ["id_rsa", "{{ gitolite_user_name }}"]
+    write:
+      options: []
+      users: []
+    read:
+      options: []
+      users: []
+  - repo: testing
+    admin:
+      users: ["@all"]
+
+# Custom gitolite repositories
+gitolite_repositories_custom: []
+
+
+# gitolite SSH user accounts
+#   SSH keys are read from
+#     files/gitolite/users/ssh/{{ item }}.pub
+#   pattern.
+gitolite_accounts_ssh: []
+
+# gitolite mirroring
+gitolite_mirroring_peers: []
+
+# gitolite service https configuration
+#   should https get enabled
+gitolite_https_enable: false
+#   https authentication type
+#   - basic
+#   - ldap (future)
+gitolite_https_auth_type: basic
+
+
+# configuration settings for the httpd daemon
+#   if gitolite_https_enable == true
+gitolite_httpd_document_root: /var/empty/www
+gitolite_httpd_https_port: 443
+gitolite_httpd_sitename: "{{ gitolite_hostname }}.{{ gitolite_domainname }}"
+
+
+# SSL
+#   SSL certificate for the httpd daemon
+#   generated if empty.
+gitolite_ssl_certificate: ""
+gitolite_ssl_certificate_key: ""
+#   used as -subj argument to openssl req when certificates are generated
+gitolite_ssl_certificate_subject: "/C=DE/ST=Hamburg/L=Hamburg/O=IT/CN={{ gitolite_httpd_sitename }}"

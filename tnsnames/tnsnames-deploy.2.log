@@ -1,0 +1,291 @@
+
+PLAY [Deploy TNS Names Files] **************************************************
+
+TASK [setup] *******************************************************************
+ok: [ipv6.david-laptop.rotthoff.home]
+
+TASK [tnsnames-deploy : Calculate the backup directory name] *******************
+ok: [ipv6.david-laptop.rotthoff.home]
+
+TASK [tnsnames-deploy : Display the TNS names backup directory] ****************
+ok: [ipv6.david-laptop.rotthoff.home] => {
+    "tnsnames_backup_directory": "/var/opt/ansible/ipv6.david-laptop.rotthoff.home/tnsdeploy.backup"
+}
+
+TASK [tnsnames-deploy : Create the backup directory] ***************************
+ok: [ipv6.david-laptop.rotthoff.home]
+
+TASK [tnsnames-deploy : Find the files to backup in the target directory] ******
+ok: [ipv6.david-laptop.rotthoff.home]
+
+TASK [tnsnames-deploy : Backup files in the target directory] ******************
+ok: [ipv6.david-laptop.rotthoff.home] => (item={u'uid': 0, u'woth': False, u'mtime': 1478375849.7147744, u'inode': 677900, u'isgid': False, u'size': 2922, u'roth': True, u'isuid': False, u'isreg': True, u'gid': 0, u'ischr': False, u'wusr': True, u'xoth': False, u'rusr': True, u'nlink': 1, u'issock': False, u'rgrp': True, u'path': u'/var/opt/oracle/tnsnames.vauto.development.frontside.ora', u'xusr': False, u'atime': 1478376080.308275, u'isdir': False, u'ctime': 1478375850.0647798, u'isblk': False, u'xgrp': False, u'dev': 64768, u'wgrp': False, u'isfifo': False, u'mode': u'0644', u'islnk': False})
+ok: [ipv6.david-laptop.rotthoff.home] => (item={u'uid': 0, u'woth': False, u'mtime': 1478375852.2888136, u'inode': 136029368, u'isgid': False, u'size': 2922, u'roth': True, u'isuid': False, u'isreg': True, u'gid': 0, u'ischr': False, u'wusr': True, u'xoth': False, u'rusr': True, u'nlink': 1, u'issock': False, u'rgrp': True, u'path': u'/var/opt/oracle/tnsnames.vauto.development.backside.ora', u'xusr': False, u'atime': 1478376080.584279, u'isdir': False, u'ctime': 1478375852.5068169, u'isblk': False, u'xgrp': False, u'dev': 64768, u'wgrp': False, u'isfifo': False, u'mode': u'0644', u'islnk': False})
+ok: [ipv6.david-laptop.rotthoff.home] => (item={u'uid': 0, u'woth': False, u'mtime': 1478375854.7258506, u'inode': 677863, u'isgid': False, u'size': 729, u'roth': True, u'isuid': False, u'isreg': True, u'gid': 0, u'ischr': False, u'wusr': True, u'xoth': False, u'rusr': True, u'nlink': 1, u'issock': False, u'rgrp': True, u'path': u'/var/opt/oracle/tnsnames.vauto.internal.frontside.ora', u'xusr': False, u'atime': 1478376080.8602834, u'isdir': False, u'ctime': 1478375854.948854, u'isblk': False, u'xgrp': False, u'dev': 64768, u'wgrp': False, u'isfifo': False, u'mode': u'0644', u'islnk': False})
+ok: [ipv6.david-laptop.rotthoff.home] => (item={u'uid': 0, u'woth': False, u'mtime': 1478375857.1518874, u'inode': 136029369, u'isgid': False, u'size': 729, u'roth': True, u'isuid': False, u'isreg': True, u'gid': 0, u'ischr': False, u'wusr': True, u'xoth': False, u'rusr': True, u'nlink': 1, u'issock': False, u'rgrp': True, u'path': u'/var/opt/oracle/tnsnames.vauto.internal.backside.ora', u'xusr': False, u'atime': 1478376081.1362875, u'isdir': False, u'ctime': 1478375857.3678906, u'isblk': False, u'xgrp': False, u'dev': 64768, u'wgrp': False, u'isfifo': False, u'mode': u'0644', u'islnk': False})
+ok: [ipv6.david-laptop.rotthoff.home] => (item={u'uid': 0, u'woth': False, u'mtime': 1478375859.635925, u'inode': 677862, u'isgid': False, u'size': 2331, u'roth': True, u'isuid': False, u'isreg': True, u'gid': 0, u'ischr': False, u'wusr': True, u'xoth': False, u'rusr': True, u'nlink': 1, u'issock': False, u'rgrp': True, u'path': u'/var/opt/oracle/tnsnames.vauto.alpha.frontside.ora', u'xusr': False, u'atime': 1478376081.3972914, u'isdir': False, u'ctime': 1478375859.8639286, u'isblk': False, u'xgrp': False, u'dev': 64768, u'wgrp': False, u'isfifo': False, u'mode': u'0644', u'islnk': False})
+ok: [ipv6.david-laptop.rotthoff.home] => (item={u'uid': 0, u'woth': False, u'mtime': 1478375862.0919623, u'inode': 136029370, u'isgid': False, u'size': 1970, u'roth': True, u'isuid': False, u'isreg': True, u'gid': 0, u'ischr': False, u'wusr': True, u'xoth': False, u'rusr': True, u'nlink': 1, u'issock': False, u'rgrp': True, u'path': u'/var/opt/oracle/tnsnames.vauto.alpha.backside.ora', u'xusr': False, u'atime': 1478376081.6622956, u'isdir': False, u'ctime': 1478375862.3209658, u'isblk': False, u'xgrp': False, u'dev': 64768, u'wgrp': False, u'isfifo': False, u'mode': u'0644', u'islnk': False})
+ok: [ipv6.david-laptop.rotthoff.home] => (item={u'uid': 0, u'woth': False, u'mtime': 1478375869.1930702, u'inode': 677872, u'isgid': False, u'size': 3150, u'roth': True, u'isuid': False, u'isreg': True, u'gid': 0, u'ischr': False, u'wusr': True, u'xoth': False, u'rusr': True, u'nlink': 1, u'issock': False, u'rgrp': True, u'path': u'/var/opt/oracle/tnsnames.vauto.production.frontside.ora', u'xusr': False, u'atime': 1478376081.9332995, u'isdir': False, u'ctime': 1478375869.4150734, u'isblk': False, u'xgrp': False, u'dev': 64768, u'wgrp': False, u'isfifo': False, u'mode': u'0644', u'islnk': False})
+ok: [ipv6.david-laptop.rotthoff.home] => (item={u'uid': 0, u'woth': False, u'mtime': 1478375871.6611075, u'inode': 136029371, u'isgid': False, u'size': 2911, u'roth': True, u'isuid': False, u'isreg': True, u'gid': 0, u'ischr': False, u'wusr': True, u'xoth': False, u'rusr': True, u'nlink': 1, u'issock': False, u'rgrp': True, u'path': u'/var/opt/oracle/tnsnames.vauto.production.backside.DDC.ora', u'xusr': False, u'atime': 1478376082.2073038, u'isdir': False, u'ctime': 1478375871.8791108, u'isblk': False, u'xgrp': False, u'dev': 64768, u'wgrp': False, u'isfifo': False, u'mode': u'0644', u'islnk': False})
+ok: [ipv6.david-laptop.rotthoff.home] => (item={u'uid': 0, u'woth': False, u'mtime': 1478375874.0481439, u'inode': 677867, u'isgid': False, u'size': 2911, u'roth': True, u'isuid': False, u'isreg': True, u'gid': 0, u'ischr': False, u'wusr': True, u'xoth': False, u'rusr': True, u'nlink': 1, u'issock': False, u'rgrp': True, u'path': u'/var/opt/oracle/tnsnames.vauto.production.backside.SDC.ora', u'xusr': False, u'atime': 1478376082.4673078, u'isdir': False, u'ctime': 1478375874.261147, u'isblk': False, u'xgrp': False, u'dev': 64768, u'wgrp': False, u'isfifo': False, u'mode': u'0644', u'islnk': False})
+ok: [ipv6.david-laptop.rotthoff.home] => (item={u'uid': 0, u'woth': False, u'mtime': 1478375876.4611804, u'inode': 136029372, u'isgid': False, u'size': 2236, u'roth': True, u'isuid': False, u'isreg': True, u'gid': 0, u'ischr': False, u'wusr': True, u'xoth': False, u'rusr': True, u'nlink': 1, u'issock': False, u'rgrp': True, u'path': u'/var/opt/oracle/tnsnames.vauto.production.frontside.active.ora', u'xusr': False, u'atime': 1478376082.7373118, u'isdir': False, u'ctime': 1478375876.6721838, u'isblk': False, u'xgrp': False, u'dev': 64768, u'wgrp': False, u'isfifo': False, u'mode': u'0644', u'islnk': False})
+ok: [ipv6.david-laptop.rotthoff.home] => (item={u'uid': 0, u'woth': False, u'mtime': 1478375878.9002175, u'inode': 677868, u'isgid': False, u'size': 2680, u'roth': True, u'isuid': False, u'isreg': True, u'gid': 0, u'ischr': False, u'wusr': True, u'xoth': False, u'rusr': True, u'nlink': 1, u'issock': False, u'rgrp': True, u'path': u'/var/opt/oracle/tnsnames.vauto.production.frontside.passive.ora', u'xusr': False, u'atime': 1478376083.0133162, u'isdir': False, u'ctime': 1478375879.1132207, u'isblk': False, u'xgrp': False, u'dev': 64768, u'wgrp': False, u'isfifo': False, u'mode': u'0644', u'islnk': False})
+ok: [ipv6.david-laptop.rotthoff.home] => (item={u'uid': 0, u'woth': False, u'mtime': 1478375881.3232543, u'inode': 136029373, u'isgid': False, u'size': 2156, u'roth': True, u'isuid': False, u'isreg': True, u'gid': 0, u'ischr': False, u'wusr': True, u'xoth': False, u'rusr': True, u'nlink': 1, u'issock': False, u'rgrp': True, u'path': u'/var/opt/oracle/tnsnames.vauto.flexclone.frontside.ora', u'xusr': False, u'atime': 1478376083.27532, u'isdir': False, u'ctime': 1478375881.5442576, u'isblk': False, u'xgrp': False, u'dev': 64768, u'wgrp': False, u'isfifo': False, u'mode': u'0644', u'islnk': False})
+ok: [ipv6.david-laptop.rotthoff.home] => (item={u'uid': 0, u'woth': False, u'mtime': 1478375883.7552912, u'inode': 677857, u'isgid': False, u'size': 2743, u'roth': True, u'isuid': False, u'isreg': True, u'gid': 0, u'ischr': False, u'wusr': True, u'xoth': False, u'rusr': True, u'nlink': 1, u'issock': False, u'rgrp': True, u'path': u'/var/opt/oracle/tnsnames.vauto.flexclone.backside.DDC.ora', u'xusr': False, u'atime': 1478376083.5413241, u'isdir': False, u'ctime': 1478375883.9712944, u'isblk': False, u'xgrp': False, u'dev': 64768, u'wgrp': False, u'isfifo': False, u'mode': u'0644', u'islnk': False})
+ok: [ipv6.david-laptop.rotthoff.home] => (item={u'uid': 0, u'woth': False, u'mtime': 1478375782.9317605, u'inode': 677890, u'isgid': False, u'size': 1781, u'roth': True, u'isuid': False, u'isreg': True, u'gid': 0, u'ischr': False, u'wusr': True, u'xoth': False, u'rusr': True, u'nlink': 1, u'issock': False, u'rgrp': True, u'path': u'/var/opt/oracle/tnsnames.vauto.alpha.ora', u'xusr': False, u'atime': 1478375826.183417, u'isdir': False, u'ctime': 1478375782.9317605, u'isblk': False, u'xgrp': False, u'dev': 64768, u'wgrp': False, u'isfifo': False, u'mode': u'0644', u'islnk': False})
+ok: [ipv6.david-laptop.rotthoff.home] => (item={u'uid': 0, u'woth': False, u'mtime': 1478375782.9327607, u'inode': 677891, u'isgid': False, u'size': 1781, u'roth': True, u'isuid': False, u'isreg': True, u'gid': 0, u'ischr': False, u'wusr': True, u'xoth': False, u'rusr': True, u'nlink': 1, u'issock': False, u'rgrp': True, u'path': u'/var/opt/oracle/tnsnames.vauto.ddc.ora', u'xusr': False, u'atime': 1478375826.4424212, u'isdir': False, u'ctime': 1478375782.9327607, u'isblk': False, u'xgrp': False, u'dev': 64768, u'wgrp': False, u'isfifo': False, u'mode': u'0644', u'islnk': False})
+ok: [ipv6.david-laptop.rotthoff.home] => (item={u'uid': 0, u'woth': False, u'mtime': 1478375782.9327607, u'inode': 677892, u'isgid': False, u'size': 1619, u'roth': True, u'isuid': False, u'isreg': True, u'gid': 0, u'ischr': False, u'wusr': True, u'xoth': False, u'rusr': True, u'nlink': 1, u'issock': False, u'rgrp': True, u'path': u'/var/opt/oracle/tnsnames.vauto.desktop.ora', u'xusr': False, u'atime': 1478375826.698425, u'isdir': False, u'ctime': 1478375782.9327607, u'isblk': False, u'xgrp': False, u'dev': 64768, u'wgrp': False, u'isfifo': False, u'mode': u'0644', u'islnk': False})
+ok: [ipv6.david-laptop.rotthoff.home] => (item={u'uid': 0, u'woth': False, u'mtime': 1478375782.9347606, u'inode': 677895, u'isgid': False, u'size': 1781, u'roth': True, u'isuid': False, u'isreg': True, u'gid': 0, u'ischr': False, u'wusr': True, u'xoth': False, u'rusr': True, u'nlink': 1, u'issock': False, u'rgrp': True, u'path': u'/var/opt/oracle/tnsnames.vauto.dev.ora', u'xusr': False, u'atime': 1478375826.954429, u'isdir': False, u'ctime': 1478375782.9347606, u'isblk': False, u'xgrp': False, u'dev': 64768, u'wgrp': False, u'isfifo': False, u'mode': u'0644', u'islnk': False})
+ok: [ipv6.david-laptop.rotthoff.home] => (item={u'uid': 0, u'woth': False, u'mtime': 1478375782.9377606, u'inode': 534829, u'isgid': False, u'size': 1781, u'roth': True, u'isuid': False, u'isreg': True, u'gid': 0, u'ischr': False, u'wusr': True, u'xoth': False, u'rusr': True, u'nlink': 1, u'issock': False, u'rgrp': True, u'path': u'/var/opt/oracle/tnsnames.vauto.ora', u'xusr': False, u'atime': 1478375827.232433, u'isdir': False, u'ctime': 1478375782.9377606, u'isblk': False, u'xgrp': False, u'dev': 64768, u'wgrp': False, u'isfifo': False, u'mode': u'0644', u'islnk': False})
+ok: [ipv6.david-laptop.rotthoff.home] => (item={u'uid': 0, u'woth': False, u'mtime': 1478365429.6563177, u'inode': 203109595, u'isgid': False, u'size': 1970, u'roth': True, u'isuid': False, u'isreg': True, u'gid': 0, u'ischr': False, u'wusr': True, u'xoth': False, u'rusr': True, u'nlink': 1, u'issock': False, u'rgrp': True, u'path': u'/var/opt/oracle/save1/tnsnames.vauto.alpha.backside.ora', u'xusr': False, u'atime': 1478365839.8685172, u'isdir': False, u'ctime': 1478365429.6563177, u'isblk': False, u'xgrp': False, u'dev': 64768, u'wgrp': False, u'isfifo': False, u'mode': u'0644', u'islnk': False})
+ok: [ipv6.david-laptop.rotthoff.home] => (item={u'uid': 0, u'woth': False, u'mtime': 1478365429.6563177, u'inode': 203109596, u'isgid': False, u'size': 2331, u'roth': True, u'isuid': False, u'isreg': True, u'gid': 0, u'ischr': False, u'wusr': True, u'xoth': False, u'rusr': True, u'nlink': 1, u'issock': False, u'rgrp': True, u'path': u'/var/opt/oracle/save1/tnsnames.vauto.alpha.frontside.ora', u'xusr': False, u'atime': 1478365840.1355212, u'isdir': False, u'ctime': 1478365429.6563177, u'isblk': False, u'xgrp': False, u'dev': 64768, u'wgrp': False, u'isfifo': False, u'mode': u'0644', u'islnk': False})
+ok: [ipv6.david-laptop.rotthoff.home] => (item={u'uid': 0, u'woth': False, u'mtime': 1478365429.6563177, u'inode': 203109597, u'isgid': False, u'size': 1781, u'roth': True, u'isuid': False, u'isreg': True, u'gid': 0, u'ischr': False, u'wusr': True, u'xoth': False, u'rusr': True, u'nlink': 1, u'issock': False, u'rgrp': True, u'path': u'/var/opt/oracle/save1/tnsnames.vauto.alpha.ora', u'xusr': False, u'atime': 1478365840.4025252, u'isdir': False, u'ctime': 1478365429.6563177, u'isblk': False, u'xgrp': False, u'dev': 64768, u'wgrp': False, u'isfifo': False, u'mode': u'0644', u'islnk': False})
+ok: [ipv6.david-laptop.rotthoff.home] => (item={u'uid': 0, u'woth': False, u'mtime': 1478365429.6563177, u'inode': 203109598, u'isgid': False, u'size': 1781, u'roth': True, u'isuid': False, u'isreg': True, u'gid': 0, u'ischr': False, u'wusr': True, u'xoth': False, u'rusr': True, u'nlink': 1, u'issock': False, u'rgrp': True, u'path': u'/var/opt/oracle/save1/tnsnames.vauto.ddc.ora', u'xusr': False, u'atime': 1478365840.6745293, u'isdir': False, u'ctime': 1478365429.6563177, u'isblk': False, u'xgrp': False, u'dev': 64768, u'wgrp': False, u'isfifo': False, u'mode': u'0644', u'islnk': False})
+ok: [ipv6.david-laptop.rotthoff.home] => (item={u'uid': 0, u'woth': False, u'mtime': 1478365429.6563177, u'inode': 203109599, u'isgid': False, u'size': 1619, u'roth': True, u'isuid': False, u'isreg': True, u'gid': 0, u'ischr': False, u'wusr': True, u'xoth': False, u'rusr': True, u'nlink': 1, u'issock': False, u'rgrp': True, u'path': u'/var/opt/oracle/save1/tnsnames.vauto.desktop.ora', u'xusr': False, u'atime': 1478365840.9415333, u'isdir': False, u'ctime': 1478365429.6563177, u'isblk': False, u'xgrp': False, u'dev': 64768, u'wgrp': False, u'isfifo': False, u'mode': u'0644', u'islnk': False})
+ok: [ipv6.david-laptop.rotthoff.home] => (item={u'uid': 0, u'woth': False, u'mtime': 1478365429.6563177, u'inode': 203109600, u'isgid': False, u'size': 2922, u'roth': True, u'isuid': False, u'isreg': True, u'gid': 0, u'ischr': False, u'wusr': True, u'xoth': False, u'rusr': True, u'nlink': 1, u'issock': False, u'rgrp': True, u'path': u'/var/opt/oracle/save1/tnsnames.vauto.development.backside.ora', u'xusr': False, u'atime': 1478365841.2045374, u'isdir': False, u'ctime': 1478365429.6563177, u'isblk': False, u'xgrp': False, u'dev': 64768, u'wgrp': False, u'isfifo': False, u'mode': u'0644', u'islnk': False})
+ok: [ipv6.david-laptop.rotthoff.home] => (item={u'uid': 0, u'woth': False, u'mtime': 1478365429.6573179, u'inode': 203109601, u'isgid': False, u'size': 2922, u'roth': True, u'isuid': False, u'isreg': True, u'gid': 0, u'ischr': False, u'wusr': True, u'xoth': False, u'rusr': True, u'nlink': 1, u'issock': False, u'rgrp': True, u'path': u'/var/opt/oracle/save1/tnsnames.vauto.development.frontside.ora', u'xusr': False, u'atime': 1478365841.4685414, u'isdir': False, u'ctime': 1478365429.6573179, u'isblk': False, u'xgrp': False, u'dev': 64768, u'wgrp': False, u'isfifo': False, u'mode': u'0644', u'islnk': False})
+ok: [ipv6.david-laptop.rotthoff.home] => (item={u'uid': 0, u'woth': False, u'mtime': 1478365429.6573179, u'inode': 203109602, u'isgid': False, u'size': 1781, u'roth': True, u'isuid': False, u'isreg': True, u'gid': 0, u'ischr': False, u'wusr': True, u'xoth': False, u'rusr': True, u'nlink': 1, u'issock': False, u'rgrp': True, u'path': u'/var/opt/oracle/save1/tnsnames.vauto.dev.ora', u'xusr': False, u'atime': 1478365841.7365453, u'isdir': False, u'ctime': 1478365429.6573179, u'isblk': False, u'xgrp': False, u'dev': 64768, u'wgrp': False, u'isfifo': False, u'mode': u'0644', u'islnk': False})
+ok: [ipv6.david-laptop.rotthoff.home] => (item={u'uid': 0, u'woth': False, u'mtime': 1478365429.6573179, u'inode': 203139473, u'isgid': False, u'size': 2743, u'roth': True, u'isuid': False, u'isreg': True, u'gid': 0, u'ischr': False, u'wusr': True, u'xoth': False, u'rusr': True, u'nlink': 1, u'issock': False, u'rgrp': True, u'path': u'/var/opt/oracle/save1/tnsnames.vauto.flexclone.backside.DDC.ora', u'xusr': False, u'atime': 1478365841.9985492, u'isdir': False, u'ctime': 1478365429.6573179, u'isblk': False, u'xgrp': False, u'dev': 64768, u'wgrp': False, u'isfifo': False, u'mode': u'0644', u'islnk': False})
+ok: [ipv6.david-laptop.rotthoff.home] => (item={u'uid': 0, u'woth': False, u'mtime': 1478365429.6573179, u'inode': 203144111, u'isgid': False, u'size': 2156, u'roth': True, u'isuid': False, u'isreg': True, u'gid': 0, u'ischr': False, u'wusr': True, u'xoth': False, u'rusr': True, u'nlink': 1, u'issock': False, u'rgrp': True, u'path': u'/var/opt/oracle/save1/tnsnames.vauto.flexclone.frontside.ora', u'xusr': False, u'atime': 1478365842.2655532, u'isdir': False, u'ctime': 1478365429.6573179, u'isblk': False, u'xgrp': False, u'dev': 64768, u'wgrp': False, u'isfifo': False, u'mode': u'0644', u'islnk': False})
+ok: [ipv6.david-laptop.rotthoff.home] => (item={u'uid': 0, u'woth': False, u'mtime': 1478365429.6573179, u'inode': 203144121, u'isgid': False, u'size': 729, u'roth': True, u'isuid': False, u'isreg': True, u'gid': 0, u'ischr': False, u'wusr': True, u'xoth': False, u'rusr': True, u'nlink': 1, u'issock': False, u'rgrp': True, u'path': u'/var/opt/oracle/save1/tnsnames.vauto.internal.backside.ora', u'xusr': False, u'atime': 1478365842.5255573, u'isdir': False, u'ctime': 1478365429.6573179, u'isblk': False, u'xgrp': False, u'dev': 64768, u'wgrp': False, u'isfifo': False, u'mode': u'0644', u'islnk': False})
+ok: [ipv6.david-laptop.rotthoff.home] => (item={u'uid': 0, u'woth': False, u'mtime': 1478365429.6583178, u'inode': 203193144, u'isgid': False, u'size': 729, u'roth': True, u'isuid': False, u'isreg': True, u'gid': 0, u'ischr': False, u'wusr': True, u'xoth': False, u'rusr': True, u'nlink': 1, u'issock': False, u'rgrp': True, u'path': u'/var/opt/oracle/save1/tnsnames.vauto.internal.frontside.ora', u'xusr': False, u'atime': 1478365842.7925613, u'isdir': False, u'ctime': 1478365429.6583178, u'isblk': False, u'xgrp': False, u'dev': 64768, u'wgrp': False, u'isfifo': False, u'mode': u'0644', u'islnk': False})
+ok: [ipv6.david-laptop.rotthoff.home] => (item={u'uid': 0, u'woth': False, u'mtime': 1478365429.6583178, u'inode': 203210659, u'isgid': False, u'size': 1781, u'roth': True, u'isuid': False, u'isreg': True, u'gid': 0, u'ischr': False, u'wusr': True, u'xoth': False, u'rusr': True, u'nlink': 1, u'issock': False, u'rgrp': True, u'path': u'/var/opt/oracle/save1/tnsnames.vauto.ora', u'xusr': False, u'atime': 1478365843.046565, u'isdir': False, u'ctime': 1478365429.6583178, u'isblk': False, u'xgrp': False, u'dev': 64768, u'wgrp': False, u'isfifo': False, u'mode': u'0644', u'islnk': False})
+ok: [ipv6.david-laptop.rotthoff.home] => (item={u'uid': 0, u'woth': False, u'mtime': 1478365429.6583178, u'inode': 203210662, u'isgid': False, u'size': 2911, u'roth': True, u'isuid': False, u'isreg': True, u'gid': 0, u'ischr': False, u'wusr': True, u'xoth': False, u'rusr': True, u'nlink': 1, u'issock': False, u'rgrp': True, u'path': u'/var/opt/oracle/save1/tnsnames.vauto.production.backside.DDC.ora', u'xusr': False, u'atime': 1478365843.302569, u'isdir': False, u'ctime': 1478365429.6583178, u'isblk': False, u'xgrp': False, u'dev': 64768, u'wgrp': False, u'isfifo': False, u'mode': u'0644', u'islnk': False})
+ok: [ipv6.david-laptop.rotthoff.home] => (item={u'uid': 0, u'woth': False, u'mtime': 1478365429.6583178, u'inode': 203210663, u'isgid': False, u'size': 2911, u'roth': True, u'isuid': False, u'isreg': True, u'gid': 0, u'ischr': False, u'wusr': True, u'xoth': False, u'rusr': True, u'nlink': 1, u'issock': False, u'rgrp': True, u'path': u'/var/opt/oracle/save1/tnsnames.vauto.production.backside.SDC.ora', u'xusr': False, u'atime': 1478365843.566573, u'isdir': False, u'ctime': 1478365429.6583178, u'isblk': False, u'xgrp': False, u'dev': 64768, u'wgrp': False, u'isfifo': False, u'mode': u'0644', u'islnk': False})
+ok: [ipv6.david-laptop.rotthoff.home] => (item={u'uid': 0, u'woth': False, u'mtime': 1478365429.6583178, u'inode': 203210665, u'isgid': False, u'size': 2236, u'roth': True, u'isuid': False, u'isreg': True, u'gid': 0, u'ischr': False, u'wusr': True, u'xoth': False, u'rusr': True, u'nlink': 1, u'issock': False, u'rgrp': True, u'path': u'/var/opt/oracle/save1/tnsnames.vauto.production.frontside.active.ora', u'xusr': False, u'atime': 1478365843.8435771, u'isdir': False, u'ctime': 1478365429.6583178, u'isblk': False, u'xgrp': False, u'dev': 64768, u'wgrp': False, u'isfifo': False, u'mode': u'0644', u'islnk': False})
+ok: [ipv6.david-laptop.rotthoff.home] => (item={u'uid': 0, u'woth': False, u'mtime': 1478365429.6583178, u'inode': 203210666, u'isgid': False, u'size': 3150, u'roth': True, u'isuid': False, u'isreg': True, u'gid': 0, u'ischr': False, u'wusr': True, u'xoth': False, u'rusr': True, u'nlink': 1, u'issock': False, u'rgrp': True, u'path': u'/var/opt/oracle/save1/tnsnames.vauto.production.frontside.ora', u'xusr': False, u'atime': 1478365844.102581, u'isdir': False, u'ctime': 1478365429.6583178, u'isblk': False, u'xgrp': False, u'dev': 64768, u'wgrp': False, u'isfifo': False, u'mode': u'0644', u'islnk': False})
+ok: [ipv6.david-laptop.rotthoff.home] => (item={u'uid': 0, u'woth': False, u'mtime': 1478365429.659318, u'inode': 203099712, u'isgid': False, u'size': 2680, u'roth': True, u'isuid': False, u'isreg': True, u'gid': 0, u'ischr': False, u'wusr': True, u'xoth': False, u'rusr': True, u'nlink': 1, u'issock': False, u'rgrp': True, u'path': u'/var/opt/oracle/save1/tnsnames.vauto.production.frontside.passive.ora', u'xusr': False, u'atime': 1478365844.361585, u'isdir': False, u'ctime': 1478365429.659318, u'isblk': False, u'xgrp': False, u'dev': 64768, u'wgrp': False, u'isfifo': False, u'mode': u'0644', u'islnk': False})
+ok: [ipv6.david-laptop.rotthoff.home] => (item={u'uid': 0, u'woth': False, u'mtime': 1478365434.966398, u'inode': 532936, u'isgid': False, u'size': 1970, u'roth': True, u'isuid': False, u'isreg': True, u'gid': 0, u'ischr': False, u'wusr': True, u'xoth': False, u'rusr': True, u'nlink': 1, u'issock': False, u'rgrp': True, u'path': u'/var/opt/oracle/save2/tnsnames.vauto.alpha.backside.ora', u'xusr': False, u'atime': 1478365844.618589, u'isdir': False, u'ctime': 1478365434.966398, u'isblk': False, u'xgrp': False, u'dev': 64768, u'wgrp': False, u'isfifo': False, u'mode': u'0644', u'islnk': False})
+ok: [ipv6.david-laptop.rotthoff.home] => (item={u'uid': 0, u'woth': False, u'mtime': 1478365434.966398, u'inode': 532937, u'isgid': False, u'size': 2331, u'roth': True, u'isuid': False, u'isreg': True, u'gid': 0, u'ischr': False, u'wusr': True, u'xoth': False, u'rusr': True, u'nlink': 1, u'issock': False, u'rgrp': True, u'path': u'/var/opt/oracle/save2/tnsnames.vauto.alpha.frontside.ora', u'xusr': False, u'atime': 1478365844.8725927, u'isdir': False, u'ctime': 1478365434.966398, u'isblk': False, u'xgrp': False, u'dev': 64768, u'wgrp': False, u'isfifo': False, u'mode': u'0644', u'islnk': False})
+ok: [ipv6.david-laptop.rotthoff.home] => (item={u'uid': 0, u'woth': False, u'mtime': 1478365434.966398, u'inode': 532938, u'isgid': False, u'size': 1781, u'roth': True, u'isuid': False, u'isreg': True, u'gid': 0, u'ischr': False, u'wusr': True, u'xoth': False, u'rusr': True, u'nlink': 1, u'issock': False, u'rgrp': True, u'path': u'/var/opt/oracle/save2/tnsnames.vauto.alpha.ora', u'xusr': False, u'atime': 1478365845.1475968, u'isdir': False, u'ctime': 1478365434.966398, u'isblk': False, u'xgrp': False, u'dev': 64768, u'wgrp': False, u'isfifo': False, u'mode': u'0644', u'islnk': False})
+ok: [ipv6.david-laptop.rotthoff.home] => (item={u'uid': 0, u'woth': False, u'mtime': 1478365434.966398, u'inode': 532939, u'isgid': False, u'size': 1781, u'roth': True, u'isuid': False, u'isreg': True, u'gid': 0, u'ischr': False, u'wusr': True, u'xoth': False, u'rusr': True, u'nlink': 1, u'issock': False, u'rgrp': True, u'path': u'/var/opt/oracle/save2/tnsnames.vauto.ddc.ora', u'xusr': False, u'atime': 1478365845.412601, u'isdir': False, u'ctime': 1478365434.966398, u'isblk': False, u'xgrp': False, u'dev': 64768, u'wgrp': False, u'isfifo': False, u'mode': u'0644', u'islnk': False})
+ok: [ipv6.david-laptop.rotthoff.home] => (item={u'uid': 0, u'woth': False, u'mtime': 1478365434.966398, u'inode': 532940, u'isgid': False, u'size': 1619, u'roth': True, u'isuid': False, u'isreg': True, u'gid': 0, u'ischr': False, u'wusr': True, u'xoth': False, u'rusr': True, u'nlink': 1, u'issock': False, u'rgrp': True, u'path': u'/var/opt/oracle/save2/tnsnames.vauto.desktop.ora', u'xusr': False, u'atime': 1478365845.682605, u'isdir': False, u'ctime': 1478365434.966398, u'isblk': False, u'xgrp': False, u'dev': 64768, u'wgrp': False, u'isfifo': False, u'mode': u'0644', u'islnk': False})
+ok: [ipv6.david-laptop.rotthoff.home] => (item={u'uid': 0, u'woth': False, u'mtime': 1478365434.966398, u'inode': 532941, u'isgid': False, u'size': 2922, u'roth': True, u'isuid': False, u'isreg': True, u'gid': 0, u'ischr': False, u'wusr': True, u'xoth': False, u'rusr': True, u'nlink': 1, u'issock': False, u'rgrp': True, u'path': u'/var/opt/oracle/save2/tnsnames.vauto.development.backside.ora', u'xusr': False, u'atime': 1478365845.955609, u'isdir': False, u'ctime': 1478365434.966398, u'isblk': False, u'xgrp': False, u'dev': 64768, u'wgrp': False, u'isfifo': False, u'mode': u'0644', u'islnk': False})
+ok: [ipv6.david-laptop.rotthoff.home] => (item={u'uid': 0, u'woth': False, u'mtime': 1478365434.966398, u'inode': 532942, u'isgid': False, u'size': 2922, u'roth': True, u'isuid': False, u'isreg': True, u'gid': 0, u'ischr': False, u'wusr': True, u'xoth': False, u'rusr': True, u'nlink': 1, u'issock': False, u'rgrp': True, u'path': u'/var/opt/oracle/save2/tnsnames.vauto.development.frontside.ora', u'xusr': False, u'atime': 1478365846.210613, u'isdir': False, u'ctime': 1478365434.966398, u'isblk': False, u'xgrp': False, u'dev': 64768, u'wgrp': False, u'isfifo': False, u'mode': u'0644', u'islnk': False})
+ok: [ipv6.david-laptop.rotthoff.home] => (item={u'uid': 0, u'woth': False, u'mtime': 1478365434.966398, u'inode': 532943, u'isgid': False, u'size': 1781, u'roth': True, u'isuid': False, u'isreg': True, u'gid': 0, u'ischr': False, u'wusr': True, u'xoth': False, u'rusr': True, u'nlink': 1, u'issock': False, u'rgrp': True, u'path': u'/var/opt/oracle/save2/tnsnames.vauto.dev.ora', u'xusr': False, u'atime': 1478365846.4876173, u'isdir': False, u'ctime': 1478365434.966398, u'isblk': False, u'xgrp': False, u'dev': 64768, u'wgrp': False, u'isfifo': False, u'mode': u'0644', u'islnk': False})
+ok: [ipv6.david-laptop.rotthoff.home] => (item={u'uid': 0, u'woth': False, u'mtime': 1478365434.966398, u'inode': 532944, u'isgid': False, u'size': 2743, u'roth': True, u'isuid': False, u'isreg': True, u'gid': 0, u'ischr': False, u'wusr': True, u'xoth': False, u'rusr': True, u'nlink': 1, u'issock': False, u'rgrp': True, u'path': u'/var/opt/oracle/save2/tnsnames.vauto.flexclone.backside.DDC.ora', u'xusr': False, u'atime': 1478365846.807622, u'isdir': False, u'ctime': 1478365434.966398, u'isblk': False, u'xgrp': False, u'dev': 64768, u'wgrp': False, u'isfifo': False, u'mode': u'0644', u'islnk': False})
+ok: [ipv6.david-laptop.rotthoff.home] => (item={u'uid': 0, u'woth': False, u'mtime': 1478365434.9673982, u'inode': 532945, u'isgid': False, u'size': 2156, u'roth': True, u'isuid': False, u'isreg': True, u'gid': 0, u'ischr': False, u'wusr': True, u'xoth': False, u'rusr': True, u'nlink': 1, u'issock': False, u'rgrp': True, u'path': u'/var/opt/oracle/save2/tnsnames.vauto.flexclone.frontside.ora', u'xusr': False, u'atime': 1478365847.082626, u'isdir': False, u'ctime': 1478365434.9673982, u'isblk': False, u'xgrp': False, u'dev': 64768, u'wgrp': False, u'isfifo': False, u'mode': u'0644', u'islnk': False})
+ok: [ipv6.david-laptop.rotthoff.home] => (item={u'uid': 0, u'woth': False, u'mtime': 1478365434.9673982, u'inode': 532946, u'isgid': False, u'size': 729, u'roth': True, u'isuid': False, u'isreg': True, u'gid': 0, u'ischr': False, u'wusr': True, u'xoth': False, u'rusr': True, u'nlink': 1, u'issock': False, u'rgrp': True, u'path': u'/var/opt/oracle/save2/tnsnames.vauto.internal.backside.ora', u'xusr': False, u'atime': 1478365847.34463, u'isdir': False, u'ctime': 1478365434.9673982, u'isblk': False, u'xgrp': False, u'dev': 64768, u'wgrp': False, u'isfifo': False, u'mode': u'0644', u'islnk': False})
+ok: [ipv6.david-laptop.rotthoff.home] => (item={u'uid': 0, u'woth': False, u'mtime': 1478365434.9673982, u'inode': 532947, u'isgid': False, u'size': 729, u'roth': True, u'isuid': False, u'isreg': True, u'gid': 0, u'ischr': False, u'wusr': True, u'xoth': False, u'rusr': True, u'nlink': 1, u'issock': False, u'rgrp': True, u'path': u'/var/opt/oracle/save2/tnsnames.vauto.internal.frontside.ora', u'xusr': False, u'atime': 1478365847.6156342, u'isdir': False, u'ctime': 1478365434.9673982, u'isblk': False, u'xgrp': False, u'dev': 64768, u'wgrp': False, u'isfifo': False, u'mode': u'0644', u'islnk': False})
+ok: [ipv6.david-laptop.rotthoff.home] => (item={u'uid': 0, u'woth': False, u'mtime': 1478365434.9673982, u'inode': 532948, u'isgid': False, u'size': 1781, u'roth': True, u'isuid': False, u'isreg': True, u'gid': 0, u'ischr': False, u'wusr': True, u'xoth': False, u'rusr': True, u'nlink': 1, u'issock': False, u'rgrp': True, u'path': u'/var/opt/oracle/save2/tnsnames.vauto.ora', u'xusr': False, u'atime': 1478365847.8846383, u'isdir': False, u'ctime': 1478365434.9673982, u'isblk': False, u'xgrp': False, u'dev': 64768, u'wgrp': False, u'isfifo': False, u'mode': u'0644', u'islnk': False})
+ok: [ipv6.david-laptop.rotthoff.home] => (item={u'uid': 0, u'woth': False, u'mtime': 1478365434.9673982, u'inode': 532949, u'isgid': False, u'size': 2911, u'roth': True, u'isuid': False, u'isreg': True, u'gid': 0, u'ischr': False, u'wusr': True, u'xoth': False, u'rusr': True, u'nlink': 1, u'issock': False, u'rgrp': True, u'path': u'/var/opt/oracle/save2/tnsnames.vauto.production.backside.DDC.ora', u'xusr': False, u'atime': 1478365848.1566424, u'isdir': False, u'ctime': 1478365434.9673982, u'isblk': False, u'xgrp': False, u'dev': 64768, u'wgrp': False, u'isfifo': False, u'mode': u'0644', u'islnk': False})
+ok: [ipv6.david-laptop.rotthoff.home] => (item={u'uid': 0, u'woth': False, u'mtime': 1478365434.9673982, u'inode': 532950, u'isgid': False, u'size': 2911, u'roth': True, u'isuid': False, u'isreg': True, u'gid': 0, u'ischr': False, u'wusr': True, u'xoth': False, u'rusr': True, u'nlink': 1, u'issock': False, u'rgrp': True, u'path': u'/var/opt/oracle/save2/tnsnames.vauto.production.backside.SDC.ora', u'xusr': False, u'atime': 1478365848.465647, u'isdir': False, u'ctime': 1478365434.9673982, u'isblk': False, u'xgrp': False, u'dev': 64768, u'wgrp': False, u'isfifo': False, u'mode': u'0644', u'islnk': False})
+ok: [ipv6.david-laptop.rotthoff.home] => (item={u'uid': 0, u'woth': False, u'mtime': 1478365434.9673982, u'inode': 532951, u'isgid': False, u'size': 2236, u'roth': True, u'isuid': False, u'isreg': True, u'gid': 0, u'ischr': False, u'wusr': True, u'xoth': False, u'rusr': True, u'nlink': 1, u'issock': False, u'rgrp': True, u'path': u'/var/opt/oracle/save2/tnsnames.vauto.production.frontside.active.ora', u'xusr': False, u'atime': 1478365848.792652, u'isdir': False, u'ctime': 1478365434.9673982, u'isblk': False, u'xgrp': False, u'dev': 64768, u'wgrp': False, u'isfifo': False, u'mode': u'0644', u'islnk': False})
+ok: [ipv6.david-laptop.rotthoff.home] => (item={u'uid': 0, u'woth': False, u'mtime': 1478365434.968398, u'inode': 532952, u'isgid': False, u'size': 3150, u'roth': True, u'isuid': False, u'isreg': True, u'gid': 0, u'ischr': False, u'wusr': True, u'xoth': False, u'rusr': True, u'nlink': 1, u'issock': False, u'rgrp': True, u'path': u'/var/opt/oracle/save2/tnsnames.vauto.production.frontside.ora', u'xusr': False, u'atime': 1478365849.060656, u'isdir': False, u'ctime': 1478365434.968398, u'isblk': False, u'xgrp': False, u'dev': 64768, u'wgrp': False, u'isfifo': False, u'mode': u'0644', u'islnk': False})
+ok: [ipv6.david-laptop.rotthoff.home] => (item={u'uid': 0, u'woth': False, u'mtime': 1478365434.968398, u'inode': 532953, u'isgid': False, u'size': 2680, u'roth': True, u'isuid': False, u'isreg': True, u'gid': 0, u'ischr': False, u'wusr': True, u'xoth': False, u'rusr': True, u'nlink': 1, u'issock': False, u'rgrp': True, u'path': u'/var/opt/oracle/save2/tnsnames.vauto.production.frontside.passive.ora', u'xusr': False, u'atime': 1478365849.32566, u'isdir': False, u'ctime': 1478365434.968398, u'isblk': False, u'xgrp': False, u'dev': 64768, u'wgrp': False, u'isfifo': False, u'mode': u'0644', u'islnk': False})
+
+TASK [tnsnames-deploy : Process the source files] ******************************
+included: /etc/ansible/roles/tnsnames-deploy/tasks/process_source_file.yml for ipv6.david-laptop.rotthoff.home
+included: /etc/ansible/roles/tnsnames-deploy/tasks/process_source_file.yml for ipv6.david-laptop.rotthoff.home
+included: /etc/ansible/roles/tnsnames-deploy/tasks/process_source_file.yml for ipv6.david-laptop.rotthoff.home
+included: /etc/ansible/roles/tnsnames-deploy/tasks/process_source_file.yml for ipv6.david-laptop.rotthoff.home
+included: /etc/ansible/roles/tnsnames-deploy/tasks/process_source_file.yml for ipv6.david-laptop.rotthoff.home
+included: /etc/ansible/roles/tnsnames-deploy/tasks/process_source_file.yml for ipv6.david-laptop.rotthoff.home
+included: /etc/ansible/roles/tnsnames-deploy/tasks/process_source_file.yml for ipv6.david-laptop.rotthoff.home
+included: /etc/ansible/roles/tnsnames-deploy/tasks/process_source_file.yml for ipv6.david-laptop.rotthoff.home
+included: /etc/ansible/roles/tnsnames-deploy/tasks/process_source_file.yml for ipv6.david-laptop.rotthoff.home
+included: /etc/ansible/roles/tnsnames-deploy/tasks/process_source_file.yml for ipv6.david-laptop.rotthoff.home
+included: /etc/ansible/roles/tnsnames-deploy/tasks/process_source_file.yml for ipv6.david-laptop.rotthoff.home
+included: /etc/ansible/roles/tnsnames-deploy/tasks/process_source_file.yml for ipv6.david-laptop.rotthoff.home
+included: /etc/ansible/roles/tnsnames-deploy/tasks/process_source_file.yml for ipv6.david-laptop.rotthoff.home
+included: /etc/ansible/roles/tnsnames-deploy/tasks/process_source_file.yml for ipv6.david-laptop.rotthoff.home
+
+TASK [tnsnames-deploy : Set the source_file variable is target is not defined] *
+ok: [ipv6.david-laptop.rotthoff.home]
+
+TASK [tnsnames-deploy : Set the source_file variable is target is defined] *****
+skipping: [ipv6.david-laptop.rotthoff.home]
+
+TASK [tnsnames-deploy : Find backups files for tnsnames.vauto.development.frontside.ora in the target directory] ***
+ok: [ipv6.david-laptop.rotthoff.home]
+
+TASK [tnsnames-deploy : Removed pre-existing backup files for tnsnames.vauto.development.frontside.ora] ***
+
+TASK [tnsnames-deploy : Copy tnsnames.vauto.development.frontside.ora to tnsnames.vauto.development.frontside.ora] ***
+ok: [ipv6.david-laptop.rotthoff.home]
+
+TASK [tnsnames-deploy : Set the source_file variable is target is not defined] *
+ok: [ipv6.david-laptop.rotthoff.home]
+
+TASK [tnsnames-deploy : Set the source_file variable is target is defined] *****
+skipping: [ipv6.david-laptop.rotthoff.home]
+
+TASK [tnsnames-deploy : Find backups files for tnsnames.vauto.development.backside.ora in the target directory] ***
+ok: [ipv6.david-laptop.rotthoff.home]
+
+TASK [tnsnames-deploy : Removed pre-existing backup files for tnsnames.vauto.development.backside.ora] ***
+
+TASK [tnsnames-deploy : Copy tnsnames.vauto.development.backside.ora to tnsnames.vauto.development.backside.ora] ***
+ok: [ipv6.david-laptop.rotthoff.home]
+
+TASK [tnsnames-deploy : Set the source_file variable is target is not defined] *
+ok: [ipv6.david-laptop.rotthoff.home]
+
+TASK [tnsnames-deploy : Set the source_file variable is target is defined] *****
+skipping: [ipv6.david-laptop.rotthoff.home]
+
+TASK [tnsnames-deploy : Find backups files for tnsnames.vauto.internal.frontside.ora in the target directory] ***
+ok: [ipv6.david-laptop.rotthoff.home]
+
+TASK [tnsnames-deploy : Removed pre-existing backup files for tnsnames.vauto.internal.frontside.ora] ***
+
+TASK [tnsnames-deploy : Copy tnsnames.vauto.internal.frontside.ora to tnsnames.vauto.internal.frontside.ora] ***
+ok: [ipv6.david-laptop.rotthoff.home]
+
+TASK [tnsnames-deploy : Set the source_file variable is target is not defined] *
+ok: [ipv6.david-laptop.rotthoff.home]
+
+TASK [tnsnames-deploy : Set the source_file variable is target is defined] *****
+skipping: [ipv6.david-laptop.rotthoff.home]
+
+TASK [tnsnames-deploy : Find backups files for tnsnames.vauto.internal.backside.ora in the target directory] ***
+ok: [ipv6.david-laptop.rotthoff.home]
+
+TASK [tnsnames-deploy : Removed pre-existing backup files for tnsnames.vauto.internal.backside.ora] ***
+
+TASK [tnsnames-deploy : Copy tnsnames.vauto.internal.backside.ora to tnsnames.vauto.internal.backside.ora] ***
+ok: [ipv6.david-laptop.rotthoff.home]
+
+TASK [tnsnames-deploy : Set the source_file variable is target is not defined] *
+ok: [ipv6.david-laptop.rotthoff.home]
+
+TASK [tnsnames-deploy : Set the source_file variable is target is defined] *****
+skipping: [ipv6.david-laptop.rotthoff.home]
+
+TASK [tnsnames-deploy : Find backups files for tnsnames.vauto.alpha.frontside.ora in the target directory] ***
+ok: [ipv6.david-laptop.rotthoff.home]
+
+TASK [tnsnames-deploy : Removed pre-existing backup files for tnsnames.vauto.alpha.frontside.ora] ***
+
+TASK [tnsnames-deploy : Copy tnsnames.vauto.alpha.frontside.ora to tnsnames.vauto.alpha.frontside.ora] ***
+ok: [ipv6.david-laptop.rotthoff.home]
+
+TASK [tnsnames-deploy : Set the source_file variable is target is not defined] *
+ok: [ipv6.david-laptop.rotthoff.home]
+
+TASK [tnsnames-deploy : Set the source_file variable is target is defined] *****
+skipping: [ipv6.david-laptop.rotthoff.home]
+
+TASK [tnsnames-deploy : Find backups files for tnsnames.vauto.alpha.backside.ora in the target directory] ***
+ok: [ipv6.david-laptop.rotthoff.home]
+
+TASK [tnsnames-deploy : Removed pre-existing backup files for tnsnames.vauto.alpha.backside.ora] ***
+
+TASK [tnsnames-deploy : Copy tnsnames.vauto.alpha.backside.ora to tnsnames.vauto.alpha.backside.ora] ***
+ok: [ipv6.david-laptop.rotthoff.home]
+
+TASK [tnsnames-deploy : Set the source_file variable is target is not defined] *
+ok: [ipv6.david-laptop.rotthoff.home]
+
+TASK [tnsnames-deploy : Set the source_file variable is target is defined] *****
+skipping: [ipv6.david-laptop.rotthoff.home]
+
+TASK [tnsnames-deploy : Find backups files for tnsnames.vauto.production.frontside.ora in the target directory] ***
+ok: [ipv6.david-laptop.rotthoff.home]
+
+TASK [tnsnames-deploy : Removed pre-existing backup files for tnsnames.vauto.production.frontside.ora] ***
+
+TASK [tnsnames-deploy : Copy tnsnames.vauto.production.frontside.ora to tnsnames.vauto.production.frontside.ora] ***
+ok: [ipv6.david-laptop.rotthoff.home]
+
+TASK [tnsnames-deploy : Set the source_file variable is target is not defined] *
+ok: [ipv6.david-laptop.rotthoff.home]
+
+TASK [tnsnames-deploy : Set the source_file variable is target is defined] *****
+skipping: [ipv6.david-laptop.rotthoff.home]
+
+TASK [tnsnames-deploy : Find backups files for tnsnames.vauto.production.backside.DDC.ora in the target directory] ***
+ok: [ipv6.david-laptop.rotthoff.home]
+
+TASK [tnsnames-deploy : Removed pre-existing backup files for tnsnames.vauto.production.backside.DDC.ora] ***
+
+TASK [tnsnames-deploy : Copy tnsnames.vauto.production.backside.DDC.ora to tnsnames.vauto.production.backside.DDC.ora] ***
+ok: [ipv6.david-laptop.rotthoff.home]
+
+TASK [tnsnames-deploy : Set the source_file variable is target is not defined] *
+ok: [ipv6.david-laptop.rotthoff.home]
+
+TASK [tnsnames-deploy : Set the source_file variable is target is defined] *****
+skipping: [ipv6.david-laptop.rotthoff.home]
+
+TASK [tnsnames-deploy : Find backups files for tnsnames.vauto.production.backside.SDC.ora in the target directory] ***
+ok: [ipv6.david-laptop.rotthoff.home]
+
+TASK [tnsnames-deploy : Removed pre-existing backup files for tnsnames.vauto.production.backside.SDC.ora] ***
+
+TASK [tnsnames-deploy : Copy tnsnames.vauto.production.backside.SDC.ora to tnsnames.vauto.production.backside.SDC.ora] ***
+ok: [ipv6.david-laptop.rotthoff.home]
+
+TASK [tnsnames-deploy : Set the source_file variable is target is not defined] *
+ok: [ipv6.david-laptop.rotthoff.home]
+
+TASK [tnsnames-deploy : Set the source_file variable is target is defined] *****
+skipping: [ipv6.david-laptop.rotthoff.home]
+
+TASK [tnsnames-deploy : Find backups files for tnsnames.vauto.production.frontside.active.ora in the target directory] ***
+ok: [ipv6.david-laptop.rotthoff.home]
+
+TASK [tnsnames-deploy : Removed pre-existing backup files for tnsnames.vauto.production.frontside.active.ora] ***
+
+TASK [tnsnames-deploy : Copy tnsnames.vauto.production.frontside.active.ora to tnsnames.vauto.production.frontside.active.ora] ***
+ok: [ipv6.david-laptop.rotthoff.home]
+
+TASK [tnsnames-deploy : Set the source_file variable is target is not defined] *
+ok: [ipv6.david-laptop.rotthoff.home]
+
+TASK [tnsnames-deploy : Set the source_file variable is target is defined] *****
+skipping: [ipv6.david-laptop.rotthoff.home]
+
+TASK [tnsnames-deploy : Find backups files for tnsnames.vauto.production.frontside.passive.ora in the target directory] ***
+ok: [ipv6.david-laptop.rotthoff.home]
+
+TASK [tnsnames-deploy : Removed pre-existing backup files for tnsnames.vauto.production.frontside.passive.ora] ***
+
+TASK [tnsnames-deploy : Copy tnsnames.vauto.production.frontside.passive.ora to tnsnames.vauto.production.frontside.passive.ora] ***
+ok: [ipv6.david-laptop.rotthoff.home]
+
+TASK [tnsnames-deploy : Set the source_file variable is target is not defined] *
+ok: [ipv6.david-laptop.rotthoff.home]
+
+TASK [tnsnames-deploy : Set the source_file variable is target is defined] *****
+skipping: [ipv6.david-laptop.rotthoff.home]
+
+TASK [tnsnames-deploy : Find backups files for tnsnames.vauto.flexclone.frontside.ora in the target directory] ***
+ok: [ipv6.david-laptop.rotthoff.home]
+
+TASK [tnsnames-deploy : Removed pre-existing backup files for tnsnames.vauto.flexclone.frontside.ora] ***
+
+TASK [tnsnames-deploy : Copy tnsnames.vauto.flexclone.frontside.ora to tnsnames.vauto.flexclone.frontside.ora] ***
+ok: [ipv6.david-laptop.rotthoff.home]
+
+TASK [tnsnames-deploy : Set the source_file variable is target is not defined] *
+ok: [ipv6.david-laptop.rotthoff.home]
+
+TASK [tnsnames-deploy : Set the source_file variable is target is defined] *****
+skipping: [ipv6.david-laptop.rotthoff.home]
+
+TASK [tnsnames-deploy : Find backups files for tnsnames.vauto.flexclone.backside.DDC.ora in the target directory] ***
+ok: [ipv6.david-laptop.rotthoff.home]
+
+TASK [tnsnames-deploy : Removed pre-existing backup files for tnsnames.vauto.flexclone.backside.DDC.ora] ***
+
+TASK [tnsnames-deploy : Copy tnsnames.vauto.flexclone.backside.DDC.ora to tnsnames.vauto.flexclone.backside.DDC.ora] ***
+ok: [ipv6.david-laptop.rotthoff.home]
+
+TASK [tnsnames-deploy : Set the source_file variable is target is not defined] *
+skipping: [ipv6.david-laptop.rotthoff.home]
+
+TASK [tnsnames-deploy : Set the source_file variable is target is defined] *****
+ok: [ipv6.david-laptop.rotthoff.home]
+
+TASK [tnsnames-deploy : Find backups files for tnsnames.vauto.ora in the target directory] ***
+ok: [ipv6.david-laptop.rotthoff.home]
+
+TASK [tnsnames-deploy : Removed pre-existing backup files for tnsnames.vauto.ora] ***
+
+TASK [tnsnames-deploy : Copy tnsnames.vauto.alpha.ora to tnsnames.vauto.ora] ***
+ok: [ipv6.david-laptop.rotthoff.home]
+
+PLAY RECAP *********************************************************************
+ipv6.david-laptop.rotthoff.home : ok=62   changed=0    unreachable=0    failed=0   
+

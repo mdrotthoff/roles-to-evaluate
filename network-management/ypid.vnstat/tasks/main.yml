@@ -1,0 +1,40 @@
+---
+
+- name: Combine vnStat configuration inventory variables
+  set_fact:
+    vnstat_config_options: '{{ vnstat_config_options|combine(vnstat_group_config_options,vnstat_host_config_options) | default({}) }}'
+
+- name: Install vnStat
+  apt:
+    name: '{{ item }}'
+    state: 'latest'
+    install_recommends: False
+  with_items: '{{ vnstat_packages }}'
+
+- name: Divert original /etc/vnstat.conf
+  command: dpkg-divert --quiet --local --divert /etc/vnstat.conf.dpkg-divert --rename /etc/vnstat.conf
+  args:
+    creates: '/etc/vnstat.conf.dpkg-divert'
+
+- name: Provide original /etc/vnstat.conf
+  command: cp /etc/vnstat.conf.dpkg-divert /etc/vnstat.conf
+  args:
+    creates: '/etc/vnstat.conf'
+
+- name: Configure vnStat number options
+  lineinfile:
+    dest: '/etc/vnstat.conf'
+    regexp: '^{{ item.key }}'
+    line: '{{ item.key }} {{ item.value }}'
+  when: item.value is number
+  with_dict: '{{ vnstat_config_options }}'
+  notify: [ 'Reload vnstat' ]
+
+- name: Configure vnStat string options
+  lineinfile:
+    dest: '/etc/vnstat.conf'
+    regexp: '^{{ item.key }}'
+    line: '{{ item.key }} "{{ item.value }}"'
+  when: item.value is string
+  with_dict: '{{ vnstat_config_options }}'
+  notify: [ 'Reload vnstat' ]

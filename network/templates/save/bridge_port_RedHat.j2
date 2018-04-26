@@ -1,0 +1,22 @@
+NAME={{ item.1.port }}
+DEVICE={{ item.1.port }}
+TYPE=Ethernet
+BOOTPROTO=none
+BRIDGE={{ item.0.device }}
+BRIDGING_OPTS="
+{%- if item.1.priority is defined %}
+ priority={{ item.1.priority }}
+{%- endif -%}
+{%- if item.1.path_cost is defined %}
+ priority={{ item.1.path_cost }}
+{%- endif -%}
+{%- if item.1.hairpin_mode is defined %}
+ hairpin_mode={{ item.1.hairpin_mode }}
+{%- endif -%}
+"
+{% if item.0.mtu is defined %}
+MTU={{ item.0.mtu }}
+{% endif %}
+{% if item.0.onboot is defined %}
+ONBOOT={{ item.0.onboot }}
+{% endif %}

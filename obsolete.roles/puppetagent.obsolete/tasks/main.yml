@@ -1,0 +1,22 @@
+---
+
+- name: Install Puppet Agent
+  package:
+    name=puppet-agent
+    state=present
+  register: puppetagent_install
+
+- name: Disable Puppet Agent Service
+  service:
+    name: puppet
+    state: stopped
+    enabled: false
+  register: puppetagent_install
+
+- name: Disable Puppet PXP Agent Service
+  service:
+    name: pxp-agent
+    state: stopped
+    enabled: false
+  register: puppetagent_install
+

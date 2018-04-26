@@ -1,0 +1,43 @@
+---
+# $Author:   david_rotthoff <david_rotthoff@rotthoff.home> $
+# $Date:     2017-04-23 16:46:15 -0500 $
+# $Source:   roles/backup/tasks/find_all_files.yml $
+
+# tasks file for backup
+
+- name: Dump variables at the start of find_all_files
+  debug:
+    var: vars
+  when:  file_all_files_debug|default(false)
+
+- name: Backup - Find All Files Task - Find all source files to backup
+  find:
+    paths: "{{ backup_source_path }}"
+    recurse: "{{ backup_source_recurse }}"
+    follow: "{{ backup_source_follow }}"
+    hidden: "{{ backup_source_hidden }}"
+  become: true
+  become_user: root
+  register: files_to_copy
+
+- name: Dump variables at post find of find_files
+  debug:
+    var: vars
+  when:  file_all_files_debug|default(false)
+
+- name: Backup - Find All Files Task - Backup the source file list
+  include: backup_files.yml
+  static: false
+  when:
+    - files_to_copy.files is defined
+
+- name: Backup - Find All Files Task - No source files found to backup
+  debug:
+    msg: 'No source files found to backup'
+  when:
+    - files_to_copy.files is not defined
+
+- name: Dump variables at the end of find_all_files
+  debug:
+    var: vars
+  when:  file_all_files_debug|default(false)

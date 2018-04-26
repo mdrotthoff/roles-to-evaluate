@@ -1,0 +1,13 @@
+---
+- hosts: default
+  remote_user: root
+  roles:
+    - role: ajsalminen.user_management
+      user_management_users:
+        snowden:
+          real_name: Edward Snowden
+          public_key: test_id_rsa.pub
+      user_management_active_users:
+        - snowden
+      user_management_active_admins:
+        - snowden

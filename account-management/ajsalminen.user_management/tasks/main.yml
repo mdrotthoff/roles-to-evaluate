@@ -1,0 +1,11 @@
+---
+
+- include: remove_groups.yml tags=user_access
+
+- include: remove_users.yml tags=user_access
+
+- include: create_users.yml tags=user_access
+
+- include: lock_users.yml tags=user_access
+
+- include: grant_admin_rights.yml tags=user_access

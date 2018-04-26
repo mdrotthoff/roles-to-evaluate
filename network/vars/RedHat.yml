@@ -1,0 +1,10 @@
+---
+network_pkgs:
+  - libselinux-python
+  - bridge-utils
+  - iputils
+  - iproute
+  - python-netaddr
+
+net_path: "/etc/sysconfig/network-scripts"
+nm_controlled: "no"

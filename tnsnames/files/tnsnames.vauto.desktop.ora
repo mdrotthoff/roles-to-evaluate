@@ -1,0 +1,37 @@
+# $Author:   David Rotthoff <david.rotthoff@vauto.com> $
+# $Date:     2017-04-18 13:14:02 -0500 $
+# $Source:   roles/tnsnames/files/tnsnames.vauto.desktop.ora $
+
+#################################################
+# Environment: Non-Database Server              #
+#################################################
+
+#################################################
+# Start Environment: Production                 #
+#################################################
+# ifile=/var/opt/oracle/tnsnames.vauto.flexclone.frontside.ora
+# ifile=/var/opt/oracle/tnsnames.vauto.flexclone.backside.DDC.ora
+ifile=/var/opt/oracle/tnsnames.vauto.production.frontside.ora
+# ifile=/var/opt/oracle/tnsnames.vauto.production.backside.DDC.ora
+# ifile=/var/opt/oracle/tnsnames.vauto.production.backside.SDC.ora
+ifile=/var/opt/oracle/tnsnames.vauto.production.frontside.active.ora
+ifile=/var/opt/oracle/tnsnames.vauto.production.frontside.passive.ora
+
+#################################################
+# Start Environment: Internal Tools             #
+#################################################
+ifile=/var/opt/oracle/tnsnames.vauto.internal.frontside.ora
+
+#################################################
+# Start Environment: Alpha / Staging            #
+# Location: AutoTrader's Duke Drive Datacenter  #
+#################################################
+ifile=/var/opt/oracle/tnsnames.vauto.alpha.frontside.ora
+# ifile=/var/opt/oracle/tnsnames.vauto.alpha.backside.ora
+
+#################################################
+# Start Environment: Development                #
+# Location: AutoTrader's Duke Drive Datacenter  #
+#################################################
+#ifile=/var/opt/oracle/tnsnames.vauto.development.backside.ora
+ifile=/var/opt/oracle/tnsnames.vauto.development.frontside.ora

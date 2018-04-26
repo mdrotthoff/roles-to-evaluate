@@ -1,0 +1,26 @@
+---
+# tasks file for os-upgrade
+
+- name: os-upgrade - Main - Fedora - Ensure the requested version is greater than the current version
+  assert:
+    that:
+      - "{{ os_upgrade_version }} > {{ ansible_distribuition_version }}"
+    msg: "Target version must be later than the current version"
+
+#- name: os-upgrade - Main - Fedora - Ensure repos are not hard-coded to a specific version
+#  repo_names:
+#    repo1: puppetlabs-pc1.repo
+#    repo2: telred-fedora
+
+- name: os-upgrade - Main - Fedora - Ensure all installed packages are at their latest and greatest versions
+  include_role: os-update
+
+# Note: we do not bother to reboot for a kernel change at this point
+- name: os-upgrade - Main - Fedora - DNF upgrade of installed packages w/ dnf upgrade --refresh
+
+- name: Ensure dnf-plugin-system-upgrade is installed w/ dnf install dnf-plugin-system-upgrade
+
+- name: Download the upgrade w/ dnf system-upgrade download --refresh --releasever=<version>
+
+- name: Reboot the system with system-upgrade reboot
+

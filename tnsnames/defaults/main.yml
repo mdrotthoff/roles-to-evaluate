@@ -1,0 +1,17 @@
+---
+# $Author:   David Rotthoff <david.rotthoff@vauto.com> $
+# $Date:     2016-12-01 14:12:37 -0600 $
+# $Source:   roles/tnsnames/defaults/main.yml $
+
+# defaults file for tnsnames
+
+tnsnames_directory: "/var/opt/oracle"
+tnsnames_purge_backup: false
+tnsnames_owner: "oracle"
+tnsnames_group: "dba"
+tnsnames_file_mode: "0644"
+
+tnsnames_serial: 1
+tnsnames_pause_before_copy: false
+tnsnames_pause_delay: 5
+tnsnames_debug: false

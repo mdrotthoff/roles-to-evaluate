@@ -1,0 +1,18 @@
+---
+
+interfaces_pkgs:
+  debian:
+    - python-selinux
+    - bridge-utils
+    - ifenslave-2.6
+  redhat:
+    - libselinux-python
+    - bridge-utils
+    - iputils
+interfaces_net_path:
+  debian: /etc/network/interfaces.d
+  redhat: /etc/sysconfig/network-scripts
+interfaces_pkg_state: installed
+interfaces_ether_interfaces: []
+interfaces_bridge_interfaces: []
+interfaces_bond_interfaces: []

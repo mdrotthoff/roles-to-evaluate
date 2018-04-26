@@ -1,0 +1,107 @@
+---
+# $Author:   David Rotthoff <david.rotthoff@coxautoinc.com> $
+# $Date:     2018-01-29 18:03:10 -0600 $
+# $Source:   roles/oracle-db/tasks/opsview-db-deploy.yml $
+
+- name: Dump variables at the start of opsview-db-deploy
+  debug:
+    var:                            vars
+  when:
+    - opsview_db_parameters.debug|default(false)
+
+- name: Get the version of Opsview-Agent installed
+  yum:
+    list:                           opsview-agent
+  register:                         opsview_agent_version
+
+- name: Set opsview_agent_current_version with the current version installed
+  set_fact:
+    opsview_agent_current_version:  "{{ opsview_agent_version.results[0].version }}"
+
+- name: Check the version of the Opsview-Agent installed
+  block:
+  - name: Update OpsView Agent version
+    debug:
+      msg:                          "Upgrading OpsView Agent version {{ opsview_agent_current_version }} to {{ opsview_agent.source_version }}"
+
+  - name: Calculate the OpsView Agent file name
+    set_fact:
+      opsview_agent_file_name:      "{{ opsview_agent.source_prefix }}{{ opsview_agent.source_version }}{{ opsview_agent.source_suffix }}"
+ 
+  - name: Calculate the OpsView Agent source and target
+    set_fact:
+      opsview_source_file:          "{{ opsview_agent.source_path }}/{{ opsview_agent_file_name }}"
+      opsview_destination_file:     "{{ opsview_agent.destination_path }}/{{ opsview_agent_file_name }}"
+
+  - name: Copy OpsView Agent rpm file to server
+    copy:
+      src:                          "{{ opsview_source_file }}"
+      dest:                         "{{ opsview_destination_file }}"
+      owner:                        root
+      group:                        root
+      mode:                         '0644'
+
+  - name: Install the OpsView Agent package.
+    yum:
+      name:                         "{{ opsview_destination_file }}"
+      state:                        present
+    ignore_errors:                  "{{ ansible_check_mode }}"
+
+  - name: Stop the OpsView Agent
+    service:
+      name:                         "{{ opsview_agent.service_name }}"
+      state:                        stopped
+      enabled:                      False
+    register:                       opsview_service_stop
+
+  - name: Dump variables at the end of opsview-db-deploy
+    debug:
+      var:                          opsview_service_stop
+
+  when:  (opsview_agent_current_version | version_compare(opsview_agent.source_version, 'lt'))
+
+- name: OpsView Agent version is current
+  debug:
+    msg:                            "OpsView Agent version {{ opsview_agent.source_version }} is already current"
+  when:                             (opsview_agent_current_version | version_compare(opsview_agent.source_version, 'ge'))
+
+- name: Start the OpsView Agent
+  service:
+    name:                           "{{ opsview_agent.service_name }}"
+    state:                          started
+    enabled:                        True
+  register:                         opsview_service_start
+
+- name: Dump variables at the end of opsview-db-deploy
+  debug:
+    var:                            opsview_service_start
+
+- name: Copy Opsview configuration files to target
+  include_role:
+    name:                           common
+    tasks_from:                     copy_files.yml
+    defaults_from:                  copy_files.yml
+  vars:
+    copy_files_backup:              "{{ opsview_db_parameters.backup|default(True) }}"
+    copy_files_purge_backup:        "{{ opsview_db_parameters.purge_backup|default(False) }}"
+    copy_files_debug:               "{{ opsview_db_parameters.detail_debug|default(False) }}"
+    copy_files_defaults:            "{{ opsview_config_defaults }}"
+    copy_files_sources:             "{{ opsview_config_sources }}"
+
+- name: Copy Opsview plugin files to target
+  include_role:
+    name:                           common
+    tasks_from:                     copy_files.yml
+    defaults_from:                  copy_files.yml
+  vars:
+    copy_files_backup:              "{{ opsview_db_parameters.backup|default(True) }}"
+    copy_files_purge_backup:        "{{ opsview_db_parameters.purge_backup|default(False) }}"
+    copy_files_debug:               "{{ opsview_db_parameters.detail_debug|default(False) }}"
+    copy_files_defaults:            "{{ opsview_plugin_defaults }}"
+    copy_files_sources:             "{{ opsview_plugin_sources }}"
+
+- name: Dump variables at the end of opsview-db-deploy
+  debug:
+    var:                            vars
+  when:
+    - opsview_db_parameters.debug|default(false)

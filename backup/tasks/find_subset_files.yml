@@ -1,0 +1,39 @@
+---
+# $Author:   david_rotthoff <david_rotthoff@rotthoff.home> $
+# $Date:     2017-04-23 16:46:15 -0500 $
+# $Source:   roles/backup/tasks/find_subset_files.yml $
+
+# tasks file for backup
+
+- name: Dump variables at the start of find_subset_files
+  debug:
+    var: vars
+  when:  file_subset_files_debug|default(false)
+
+- name: Backup - Find Subset Files Task - Find patterned source files to backup
+  find:
+    paths: "{{ backup_source_path }}"
+    recurse: "{{ backup_source_recurse }}"
+    follow: "{{ backup_source_follow }}"
+    hidden: "{{ backup_source_hidden }}"
+    patterns: "{{ backup_source_patterns }}"
+    use_regex: "{{ backup_source_use_regex }}"
+  when: backup_source_patterns is defined
+  become: true
+  become_user: root
+  register: files_to_copy
+
+- name: Backup - Find Subset Files Task - Execute debugging
+  include: find_subset_files_debug.yml
+  static: false
+  when: backup_debug
+
+- name: Backup - Find Subset Files Task -- Backup file list
+  include: backup_files.yml
+  static: false
+  when: files_to_copy.files is defined
+
+- name: Backup - Find Subset Files Task - No source files to backup
+  debug:
+    msg: 'No source files found to backup'
+  when: files_to_copy.files is not defined

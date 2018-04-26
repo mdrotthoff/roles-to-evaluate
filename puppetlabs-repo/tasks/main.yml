@@ -1,0 +1,40 @@
+---
+
+- name: puppetlabs - Main - puppetlabs_repository - Set package as not installed by default
+  set_fact:
+    puppetlabs_package_installed: False
+
+- name: puppetlabs - Main - puppetlabs_repository - Set package name
+  set_fact:
+    puppetlabs_package_name: 'puppetlabs-release-pc1'
+
+- name: puppetlabs - Main - puppetlabs_repository - Include puppetlabs_repository_check for Redhat family systems
+  include:         puppetlabs_repository_check.yml
+  when:            ansible_os_family == 'RedHat'
+  static:          false
+  vars:
+     package_name: "{{ puppetlabs_package_name }}"
+
+- name: puppetlabs - Main - puppetlabs_repository - Debug puppetlabs_package_installed before include
+  debug:
+    var: puppetlabs_package_installed
+
+- name: puppetlabs - Main - puppetlabs_repository - Include puppetlabs_repository_install for Redhat family systems
+  include:         puppetlabs_repository_install.yml
+  when:            ansible_os_family == 'RedHat'
+                   and not puppetlabs_package_installed
+  static:          false
+  vars:
+     package_name: "{{ puppetlabs_package_name }}"
+
+#- name: puppetlabs - Main - puppetlabs_repository - Include puppetlabs_agent_install
+#  include: puppet_agent_install.yml
+#  when: "'puppetserver' not in group_names"
+
+#- name: puppetlabs - Main - puppetlabs_repository - Include puppetlabs_server_install
+#  include: puppet_server_install.yml
+#  when: "'puppetserver' in group_names"
+
+#- name: puppetlabs - Main - puppetlabs_repository - Include puppetlabs_server_remove
+#  include: puppet_server_remove.yml
+#  when: "'puppetserver' not in group_names"

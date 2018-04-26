@@ -1,0 +1,58 @@
+
+---
+
+- name: Add the OS specific varibles
+  include_vars: "{{ ansible_os_family }}.yml"
+
+# RedHat specific stuff
+- include: "{{ ansible_os_family }}_route.yml"
+
+# Create configuration files in the net_path for ethernet, vlan, bond and bridge interfaces
+
+- name: Create the network configuration file for ethernet devices
+  template: src={{ ansible_os_family }}_device.j2 dest={{ net_path }}/ifcfg-{{ item.device }}
+  with_items: "{{ network_ether_interfaces }}"
+  when: network_ether_interfaces is defined
+  register: ether_result
+  notify:
+    - Reboot Sequence
+
+- name: Create the network configuration file for bond slave devices
+  template: src={{ ansible_os_family }}_bond_slave.j2 dest={{ net_path }}/ifcfg-{{ item.1.device }}
+  with_subelements:
+   - "{{ network_bond_interfaces }}"
+   - bond.slaves
+  when: network_bond_interfaces is defined
+  register: bond_port_result
+  notify:
+    - Reboot Sequence
+
+- name: Create the network configuration file for bond devices
+  template: src={{ ansible_os_family }}_device.j2 dest={{ net_path }}/ifcfg-{{ item.device }}
+  with_items: "{{ network_bond_interfaces }}"
+  when: network_bond_interfaces is defined
+  register: bond_result
+  notify:
+    - Reboot Sequence
+
+- name: Make sure the bonding module is loaded
+  modprobe: name=bonding state=present
+  when: bond_result|changed
+  notify:
+    - Reboot Sequence
+
+- name: Create the network configuration file for vlan devices
+  template: src="{{ ansible_os_family }}_device.j2" dest={{ net_path }}/ifcfg-{{ item.device }}
+  with_items: "{{ network_vlan_interfaces }}"
+  when: network_vlan_interfaces is defined
+  register: vlan_result
+  notify:
+    - Reboot Sequence
+
+- name: Create the network configuration file for bridge devices
+  template: src={{ ansible_os_family }}_device.j2 dest={{ net_path }}/ifcfg-{{ item.device }}
+  with_items: "{{ network_bridge_interfaces }}"
+  when: network_bridge_interfaces is defined
+  register: bridge_result
+  notify:
+    - Reboot Sequence

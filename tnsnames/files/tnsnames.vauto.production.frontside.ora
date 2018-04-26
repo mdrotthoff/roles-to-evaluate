@@ -1,0 +1,403 @@
+# $Author:   David Rotthoff <david.rotthoff@vauto.com> $
+# $Date:     2017-04-18 16:49:16 -0500 $
+# $Source:   roles/tnsnames/files/tnsnames.vauto.production.frontside.ora $
+
+#################################################
+# Start Environment: Production                 #
+# Location: AutoTrader's SDC Datacenter         #
+# Interface: Front side                         #
+#################################################
+
+#################################################
+# DB1 RAC Cluster                               #
+#################################################
+VATPDB01.VAUTO.COM=
+  (DESCRIPTION=
+    (ADDRESS_LIST=
+      (ADDRESS=(PROTOCOL=TCP)(HOST=avatpdbc01.vauto.int)(PORT=1521))
+	  (FAILOVER = ON)
+    )
+    (CONNECT_DATA=(SERVER=dedicated)(SERVICE_NAME=vapm1_app))
+  )
+
+PRDDB01.VAUTO.COM=
+  (DESCRIPTION=
+    (ADDRESS_LIST=
+      (ADDRESS=(PROTOCOL=TCP)(HOST=avatpdbc01.vauto.int)(PORT=1521))
+	  (FAILOVER = ON)
+    )
+    (CONNECT_DATA=(SERVER=dedicated)(SERVICE_NAME=vapm1_app))
+  )
+
+#################################################
+# DB1 RAC Instance #1                           #
+#################################################
+VATPDB01_01.VAUTO.COM=
+  (DESCRIPTION=
+    (ADDRESS_LIST=
+      (ADDRESS=(PROTOCOL=TCP)(HOST=avatpdbc01.vauto.int)(PORT=1521))
+    )
+    (CONNECT_DATA=(SERVER=dedicated)(SERVICE_NAME=vapm1)(INSTANCE_NAME=vapm11))
+  )
+
+PRDDB01_01.VAUTO.COM=
+  (DESCRIPTION=
+    (ADDRESS_LIST=
+      (ADDRESS=(PROTOCOL=TCP)(HOST=avatpdbc01.vauto.int)(PORT=1521))
+    )
+    (CONNECT_DATA=(SERVER=dedicated)(SERVICE_NAME=vapm1)(INSTANCE_NAME=vapm11))
+  )
+
+#################################################
+# DB1 RAC Instance #2                           #
+#################################################
+VATPDB01_02.VAUTO.COM=
+  (DESCRIPTION=
+    (ADDRESS_LIST=
+      (ADDRESS=(PROTOCOL=TCP)(HOST=avatpdbc01.vauto.int)(PORT=1521))
+    )
+    (CONNECT_DATA=(SERVER=dedicated)(SERVICE_NAME=vapm1)(INSTANCE_NAME=vapm12))
+  )
+
+PRDDB01_02.VAUTO.COM=
+  (DESCRIPTION=
+    (ADDRESS_LIST=
+      (ADDRESS=(PROTOCOL=TCP)(HOST=avatpdbc01.vauto.int)(PORT=1521))
+    )
+    (CONNECT_DATA=(SERVER=dedicated)(SERVICE_NAME=vapm1)(INSTANCE_NAME=vapm12))
+  )
+
+#################################################
+# DB1 Data Guard Instance                       #
+#################################################
+VATPDB01_DG.VAUTO.COM=
+  (DESCRIPTION=
+    (ADDRESS_LIST=
+      (ADDRESS=(PROTOCOL=TCP)(HOST=pvatpdbc01.vauto.int)(PORT=1521))
+      (ADDRESS=(PROTOCOL=TCP)(HOST=avatpdbc01.vauto.int)(PORT=1521))
+	  (FAILOVER = ON)
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)(SERVICE_NAME=vapm1)
+      (FAILOVER_MODE = (TYPE = SELECT)(METHOD = BASIC)(RETRIES = 180)(DELAY = 5))
+    )
+  )
+
+PRDDB01_DG.VAUTO.COM=
+  (DESCRIPTION=
+    (ADDRESS_LIST=
+      (ADDRESS=(PROTOCOL=TCP)(HOST=pvatpdbc01.vauto.int)(PORT=1521))
+      (ADDRESS=(PROTOCOL=TCP)(HOST=avatpdbc01.vauto.int)(PORT=1521))
+	  (FAILOVER = ON)
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)(SERVICE_NAME=vapm1)
+      (FAILOVER_MODE = (TYPE = SELECT)(METHOD = BASIC)(RETRIES = 180)(DELAY = 5))
+    )
+  )
+
+#################################################
+# DB1 Data Guard Instance #1                    #
+#################################################
+VATPDB01_DG_01.VAUTO.COM=
+  (DESCRIPTION=
+    (ADDRESS_LIST=
+      (ADDRESS=(PROTOCOL=TCP)(HOST=pvatpdbc01.vauto.int)(PORT=1521))
+      (ADDRESS=(PROTOCOL=TCP)(HOST=avatpdbc01.vauto.int)(PORT=1521))
+	  (FAILOVER = ON)
+    )
+    (CONNECT_DATA=(SERVER=dedicated)(SERVICE_NAME=vapm1)(INSTANCE_NAME=vapm11))
+  )
+
+PRDDB01_DG_01.VAUTO.COM=
+  (DESCRIPTION=
+    (ADDRESS_LIST=
+      (ADDRESS=(PROTOCOL=TCP)(HOST=pvatpdbc01.vauto.int)(PORT=1521))
+      (ADDRESS=(PROTOCOL=TCP)(HOST=avatpdbc01.vauto.int)(PORT=1521))
+	  (FAILOVER = ON)
+    )
+    (CONNECT_DATA=(SERVER=dedicated)(SERVICE_NAME=vapm1)(INSTANCE_NAME=vapm11))
+  )
+
+#################################################
+# DB1 Data Guard Instance #2                    #
+#################################################
+VATPDB01_DG_02.VAUTO.COM=
+  (DESCRIPTION=
+    (ADDRESS_LIST=
+      (ADDRESS=(PROTOCOL=TCP)(HOST=pvatpdbc01.vauto.int)(PORT=1521))
+      (ADDRESS=(PROTOCOL=TCP)(HOST=avatpdbc01.vauto.int)(PORT=1521))
+	  (FAILOVER = ON)
+    )
+    (CONNECT_DATA=(SERVER=dedicated)(SERVICE_NAME=vapm1)(INSTANCE_NAME=vapm12))
+  )
+
+PRDDB01_DG_02.VAUTO.COM=
+  (DESCRIPTION=
+    (ADDRESS_LIST=
+      (ADDRESS=(PROTOCOL=TCP)(HOST=pvatpdbc01.vauto.int)(PORT=1521))
+      (ADDRESS=(PROTOCOL=TCP)(HOST=avatpdbc01.vauto.int)(PORT=1521))
+	  (FAILOVER = ON)
+    )
+    (CONNECT_DATA=(SERVER=dedicated)(SERVICE_NAME=vapm1)(INSTANCE_NAME=vapm12))
+  )
+
+#################################################
+# DB2 RAC Cluster                               #
+#################################################
+VATPDB02.VAUTO.COM=
+  (DESCRIPTION=
+    (ADDRESS_LIST=
+      (ADDRESS=(PROTOCOL=TCP)(HOST=avatpdbc01.vauto.int)(PORT=1521))
+	  (FAILOVER = ON)
+    )
+    (CONNECT_DATA=(SERVER=dedicated)(SERVICE_NAME=vapld1_app))
+  )
+
+PRDDB02.VAUTO.COM=
+  (DESCRIPTION=
+    (ADDRESS_LIST=
+      (ADDRESS=(PROTOCOL=TCP)(HOST=avatpdbc01.vauto.int)(PORT=1521))
+	  (FAILOVER = ON)
+    )
+    (CONNECT_DATA=(SERVER=dedicated)(SERVICE_NAME=vapld1_dblink))
+  )
+
+#################################################
+# DB2 RAC Instance #1                           #
+#################################################
+VATPDB02_01.VAUTO.COM=
+  (DESCRIPTION=
+    (ADDRESS_LIST=
+      (ADDRESS=(PROTOCOL=TCP)(HOST=avatpdbc01.vauto.int)(PORT=1521))
+    (CONNECT_DATA=(SERVER=dedicated)(SERVICE_NAME=vapld1)(INSTANCE_NAME=vapld11))
+  )
+
+PRDDB02_01.VAUTO.COM=
+  (DESCRIPTION=
+    (ADDRESS_LIST=
+      (ADDRESS=(PROTOCOL=TCP)(HOST=avatpdbc01.vauto.int)(PORT=1521))
+    )
+    (CONNECT_DATA=(SERVER=dedicated)(SERVICE_NAME=vapld1)(INSTANCE_NAME=vapld11))
+  )
+
+#################################################
+# DB2 RAC Instance #2                           #
+#################################################
+VATPDB02_02.VAUTO.COM=
+  (DESCRIPTION=
+    (ADDRESS_LIST=
+      (ADDRESS=(PROTOCOL=TCP)(HOST=avatpdbc01.vauto.int)(PORT=1521))
+    )
+    (CONNECT_DATA=(SERVER=dedicated)(SERVICE_NAME=vapld1)(INSTANCE_NAME=vapld12))
+  )
+
+PRDDB02_02.VAUTO.COM=
+  (DESCRIPTION=
+    (ADDRESS_LIST=
+      (ADDRESS=(PROTOCOL=TCP)(HOST=avatpdbc01.vauto.int)(PORT=1521))
+    )
+    (CONNECT_DATA=(SERVER=dedicated)(SERVICE_NAME=vapld1)(INSTANCE_NAME=vapld12))
+  )
+
+#################################################
+# DB2 Data Guard Instance                       #
+#################################################
+VATPDB02_DG.VAUTO.COM=
+  (DESCRIPTION=
+    (ADDRESS_LIST=
+      (ADDRESS=(PROTOCOL=TCP)(HOST=pvatpdbc01.vauto.int)(PORT=1521))
+      (ADDRESS=(PROTOCOL=TCP)(HOST=avatpdbc01.vauto.int)(PORT=1521))
+	  (FAILOVER = ON)
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)(SERVICE_NAME=vapld1)
+      (FAILOVER_MODE = (TYPE = SELECT)(METHOD = BASIC)(RETRIES = 180)(DELAY = 5))
+    )
+  )
+
+PRDDB02_DG.VAUTO.COM=
+  (DESCRIPTION=
+    (ADDRESS_LIST=
+      (ADDRESS=(PROTOCOL=TCP)(HOST=pvatpdbc01.vauto.int)(PORT=1521))
+      (ADDRESS=(PROTOCOL=TCP)(HOST=avatpdbc01.vauto.int)(PORT=1521))
+	  (FAILOVER = ON)
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)(SERVICE_NAME=vapld1)
+      (FAILOVER_MODE = (TYPE = SELECT)(METHOD = BASIC)(RETRIES = 180)(DELAY = 5))
+    )
+  )
+
+#################################################
+# DB2 Data Guard Instance #1                    #
+#################################################
+VATPDB02_DG_01.VAUTO.COM=
+  (DESCRIPTION=
+    (ADDRESS_LIST=
+      (ADDRESS=(PROTOCOL=TCP)(HOST=pvatpdbc01.vauto.int)(PORT=1521))
+      (ADDRESS=(PROTOCOL=TCP)(HOST=avatpdbc01.vauto.int)(PORT=1521))
+	  (FAILOVER = ON)
+    )
+    (CONNECT_DATA=(SERVER=dedicated)(SERVICE_NAME=vapld1)(INSTANCE_NAME=vapld11))
+  )
+
+PRDDB02_DG_01.VAUTO.COM=
+  (DESCRIPTION=
+    (ADDRESS_LIST=
+      (ADDRESS=(PROTOCOL=TCP)(HOST=pvatpdbc01.vauto.int)(PORT=1521))
+      (ADDRESS=(PROTOCOL=TCP)(HOST=avatpdbc01.vauto.int)(PORT=1521))
+	  (FAILOVER = ON)
+    )
+    (CONNECT_DATA=(SERVER=dedicated)(SERVICE_NAME=vapld1)(INSTANCE_NAME=vapld11))
+  )
+
+#################################################
+# DB2 Data Guard Instance #1                    #
+#################################################
+VATPDB02_DG_02.VAUTO.COM=
+  (DESCRIPTION=
+    (ADDRESS_LIST=
+      (ADDRESS=(PROTOCOL=TCP)(HOST=pvatpdbc01.vauto.int)(PORT=1521))
+      (ADDRESS=(PROTOCOL=TCP)(HOST=avatpdbc01.vauto.int)(PORT=1521))
+	  (FAILOVER = ON)
+    )
+    (CONNECT_DATA=(SERVER=dedicated)(SERVICE_NAME=vapld1)(INSTANCE_NAME=vapld12))
+  )
+
+PRDDB02_DG_02.VAUTO.COM=
+  (DESCRIPTION=
+    (ADDRESS_LIST=
+      (ADDRESS=(PROTOCOL=TCP)(HOST=pvatpdbc01.vauto.int)(PORT=1521))
+      (ADDRESS=(PROTOCOL=TCP)(HOST=avatpdbc01.vauto.int)(PORT=1521))
+	  (FAILOVER = ON)
+    )
+    (CONNECT_DATA=(SERVER=dedicated)(SERVICE_NAME=vapld1)(INSTANCE_NAME=vapld12))
+  )
+
+#################################################
+# Worker RAC Cluster                            #
+#################################################
+VATPWDB.VAUTO.COM=
+  (DESCRIPTION=
+    (ADDRESS_LIST=
+      (ADDRESS=(PROTOCOL=TCP)(HOST=avatpwdb01.vauto.int)(PORT=1521))
+      (ADDRESS=(PROTOCOL=TCP)(HOST=avatpwdb02.vauto.int)(PORT=1521))
+      (ADDRESS=(PROTOCOL=TCP)(HOST=avatpwdb03.vauto.int)(PORT=1521))
+      (LOAD_BALANCE = ON)(FAILOVER = ON)
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)(SERVICE_NAME=vatpwdb.vauto.com)
+      (FAILOVER_MODE = (TYPE = SELECT)(METHOD = BASIC)(RETRIES = 180)(DELAY = 5))
+    )
+  )
+
+#################################################
+# WDB Database #1                               #
+#################################################
+VATPWDB01.VAUTO.COM=
+  (DESCRIPTION=
+    (ADDRESS_LIST=
+      (ADDRESS=(PROTOCOL=TCP)(HOST=avatpwdb01.vauto.int)(PORT=1521))
+    )
+    (CONNECT_DATA=(SERVER=dedicated)(SERVICE_NAME=vapwdb1.vauto.com))
+  )
+
+#################################################
+# WDB Database #2                               #
+#################################################
+VATPWDB02.VAUTO.COM=
+  (DESCRIPTION=
+    (ADDRESS_LIST=
+      (ADDRESS=(PROTOCOL=TCP)(HOST=avatpwdb02.vauto.int)(PORT=1521))
+    )
+    (CONNECT_DATA=(SERVER=dedicated)(SERVICE_NAME=vapwdb2.vauto.com))
+  )
+
+#################################################
+# WDB Database #3                               #
+#################################################
+VATPWDB03.VAUTO.COM=
+  (DESCRIPTION=
+    (ADDRESS_LIST=
+      (ADDRESS=(PROTOCOL=TCP)(HOST=avatpwdb03.vauto.int)(PORT=1521))
+    )
+    (CONNECT_DATA=(SERVER=dedicated)(SERVICE_NAME=vapwdb3.vauto.com))
+  )
+
+#################################################
+# Omni RAC Cluster                               #
+#################################################
+VATPDBOMNI01.VAUTO.COM=
+  (DESCRIPTION=
+    (ADDRESS_LIST=
+      (ADDRESS=(PROTOCOL=TCP)(HOST=avatpdbc01.vauto.int)(PORT=1521))
+	  (FAILOVER = ON)
+    )
+    (CONNECT_DATA=(SERVER=dedicated)(SERVICE_NAME=vapomni))
+  )
+
+#################################################
+# Omni RAC Instance #1                          #
+#################################################
+VATPDBOMNI01_01.VAUTO.COM=
+  (DESCRIPTION=
+    (ADDRESS_LIST=
+      (ADDRESS=(PROTOCOL=TCP)(HOST=avatpdbc01.vauto.int)(PORT=1521))
+    )
+    (CONNECT_DATA=(SERVER=dedicated)(SERVICE_NAME=vapomni)(INSTANCE_NAME=vapomni1))
+  )
+
+#################################################
+# Omni RAC Instance #2                          #
+#################################################
+VATPDBOMNI01_02.VAUTO.COM=
+  (DESCRIPTION=
+    (ADDRESS_LIST=
+      (ADDRESS=(PROTOCOL=TCP)(HOST=avatpdbc01.vauto.int)(PORT=1521))
+    )
+    (CONNECT_DATA=(SERVER=dedicated)(SERVICE_NAME=vapomni)(INSTANCE_NAME=vapomni2))
+  )
+
+#################################################
+# Omni Data Guard Instance                      #
+#################################################
+VATPDBOMNI01_DG.VAUTO.COM=
+  (DESCRIPTION=
+    (ADDRESS_LIST=
+      (ADDRESS=(PROTOCOL=TCP)(HOST=pvatpdbc01.vauto.int)(PORT=1521))
+      (ADDRESS=(PROTOCOL=TCP)(HOST=avatpdbc01.vauto.int)(PORT=1521))
+      (FAILOVER = ON)
+    )
+    (CONNECT_DATA=(SERVER=dedicated)(SERVICE_NAME=vapomni))
+  )
+
+#################################################
+# Omni Data Guard Instance #1                   #
+#################################################
+VATPDBOMNI01_DG_01.VAUTO.COM=
+  (DESCRIPTION=
+    (ADDRESS_LIST=
+      (ADDRESS=(PROTOCOL=TCP)(HOST=pvatpdbc01.vauto.int)(PORT=1521))
+      (ADDRESS=(PROTOCOL=TCP)(HOST=avatpdbc01.vauto.int)(PORT=1521))
+      (FAILOVER = ON)
+    )
+    (CONNECT_DATA=(SERVER=dedicated)(SERVICE_NAME=vapomni)(INSTANCE_NAME=vapomni1))
+  )
+
+#################################################
+# Omni Data Guard Instance #2                   #
+#################################################
+VATPDBOMNI01_DG_02.VAUTO.COM=
+  (DESCRIPTION=
+    (ADDRESS_LIST=
+      (ADDRESS=(PROTOCOL=TCP)(HOST=pvatpdbc01.vauto.int)(PORT=1521))
+      (ADDRESS=(PROTOCOL=TCP)(HOST=avatpdbc01.vauto.int)(PORT=1521))
+      (FAILOVER = ON)
+    )
+    (CONNECT_DATA=(SERVER=dedicated)(SERVICE_NAME=vapomni)(INSTANCE_NAME=vapomni2))
+  )
+
+#################################################
+# EndEnvironment: Production                    #
+#################################################

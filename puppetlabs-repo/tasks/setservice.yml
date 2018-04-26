@@ -1,0 +1,9 @@
+---
+
+- name: Puppet Service {{ name }}
+  service:
+    name: "{{ name }}"
+    state: "{{ state }}"
+    enabled: "{{ enabled }}"
+#  register: puppetagent_install
+

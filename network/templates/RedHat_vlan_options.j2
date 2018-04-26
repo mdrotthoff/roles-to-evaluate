@@ -1,0 +1,22 @@
+# VLAN parameters
+VLAN=yes
+TYPE=Vlan
+{% if item.vlan.physdev is defined %}
+PHYSDEV={{ item.vlan.physdev }}
+{% else %}
+PHYSDEV={{ item.device.rpartition('.')[0] }}
+{% endif %}
+{% if item.vlan.id is defined %}
+VLAN_ID={{ item.vlan.id }}
+{% else %}
+VLAN_ID={{ item.device.rpartition('.')[2] }}
+{% endif %}
+{% if item.vlan.reorder_hdr is defined %}
+REORDER_HDR={{ item.vlan.reorder_hdr | bool | ternary("yes", "no") }}
+{% endif %}
+{% if item.vlan.gvrp is defined %}
+GVRP={{ item.vlan.gvrp | bool | ternary("yes", "no") }}
+{% endif %}
+{% if item.vlan.mvrp is defined %}
+MVRP={{ item.vlan.mvrp | bool | ternary("yes", "no") }}
+{%- endif %}

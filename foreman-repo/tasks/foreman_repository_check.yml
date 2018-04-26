@@ -1,0 +1,22 @@
+---
+
+#- name: puppetlabs - Main - foreman_repository - foreman_repository_check - Dump all variables at start
+#  debug:
+#    var: vars
+
+- name: puppetlabs - Main - foreman_repository - foreman_repository_check - Check if package is installed in Redhat Family OS
+  yum:
+    list="{{ package_name }}"
+  ignore_errors: true
+  when:          ansible_os_family == 'RedHat'
+  register:      foreman_package_version
+
+- name: puppetlabs - Main - foreman_repository - foreman_repository_check - Set package installed if it is already installed
+  set_fact:
+    foreman_package_installed: True
+  with_items: "{{ foreman_package_version.results }}"
+  when: item.yumstate == 'installed'
+
+#- name: puppetlabs - Main - foreman_repository - foreman_repository_check - Dump all variables at end
+#  debug:
+#    var: vars

@@ -1,0 +1,66 @@
+---
+# $Author:   David Rotthoff <david.rotthoff@vauto.com> $
+# $Date:     2017-09-29 17:31:00 -0500 $
+# $Source:   roles/oracle-db/tasks/va-packages.yml $
+
+#- name: Dump the ansible variables at the start of va-packages
+#  debug:
+#    var: va_packages
+#  when:
+#    - va_packages.debug|default(false)
+
+- name: Dump the supplied package lists variable
+  debug:
+    var: va_packages
+  when:
+    - va_packages.debug|default(false)
+
+- name: Install the required external repositories
+  yum:
+    name:              "{{ va_packages.repo_packages.package_names }}"
+    state:             "{{ va_packages.repo_packages.state|default('present') }}"
+    disable_gpg_check: "{{ va_packages.repo_packages.disable_gpg_check|default(omit) }}"
+  when:                va_packages.repo_packages.package_names is defined
+
+- name: Import EPEL GPG key.
+  rpm_key:
+    key:         "/etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-{{ ansible_distribution_major_version }}"
+    state:       present
+#  when:          not epel_repofile_result.stat.exists
+  ignore_errors: "{{ ansible_check_mode }}"
+
+- name: Disable the RPM forge repository
+  ini_file:
+    dest:      /etc/yum.repos.d/rpmforge.repo
+    section:   rpmforge
+    option:    enabled
+    value:     0
+  when:        va_packages.repo_packages.package_names is defined
+
+- name: Disable the Enterprise Linux repository
+  ini_file:
+    dest:      /etc/yum.repos.d/epel.repo
+    section:   epel
+    option:    enabled
+    value:     0
+  when:        va_packages.repo_packages.package_names is defined
+
+- name: Install the standard VA packages
+  yum:
+    name:              "{{ va_packages.feed_packages.package_names }}"
+    state:             "{{ va_packages.feed_packages.state|default('present') }}"
+    disable_gpg_check: "{{ va_packages.feed_packages.disable_gpg_check|default(omit) }}"
+  when:                va_packages.feed_packages.package_names is defined
+
+- name: Install the yum helper packages
+  yum:
+    name:              "{{ va_packages.yum_helpers.package_names }}"
+    state:             "{{ va_packages.yum_helpers.state|default('present') }}"
+    disable_gpg_check: "{{ va_packages.yum_helpers.disable_gpg_check|default(omit) }}"
+  when:                va_packages.yum_helpers.package_names is defined
+
+#- name: Dump the ansible variables at the end of va-packages
+#  debug:
+#    var: vars
+#  when:
+#    - va_packages.debug|default(false)

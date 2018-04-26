@@ -1,0 +1,28 @@
+---
+
+#- name: puppetlabs - Main - puppetlabs_repository_install - Dump all variables start
+#  debug:
+#    var: vars
+
+- name: puppetlabs - Main - puppetlabs_repository - puppetlabs_repository_install - Set repository source for Fedora systems
+  set_fact:
+    puppetrepo_source: "http://yum.puppetlabs.com/puppetlabs-release-pc1-fedora-{{ ansible_distribution_major_version }}.noarch.rpm"
+  when:                ansible_distribution == 'Fedora'
+
+- name: puppetlabs - Main - puppetlabs_repository - puppetlabs_repository_install - Set repository source for {{ ansible_distribution }} systems
+  set_fact:
+    puppetrepo_source: "http://yum.puppetlabs.com/puppetlabs-release-pc1-el-{{ ansible_distribution_major_version }}.noarch.rpm"
+  when:                puppetrepo_source is not defined
+
+- name: puppetlabs - Main - puppetlabs_repository - puppetlabs_repository_install - Install PuppetLabs Repo
+  yum:
+    name={{ puppetrepo_source }}
+    state=installed
+  register: puppetlabs_install
+  when: puppetrepo_source is defined
+  become: true
+  become_user: root
+
+#- name: puppetlabs - Main - puppetlabs_repository - puppetlabs_repository_install - Dump all variables end
+#  debug:
+#    var: vars

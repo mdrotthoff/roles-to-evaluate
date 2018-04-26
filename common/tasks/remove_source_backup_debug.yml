@@ -1,0 +1,17 @@
+---
+# $Author:   david_rotthoff <david_rotthoff@rotthoff.home> $
+# $Date:     2017-04-09 20:41:54 -0500 $
+# $Source:   roles/common/tasks/remove_source_backup_debug.yml $
+
+- name: copy_files - Main - Remove Source Backup - Remove Source Backup debug - Display the item parameter
+  debug:
+    var: item
+
+- name: copy_files - Main - Remove Source Backup - Remove Source Backup debug - Display the copy_files parameters
+  debug:
+    var: copy_files_parameters
+
+- name: copy_files - Main - Remove Source Backup - Remove Source Backup debug - Display the files to be removed
+  debug:
+    var: files_to_remove
+  when:  "files_to_remove is defined"

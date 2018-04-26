@@ -1,0 +1,35 @@
+---
+
+- name: Add EPEL Repository to CentOS
+  package: name=epel-release state=present
+  when:
+    - ansible_distribution == "CentOS"
+
+- name: Add Python2-dnf to Fedora
+  raw: /usr/bin/dnf -y install python2-dnf
+  when:
+    - ansible_distribution == "Fedora"
+
+- name: Upgrade All Packages to Latest version
+  package: name=* state=latest
+
+- name: Check for Kernel Changing Version
+  shell: LAST_KERNEL=$(rpm -q --last kernel | perl -pe 's/^kernel-(\S+).*/$1/' | head -1); CURRENT_KERNEL=$(uname -r); if [ $LAST_KERNEL != $CURRENT_KERNEL ]; then echo 'reboot'; else echo 'no'; fi
+  ignore_errors: true
+  register: reboot_hint
+  notify:
+    - Reboot Sequence
+
+- name: Install Basic Standard Packages
+  package: name={{ item }} state=present
+  with_items:
+    - bind-utils
+    - tree
+    - net-tools
+    - bzip2
+    - gcc
+    - perl
+    - cpp
+    - dkms
+    - pciutils
+

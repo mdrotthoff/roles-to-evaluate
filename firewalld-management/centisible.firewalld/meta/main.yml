@@ -1,0 +1,19 @@
+---
+galaxy_info:
+  author: 'Kamil Boratyński'
+  description: 'This role ensures `firewalld` is installed and enabled.'
+  company: 'LINSEC'
+  license: 'GPLv3'
+  min_ansible_version: 2.1
+  galaxy_tags:
+    - 'system'
+    - 'os'
+    - 'firewall'
+    - 'security'
+  platforms:
+    - name: 'EL'
+      varsions:
+        - 7
+
+
+dependencies: []

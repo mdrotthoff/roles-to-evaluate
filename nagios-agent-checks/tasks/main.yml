@@ -1,0 +1,6 @@
+---
+# tasks file for nagios-agent-checks
+
+- name: Nagios Agent Check - Backup files
+  debug:
+    msg: "Entered Nagios Agent Task main"

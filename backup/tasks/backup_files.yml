@@ -1,0 +1,29 @@
+---
+# $Author:   david_rotthoff <david_rotthoff@rotthoff.home> $
+# $Date:     2017-04-23 16:46:15 -0500 $
+# $Source:   roles/backup/tasks/backup_files.yml $
+
+# tasks file for backup
+
+# TODO: Look into possibly using the archive action to copy and store the backup
+
+- name: Dump variables at the start of backup_files
+  debug:
+    var: vars
+  when:  backup_files_debug|default(false)
+    
+- name: Backup Directory - Backup Files Task - Backup file to the target directory
+  fetch:
+    src: "{{ item.path }}"
+    dest: "{{ backup_target_dir }}/{{ item.path }}"
+    fail_on_missing: "{{ backup_source_fail_on_missing }}"
+    flat: "{{ backup_target_flat }}"
+  with_items: "{{ files_to_copy.files|default([]) }}"
+  become: true
+  become_user: root
+
+- name: Dump variables at the end of backup_files
+  debug:
+    var: vars
+  when:  backup_files_debug|default(false)
+  

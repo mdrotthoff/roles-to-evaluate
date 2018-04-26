@@ -1,0 +1,20 @@
+---
+
+- name: ensure packages are installed
+  yum:
+    name='{{ item }}'
+    state='{{ firewalld_packages_state }}'
+    disable_gpg_check='{{ firewalld_packages_disable_gpg_check }}'
+    update_cache='{{ firewalld_packages_update_cache }}'
+    validate_certs='{{ firewalld_packages_validate_certs }}'
+  with_flattened:
+    - '{{ firewalld_packages_list }}'
+
+
+- name: ensure services are running
+  service:
+    name='{{ item }}'
+    enabled='{{ firewalld_services_enabled }}'
+    state='{{ firewalld_services_state }}'
+  with_flattened:
+    - '{{ firewalld_services_list }}'

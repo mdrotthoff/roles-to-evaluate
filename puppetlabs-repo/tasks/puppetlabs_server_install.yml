@@ -1,0 +1,19 @@
+---
+
+- name: Install Puppet Server
+  package:
+    name=puppetserver
+    state=present
+
+- include: setservice.yml
+  vars:
+    name: puppetserver
+    state: stopped
+    enabled: false
+
+#- include: setservice.yml
+#  vars:
+#    name: pxp-agent
+#    state: stopped
+#    enabled: false
+

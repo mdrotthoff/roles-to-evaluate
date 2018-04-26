@@ -1,0 +1,15 @@
+---
+
+- name: check if firewalld is installed
+  command: rpm -q firewalld
+  ignore_errors: True
+  register: rpm_check_firewalld
+
+- name: install firewalld
+  yum: name=firewalld state=present enabled=yes
+  when: rpm_check_firewalld.stdout.find('is not installed') != -1
+
+- name: updating firewall rules
+  firewalld: port={{item.value.port}}/{{item.value.protocol}} permanent={{item.value.permanent}} state={{item.value.state }} zone={{item.value.zone}}
+  with_dict: firewalld_rules
+  notify: restart firewalld

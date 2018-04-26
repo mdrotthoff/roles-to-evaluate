@@ -1,0 +1,26 @@
+---
+# $Author:   david_rotthoff <david_rotthoff@rotthoff.home> $
+# $Date:     2017-10-30 19:57:11 -0500 $
+# $Source:   roles/os-basic-setup/tasks/main.yml $
+
+
+- name: Add EPEL Repository to CentOS
+  package:
+    name: epel-release
+    state: present
+  when:
+    - ansible_distribution == "CentOS"
+
+- name: Add Python2-dnf to Fedora
+  package:
+    name:     python2-dnf
+    state:    present
+  when:
+    - ansible_distribution == "Fedora"
+
+- name: Install Basic Standard Packages
+  package:
+    name:     "{{ item }}"
+    state:    present
+  with_items:
+    - "{{ os_base_packages }}"

@@ -1,0 +1,23 @@
+---
+# tasks file for os-upgrade
+
+- name: os-upgrade - main - Upgrade a Fedora based system
+  include: Fedora
+  dynamic: false
+  when: "ansible_distribution == 'Fedora'"
+
+#- name: Ensure the requested version is greater than the current version
+
+#- name: Ensure repos are not hard-coded to a specific version
+#  repo_names:
+#    repo1: puppetlabs-pc1.repo
+#    repo2: telred-fedora
+
+#- name: DNF upgrade of installed packages w/ dnf upgrade --refresh
+
+#- name: Ensure dnf-plugin-system-upgrade is installed w/ dnf install dnf-plugin-system-upgrade
+
+#- name: Download the upgrade w/ dnf system-upgrade download --refresh --releasever=<version>
+
+#- name: Reboot the system with system-upgrade reboot
+

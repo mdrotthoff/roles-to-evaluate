@@ -1,0 +1,10 @@
+---
+# $Author:   david_rotthoff <david_rotthoff@rotthoff.home> $
+# $Date:     2017-04-23 14:03:46 -0500 $
+# $Source:   roles/common/defaults/copy_files.yml $
+
+# defaults file for copy_files.yml
+
+copy_files_debug:        False
+copy_files_backup:       False
+copy_files_purge_backup: False

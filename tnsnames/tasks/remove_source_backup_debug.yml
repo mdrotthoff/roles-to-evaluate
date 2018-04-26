@@ -1,0 +1,17 @@
+---
+# $Author:   David Rotthoff <david.rotthoff@vauto.com> $
+# $Date:     2017-09-29 17:31:00 -0500 $
+# $Source:   roles/tnsnames/tasks/remove_source_backup_debug.yml $
+
+- name: Tnsnames - Main - Remove Source Backup - Remove Source Backup debug - Display the item parameter
+  debug:
+    var: item
+
+- name: Tnsnames - Main - Remove Source Backup - Remove Source Backup debug - Display the tnsnames parameters
+  debug:
+    var: tnsnames_parameters
+
+- name: Tnsnames - Main - Remove Source Backup - Remove Source Backup debug - Display the files to be removed
+  debug:
+    var: files_to_remove
+  when:  "files_to_remove is defined"

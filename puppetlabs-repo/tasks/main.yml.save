@@ -1,0 +1,28 @@
+---
+
+- name: puppetlabs - Main - Include puppetlabs_repository for Redhat family systems
+  include:         puppetlabs_repository.yml
+  when:            ansible_os_family == 'RedHat'
+  static:          false
+
+- name: puppetlabs - Main - Include foreman_repository for Redhat family systems
+  include:         foreman_repository.yml
+  when:            ansible_os_family == 'RedHat'
+                   and ansible_distribution != 'Fedora'
+  static:          false
+
+#- name: puppetlabs - Main - Debug puppetlabs_package_installed before include
+#  debug:
+#    var: puppetlabs_package_installed
+
+#- name: puppetlabs - Main - Include puppetlabs_repository_install for Redhat family systems
+#  include:         puppetlabs_repository_install.yml
+#  when:            ansible_os_family == 'RedHat'
+#                   and not puppetlabs_package_installed
+#  static:          false
+#  vars:
+#     package_name: "{{ puppetlabs_package_name }}"
+
+#- name: puppetlabs - Main - Debug dump all variables at end
+#  debug:
+#    var: vars

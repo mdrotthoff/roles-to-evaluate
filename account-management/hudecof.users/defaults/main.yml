@@ -1,0 +1,14 @@
+---
+# defaults file for users
+
+users_available: {}
+
+users: []
+
+users_deleted: []
+
+# users public keys directory
+# put absolute path is is outside of the role directory
+users_dir_ssh_keys: .
+
+users_update_password: on_create

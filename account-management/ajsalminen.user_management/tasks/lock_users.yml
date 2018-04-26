@@ -1,0 +1,47 @@
+---
+
+    - name: remove extra groups for locked users
+      user:
+        name: "{{ item }}"
+        groups:
+      with_items: user_management_locked_users
+      when: user_management_locked_users is defined
+
+    - name: remove authorized key(s) from root for locked users
+      authorized_key:
+        user: root
+        key: "{{ lookup('file', user_management_ssh_keys_path ~ user_management_users[item].public_key ) }}"
+        state: absent
+      with_items: user_management_locked_users
+      when: user_management_locked_users is defined and user_management_users[item].public_key is defined
+
+    - name: disable password for locked account
+      user:
+        name: "{{ item }}"
+        password: !
+      with_items: user_management_locked_users
+      when: user_management_locked_users is defined
+
+    - name: remove additional authorized key(s) from root for locked users
+      authorized_key:
+        user: root
+        key: "{{ lookup('file', user_management_ssh_keys_path ~ user_management_users[item].additional_public_key ) }}"
+        state: absent
+      with_items: user_management_locked_users
+      when: user_management_locked_users is defined and user_management_users[item].additional_public_key is defined
+
+    - name: remove authorized key(s) from account for locked users
+      authorized_key:
+        user: "{{ item }}"
+        key: "{{ lookup('file', user_management_ssh_keys_path ~ user_management_users[item].public_key ) }}"
+        state: absent
+      with_items: user_management_locked_users
+      when: user_management_locked_users is defined and user_management_users[item].public_key is defined
+
+    - name: remove additional authorized key(s) from account for locked users
+      authorized_key:
+        user: "{{ item }}"
+        key: "{{ lookup('file', user_management_ssh_keys_path ~ user_management_users[item].additional_public_key ) }}"
+        state: absent
+      with_items: user_management_locked_users
+      when: user_management_locked_users is defined and user_management_users[item].additional_public_key is defined

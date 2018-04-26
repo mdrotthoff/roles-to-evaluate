@@ -1,0 +1,31 @@
+
+---
+# RedHat stuff (needs testing)
+
+  - block:
+    - name: Install the required  packages in Redhat derivatives
+      yum: name={{ item }} state=installed
+      with_items: "{{ network_pkgs }}"
+      when: network_check_packages
+
+    - name: Write configuration files for vlan route configuration
+      template: src={{ ansible_os_family }}_route.j2 dest={{ net_path }}/route-{{ item.device }}
+      with_items: "{{ network_vlan_interfaces }}"
+      when: network_ether_interfaces is defined and item.ipv4.route is defined
+
+    - name: Write configuration files for interface route configuration
+      template: src={{ ansible_os_family }}_route.j2 dest={{ net_path }}/route-{{ item.device }}
+      with_items: "{{ network_ether_interfaces }}"
+      when: network_ether_interfaces is defined and item.ipv4.route is defined
+
+    - name: Write configuration files for bond route configuration
+      template: src={{ ansible_os_family }}_route.j2 dest={{ net_path }}/route-{{ item.device }}
+      with_items: "{{ network_bond_interfaces }}"
+      when: network_bond_interfaces is defined and item.ipv4.route is defined 
+
+    - name: Write configuration files for bridge route configuration
+      template: src={{ ansible_os_family }}_route.j2 dest={{ net_path }}/route-{{ item.device }}
+      with_items: "{{ network_bridge_interfaces }}"
+      when: network_bridge_interfaces is defined and item.ipv4.route is defined
+
+    when: ansible_os_family == 'RedHat'

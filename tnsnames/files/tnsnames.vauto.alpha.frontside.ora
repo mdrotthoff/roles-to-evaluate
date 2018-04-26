@@ -1,0 +1,303 @@
+# $Author:   mdrotthoff <david.rotthoff@vauto.com> $
+# $Date:     2017-04-21 15:57:45 -0500 $
+# $Source:   roles/tnsnames/files/tnsnames.vauto.alpha.frontside.ora $
+
+#################################################
+# Start Environment: Alpha / Staging            #
+# Location: AutoTrader's Duke Drive Datacenter  #
+# Interface: Front side                         #
+#################################################
+
+
+#################################################
+# DB1 RAC Cluster                               #
+#################################################
+VATAPDB01.VAUTO.COM=
+  (DESCRIPTION=
+    (ADDRESS_LIST=
+      (ADDRESS=(PROTOCOL=TCP)(HOST=vatapdbc01.vauto.int)(PORT=1521))
+      (FAILOVER = ON)
+    )
+    (CONNECT_DATA=(SERVER=dedicated)(SERVICE_NAME=vaam1_app))
+  )
+
+#################################################
+# DB1 RAC Instance #1                           #
+#################################################
+VATAPDB01_01.VAUTO.COM=
+  (DESCRIPTION=
+    (ADDRESS_LIST=
+      (ADDRESS=(PROTOCOL=TCP)(HOST=vatapdbc01.vauto.int)(PORT=1521))
+      (FAILOVER = ON)
+    )
+    (CONNECT_DATA=(SERVER=dedicated)(SERVICE_NAME=vaam1)(INSTANCE_NAME=vaam11))
+  )
+
+#################################################
+# DB1 RAC Instance #2                           #
+#################################################
+VATAPDB01_02.VAUTO.COM=
+  (DESCRIPTION=
+    (ADDRESS_LIST=
+      (ADDRESS=(PROTOCOL=TCP)(HOST=vatapdbc01.vauto.int)(PORT=1521))
+      (FAILOVER = ON)
+    )
+    (CONNECT_DATA=(SERVER=dedicated)(SERVICE_NAME=vaam1)(INSTANCE_NAME=vaam12))
+  )
+
+#################################################
+# DB1 Data Guard Instance (Simulated)           #
+#################################################
+VATAPDB01_DG.VAUTO.COM=
+  (DESCRIPTION=
+    (ADDRESS_LIST=
+      (ADDRESS=(PROTOCOL=TCP)(HOST=vatapdbc01.vauto.int)(PORT=1521))
+      (FAILOVER = ON)
+    )
+    (CONNECT_DATA=(SERVER=dedicated)(SERVICE_NAME=vaam1_app))
+  )
+
+#################################################
+# DB1 Data Guard Instance #1 (Simulated)        #
+#################################################
+VATAPDB01_DG_01.VAUTO.COM=
+  (DESCRIPTION=
+    (ADDRESS_LIST=
+      (ADDRESS=(PROTOCOL=TCP)(HOST=vatapdbc01.vauto.int)(PORT=1521))
+      (FAILOVER = ON)
+    )
+    (CONNECT_DATA=(SERVER=dedicated)(SERVICE_NAME=vaam1)(INSTANCE_NAME=vaam11))
+  )
+
+#################################################
+# DB1 Data Guard Instance #2 (Simulated)        #
+#################################################
+VATAPDB01_DG_02.VAUTO.COM=
+  (DESCRIPTION=
+    (ADDRESS_LIST=
+      (ADDRESS=(PROTOCOL=TCP)(HOST=vatapdbc01.vauto.int)(PORT=1521))
+      (FAILOVER = ON)
+    )
+    (CONNECT_DATA=(SERVER=dedicated)(SERVICE_NAME=vaam1)(INSTANCE_NAME=vaam12))
+  )
+
+#################################################
+# DB2 RAC Cluster                               #
+#################################################
+VATAPDB02.VAUTO.COM=
+  (DESCRIPTION=
+    (ADDRESS_LIST=
+      (ADDRESS=(PROTOCOL=TCP)(HOST=vatapdbc01.vauto.int)(PORT=1521))
+      (FAILOVER = ON)
+    )
+    (CONNECT_DATA=(SERVER=dedicated)(SERVICE_NAME=vaald1_app))
+  )
+
+#################################################
+# DB2 RAC Instance #1                           #
+#################################################
+VATAPDB02_01.VAUTO.COM=
+  (DESCRIPTION=
+    (ADDRESS_LIST=
+      (ADDRESS=(PROTOCOL=TCP)(HOST=vatapdbc01.vauto.int)(PORT=1521))
+      (FAILOVER = ON)
+    )
+    (CONNECT_DATA=(SERVER=dedicated)(SERVICE_NAME=vaald1)(INSTANCE_NAME=vaald11))
+  )
+
+#################################################
+# DB2 RAC Instance #2                           #
+#################################################
+VATAPDB02_02.VAUTO.COM=
+  (DESCRIPTION=
+    (ADDRESS_LIST=
+      (ADDRESS=(PROTOCOL=TCP)(HOST=vatapdbc01.vauto.int)(PORT=1521))
+      (FAILOVER = ON)
+    )
+    (CONNECT_DATA=(SERVER=dedicated)(SERVICE_NAME=vaald1)(INSTANCE_NAME=vaald12))
+  )
+
+#################################################
+# DB2 Data Guard Instance (Simulated)           #
+#################################################
+VATAPDB02_DG.VAUTO.COM=
+  (DESCRIPTION=
+    (ADDRESS_LIST=
+      (ADDRESS=(PROTOCOL=TCP)(HOST=vatapdbc01.vauto.int)(PORT=1521))
+      (FAILOVER = ON)
+    )
+    (CONNECT_DATA=(SERVER=dedicated)(SERVICE_NAME=vaald1_app))
+  )
+
+#################################################
+# DB2 Data Guard Instance #1 (Simulated)        #
+#################################################
+VATAPDB02_DG_01.VAUTO.COM=
+  (DESCRIPTION=
+    (ADDRESS_LIST=
+      (ADDRESS=(PROTOCOL=TCP)(HOST=vatapdbc01.vauto.int)(PORT=1521))
+      (FAILOVER = ON)
+    )
+    (CONNECT_DATA=(SERVER=dedicated)(SERVICE_NAME=vaald1)(INSTANCE_NAME=vaald11))
+  )
+
+#################################################
+# DB2 Data Guard Instance #2 (Simulated)        #
+#################################################
+VATAPDB02_DG_02.VAUTO.COM=
+  (DESCRIPTION=
+    (ADDRESS_LIST=
+      (ADDRESS=(PROTOCOL=TCP)(HOST=vatapdbc01.vauto.int)(PORT=1521))
+      (FAILOVER = ON)
+    )
+    (CONNECT_DATA=(SERVER=dedicated)(SERVICE_NAME=vaald1)(INSTANCE_NAME=vaald12))
+  )
+
+#################################################
+# WDB Psuedo Cluster                            #
+#################################################
+VATAPWDB.VAUTO.COM =
+  (DESCRIPTION=
+    (ADDRESS_LIST=
+      (ADDRESS=(PROTOCOL=TCP)(HOST=vatapwdb01.vauto.int)(PORT=1521))
+      (ADDRESS=(PROTOCOL=TCP)(HOST=vatapedb02.vauto.int)(PORT=1521))
+      (LOAD_BALANCE = ON)
+      (FAILOVER = ON)
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)(SERVICE_NAME=vatapwdb.vauto.com)
+      (FAILOVER_MODE = (TYPE = SELECT)(METHOD = BASIC)(RETRIES = 180)(DELAY = 5))
+    )
+  )
+
+#################################################
+# WDB Database #1                               #
+#################################################
+VATAPWDB01.VAUTO.COM =
+  (DESCRIPTION=
+    (ADDRESS_LIST=
+      (ADDRESS=(PROTOCOL=TCP)(HOST=vatapwdb01.vauto.int)(PORT=1521))
+    )
+    (CONNECT_DATA=(SERVER=dedicated)(SERVICE_NAME=vaawdb1))
+  )
+
+#################################################
+# WDB Database #2                               #
+#################################################
+VATAPWDB02.VAUTO.COM =
+  (DESCRIPTION=
+    (ADDRESS_LIST=
+      (ADDRESS=(PROTOCOL=TCP)(HOST=vatapwdb01.vauto.int)(PORT=1521))
+    )
+    (CONNECT_DATA=(SERVER=dedicated)(SERVICE_NAME=vaawdb2))
+  )
+
+#################################################
+# WDB Data Guard Psuedo Cluster (Simulated)     #
+#################################################
+VATAPWDB_DG.VAUTO.COM =
+  (DESCRIPTION=
+    (ADDRESS_LIST=
+      (ADDRESS=(PROTOCOL=TCP)(HOST=vatapwdb01.vauto.int)(PORT=1521))
+      (ADDRESS=(PROTOCOL=TCP)(HOST=vatapedb02.vauto.int)(PORT=1521))
+      (LOAD_BALANCE = ON)
+      (FAILOVER = ON)
+    )
+    (CONNECT_DATA=
+      (SERVER=dedicated)(SERVICE_NAME=vatapwdb.vauto.com)
+      (FAILOVER_MODE = (TYPE = SELECT)(METHOD = BASIC)(RETRIES = 180)(DELAY = 5))
+    )
+  )
+
+#################################################
+# WDB Data Guard Psuedo Database #1 (Simulated) #
+#################################################
+VATAPWDB01_DG.VAUTO.COM =
+  (DESCRIPTION=
+    (ADDRESS_LIST=
+      (ADDRESS=(PROTOCOL=TCP)(HOST=vatapwdb01.vauto.int)(PORT=1521))
+    )
+    (CONNECT_DATA=(SERVER=dedicated)(SERVICE_NAME=vaawdb1))
+  )
+
+#################################################
+# WDB Data Guard Psuedo Database #2 (Simulated) #
+#################################################
+VATAPWDB02_DG.VAUTO.COM =
+  (DESCRIPTION=
+    (ADDRESS_LIST=
+      (ADDRESS=(PROTOCOL=TCP)(HOST=vatapwdb01.vauto.int)(PORT=1521))
+    )
+    (CONNECT_DATA=(SERVER=dedicated)(SERVICE_NAME=vaawdb2))
+  )
+
+#################################################
+# Omni RAC Cluster                              #
+#################################################
+VATAPDBOMNI01.VAUTO.COM=
+  (DESCRIPTION=
+    (ADDRESS_LIST=
+      (ADDRESS=(PROTOCOL=TCP)(HOST=vatapdbc01.vauto.int)(PORT=1521))
+      (FAILOVER = ON)
+    )
+    (CONNECT_DATA=(SERVER=dedicated)(SERVICE_NAME=vaaomni_app))
+  )
+
+#################################################
+# Omni RAC Instance #1                          #
+#################################################
+VATAPDBOMNI01_01.VAUTO.COM=
+  (DESCRIPTION=
+    (ADDRESS_LIST=
+      (ADDRESS=(PROTOCOL=TCP)(HOST=vatapdbc01.vauto.int)(PORT=1521))
+    )
+    (CONNECT_DATA=(SERVER=dedicated)(SERVICE_NAME=vaaomni)(INSTANCE_NAME=vaaomni1))
+  )
+
+#################################################
+# Omni RAC Instance #2                          #
+#################################################
+VATAPDBOMNI01_02.VAUTO.COM=
+  (DESCRIPTION=
+    (ADDRESS_LIST=
+      (ADDRESS=(PROTOCOL=TCP)(HOST=vatapdbc01.vauto.int)(PORT=1521))
+    )
+    (CONNECT_DATA=(SERVER=dedicated)(SERVICE_NAME=vaaomni)(INSTANCE_NAME=vaaomni2))
+  )
+
+#################################################
+# Omni Data Guard Instance (Simulated)          #
+#################################################
+VATAPDBOMNI01_DG.VAUTO.COM=
+  (DESCRIPTION=
+    (ADDRESS_LIST=
+      (ADDRESS=(PROTOCOL=TCP)(HOST=vatapdbc01.vauto.int)(PORT=1521))
+    )
+    (CONNECT_DATA=(SERVER=dedicated)(SERVICE_NAME=vaaomni_app))
+  )
+
+#################################################
+# Omni Data Guard Instance #1 (Simulated)       #
+#################################################
+VATAPDBOMNI01_DG_01.VAUTO.COM=
+  (DESCRIPTION=
+    (ADDRESS_LIST=
+      (ADDRESS=(PROTOCOL=TCP)(HOST=vatapdbc01.vauto.int)(PORT=1521))
+    )
+    (CONNECT_DATA=(SERVER=dedicated)(SERVICE_NAME=vaaomni)(INSTANCE_NAME=vaaomni1))
+  )
+
+#################################################
+# Omni Data Guard Instance #2 (Simulated)       #
+#################################################
+VATAPDBOMNI01_DG_02.VAUTO.COM=
+  (DESCRIPTION=
+    (ADDRESS_LIST=
+      (ADDRESS=(PROTOCOL=TCP)(HOST=vatapdbc01.vauto.int)(PORT=1521))
+    )
+    (CONNECT_DATA=(SERVER=dedicated)(SERVICE_NAME=vaaomni)(INSTANCE_NAME=vaaomni2))
+  )
+
+#################################################
+# End Environment: Alpha / Staging              #
+#################################################

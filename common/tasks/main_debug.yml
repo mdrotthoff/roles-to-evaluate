@@ -1,0 +1,40 @@
+---
+# $Author:   david_rotthoff <david_rotthoff@rotthoff.home> $
+# $Date:     2017-04-09 20:41:54 -0500 $
+# $Source:   roles/common/tasks/main_debug.yml $
+
+- name: copy_files - Main - Main Debug - Display the copy_files default target directory
+  debug:
+    var: copy_files_directory
+
+- name: copy_files - Main - Main Debug - Display the copy_files default owner
+  debug:
+    var: copy_files_owner
+
+- name: copy_files - Main - Main Debug - Display the copy_files default group
+  debug:
+    var: copy_files_group
+
+- name: copy_files - Main - Main Debug - Display the copy_files default file mode
+  debug:
+    var: copy_files_file_mode
+
+- name: copy_files - Main - Main Debug - Display the purge backup parameter
+  debug:
+    var: copy_files_purge_backup
+
+- name: copy_files - Main - Main Debug - Display the copy_files defaults
+  debug:
+    var: copy_files_defaults
+
+- name: copy_files - Main - Main Debug - Display the copy_files parameters
+  debug:
+    var: copy_files_parameters
+
+- name: copy_files - Main - Main Debug - Display the copy_files sources
+  debug:
+    var: copy_files_sources
+
+- name: copy_files - Main - Main Debug - Display the debug parameter
+  debug:
+    var: copy_files_debug

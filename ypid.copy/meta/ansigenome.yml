@@ -1,0 +1,26 @@
+---
+
+ansigenome_info:
+  galaxy_url: 'https://galaxy.ansible.com/ypid/copy'
+  github_url: 'https://github.com/ypid/ansible-copy'
+  git_branch: 'master'
+
+  status:
+    name: 'deprecated'
+    note: 'It has been superseded by [debops.resources](https://github.com/debops/ansible-resources).'
+
+  travis: True
+
+  synopsis: |
+    This role was written to be able to specify files to copy via inventory variables.
+    It is based on Ansible’s [copy module].
+    If the [synchronize module] seems more suitable checkout the role [ypid.synchronize].
+
+    ### Features
+
+    * Ensures that the target parent directory exists.
+    * Allows to delete files defined as `state: 'absent'`.
+
+    [synchronize module]: https://docs.ansible.com/ansible/synchronize_module.html
+    [copy module]: https://docs.ansible.com/ansible/copy_module.html
+    [ypid.synchronize]: https://galaxy.ansible.com/ypid/synchronize

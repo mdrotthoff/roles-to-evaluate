@@ -1,0 +1,44 @@
+---
+# $Author:   David Rotthoff <david.rotthoff@vauto.com> $
+# $Date:     2017-04-14 09:57:44 -0500 $
+# $Source:   roles/tnsnames/tasks/main.yml $
+
+# Consider building tnsnames.vauto.ora dynamically based on the
+# files copied across.
+
+# Add deployment of the sqlnet.ora file
+
+- name: Tnsnames - Main - Include debugging of main.yml
+  include: debug.yml
+  static:  false
+  when:    tnsnames_debug
+
+- name: Tnsnames - Main - Ensure the target directory exists
+  file:
+     path:  "{{ tnsnames_defaults.directory }}"
+     state: directory
+     group: "{{ tnsnames_defaults.group }}"
+     owner: "{{ tnsnames_defaults.owner }}"
+     mode:  "{{ tnsnames_defaults.dir_mode }}"
+
+- name: Tnsnames - Main - Remove source backup files
+  include:    remove_source_backup.yml
+  static:     false
+  with_items: "{{ tnsnames_sources }}"
+  when:       tnsnames_parameters.purge_backup
+
+- name: Tnsnames - Main - Pause prior to copying files to {{ ansible_fqdn }} for {{ tnsnames_parameters.pause_delay }} min
+  pause:
+    prompt:  "Processing {{ ansible_fqdn }}"
+    minutes: "{{ tnsnames_parameters.pause_delay }}"
+  when:      tnsnames_parameters.pause_before_copy
+
+- name: Tnsnames - Main - Process the source files
+  include:    process_source_file.yml
+  static:     false
+  with_items: "{{ tnsnames_sources }}"
+
+- name: Tnsnames - Main - Include debugging of main.yml
+  include: debug.yml
+  static:  false
+  when:    tnsnames_debug

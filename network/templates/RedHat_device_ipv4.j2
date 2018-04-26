@@ -1,0 +1,55 @@
+# IPV4 properties
+{% if item.ipv4 is defined %}
+{% if item.ipv4 == None %}
+# IPV4 section is not configured
+{% else %}
+{% if item.ipv4.failure_fatal is defined %}
+IPV4_FAILURE_FATAL={{ item.ipv4.failure_fatal | bool | ternary("yes", "no") }}
+{% else %}
+IPV4_FAILURE_FATAL=no
+{% endif %}
+{% if item.ipv4.peerdns is defined %}
+PEERDNS={{ item.ipv4.peerdns | bool | ternary("yes", "no") }}
+{% endif %}
+{% if item.ipv4.peerroutes is defined %}
+PEERROUTES={{ item.ipv4.peerroutes | bool | ternary("yes", "no") }}
+{% endif %}
+{% if item.ipv4.defroute is defined %}
+DEFROUTE={{ item.ipv4.defroute | bool | ternary("yes", "no") }}
+{% endif %}
+{% if item.ipv4.address is defined %}
+IPADDR={{ item.ipv4.address }}
+{% if item.ipv4.netmask is defined %}
+NETMASK={{ item.ipv4.netmask }}
+{% endif %}
+{% if item.ipv4.gateway is defined %}
+GATEWAY={{ item.ipv4.gateway }}
+{% endif %}
+{% elif item.ipv4.cidr is defined %}
+IPADDR={{ item.ipv4.cidr }}
+{% if item.ipv4.gateway is defined %}
+GATEWAY={{ item.ipv4.gateway }}
+{% endif %}
+{% endif %}
+{% endif %}
+{% if item.ipv4.addresses is defined %}
+{% for address in item.ipv4.addresses %}
+{% if address.address is defined %}
+IPADDR{{ loop.index }}={{ address.address }}
+{% if address.netmask is defined %}
+NETMASK{{ loop.index }}={{ address.netmask }}
+{% endif %}
+{% if address.gateway is defined %}
+GATEWAY{{ loop.index }}={{ address.gateway }}
+{% endif %}
+{% elif address.cidr is defined %}
+IPADDR{{ loop.index }}={{ address.cidr }}
+{% if address.gateway is defined %}
+GATEWAY{{ loop.index }}={{ address.gateway }}
+{% endif %}
+{% endif %}
+{% endfor %}
+{% endif %}
+{% else %}
+# IPV4 section is not defined
+{% endif %}

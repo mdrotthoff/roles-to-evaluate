@@ -1,0 +1,14 @@
+---
+
+- name: Test distribution
+  assert:
+    that: ansible_os_family == "RedHat"
+  tags:
+    - yumconf_assert
+
+- name: Configure yum.conf
+  template:
+    src: yum.conf.j2
+    dest: "{{ yumconf_config_file }}"
+  tags:
+    - yumconf_config

@@ -1,0 +1,176 @@
+# Device properties
+NAME={{ item.device }}
+DEVICE={{ item.device }}
+{% if item.hwaddress is defined %}
+HWADDR={{ item.hwaddress }}
+{% endif %}
+{% if item.bootproto == 'static' %}
+BOOTPROTO=static
+{% elif item.bootproto == 'dhcp' %}
+BOOTPROTO=dhcp
+{% else %}
+BOOTPROTO=none
+{% endif %}
+{% if item.onboot is defined %}
+ONBOOT={{ item.onboot | bool | ternary("yes", "no") }}
+{% endif %}
+{% if item.user_control is defined %}
+USERCTL={{ item.user_control | bool | ternary("yes", "no") }}
+{% else %}
+USERCTL="no"
+{% endif %}
+{% if item.uuid is defined %}
+UUID={{ item.uuid }}
+{% endif %}
+{% if item.nm_controlled is defined %}
+NM_CONTROLLED={{ item.nm_controlled | bool | ternary("yes", "no") }}
+{% elif nm_controlled is defined %}
+NM_CONTROLLED={{ nm_controlled | bool | ternary("yes", "no") }}
+{% endif %}
+{% if item.mtu is defined %}
+MTU={{ item.mtu }}
+{% endif %}
+{% if item.dns_nameservers is defined %}
+{% for dns_nameserver in item.dns_nameservers %}
+{% if loop.index == 4 %}
+# WARNING: Generally only the first three name servers are used
+{% endif %}
+DNS{{ loop.index }}={{ dns_nameserver }}
+{% endfor %}
+{% endif %}
+{% if item.search_domains is defined %}
+DOMAIN="{% for domain in item.search_domains %}{% if loop.index > 1 %} {% endif %}{{ domain.domain }}{% endfor %}"
+{% endif %}
+
+{% if item.bond is defined %}
+{% include "RedHat_bond_options.j2" %}
+
+{% elif item.vlan is defined %}
+{% include  "RedHat_vlan_options.j2" %}
+{% elif item.bridge_options is defined %}
+BRIDGE={{ item.bridge_options.name }}
+BRIDGING_OPTS="
+{%- if item.bridge_options.priority is defined %}
+ priority={{ item.bridge_options.priority }}
+{%- endif -%}
+{%- if item.bridge_options.path_cost is defined %}
+ priority={{ item.bridge_options.path_cost }}
+{%- endif -%}
+{%- if item.bridge_options.hairpin_mode is defined %}
+ hairpin_mode={{ item.bridge_options.hairpin_mode }}
+{%- endif -%}
+"
+
+{% else %}
+# Device parameters
+{% if item.type is defined %}
+TYPE={{ item.type }}
+{% else %}
+TYPE=Ethernet
+{% endif %}
+{% endif %}
+
+# IPV4 properties
+{% if item.ipv4 is defined %}
+{% if item.ipv4 == None %}
+# IPV4 section is not configured
+{% else %}
+{% if item.ipv4.failure_fatal is defined %}
+IPV4_FAILURE_FATAL={{ item.ipv4.failure_fatal | bool | ternary("yes", "no") }}
+{% else %}
+IPV4_FAILURE_FATAL=no
+{% endif %}
+{% if item.ipv4.peerdns is defined %}
+PEERDNS={{ item.ipv4.peerdns | bool | ternary("yes", "no") }}
+{% endif %}
+{% if item.ipv4.peerroutes is defined %}
+PEERROUTES={{ item.ipv4.peerroutes | bool | ternary("yes", "no") }}
+{% endif %}
+{% if item.ipv4.defroute is defined %}
+DEFROUTE={{ item.ipv4.defroute | bool | ternary("yes", "no") }}
+{% endif %}
+{% if item.ipv4.address is defined %}
+
+IPADDR={{ item.ipv4.address }}
+{% if item.ipv4.netmask is defined %}
+NETMASK={{ item.ipv4.netmask }}
+{% endif %}
+{% if item.ipv4.gateway is defined %}
+GATEWAY={{ item.ipv4.gateway }}
+{% endif %}
+{% elif item.ipv4.cidr is defined %}
+
+IPADDR={{ item.ipv4.cidr }}
+{% if item.ipv4.gateway is defined %}
+GATEWAY={{ item.ipv4.gateway }}
+{% endif %}
+{% endif %}
+{% endif %}
+{% if item.ipv4.addresses is defined %}
+{% for address in item.ipv4.addresses %}
+{% if address.address is defined %}
+
+IPADDR{{ loop.index }}={{ address.address }}
+{% if address.netmask is defined %}
+NETMASK{{ loop.index }}={{ address.netmask }}
+{% endif %}
+{% if address.gateway is defined %}
+GATEWAY{{ loop.index }}={{ address.gateway }}
+{% endif %}
+{% elif address.cidr is defined %}
+
+IPADDR{{ loop.index }}={{ address.cidr }}
+{% if address.gateway is defined %}
+GATEWAY{{ loop.index }}={{ address.gateway }}
+{% endif %}
+{% endif %}
+{% endfor %}
+{% endif %}
+{% else %}
+# IPV4 section is not defined
+{% endif %}
+
+# IPV6 properties
+{% if item.ipv6 is defined %}
+{% if item.ipv6 == None %}
+# IPV6 section is not configured
+IPV6INIT=no
+IPV6_AUTOCONF=no
+{% else %}
+IPV6INIT=yes
+{% if item.ipv6.defroute is defined %}
+IPV6_AUTOCONF={{ item.ipv6.autoconf | bool | ternary("yes", "no") }}
+{% endif %}
+{% if item.ipv6.defroute is defined %}
+IPV6_DEFROUTE={{ item.ipv6.defroute | bool | ternary("yes", "no") }}
+{% endif %}
+{% if item.ipv6.failure_fatal is defined %}
+IPV6_FAILURE_FATAL={{ item.ipv6.failure_fatal | bool | ternary("yes", "no") }}
+{% else %}
+IPV6_FAILURE_FATAL=no
+{% endif %}
+{% if item.ipv6.forwarding is defined %}
+IPV6_FORWARDING={{ item.ipv6.forwarding | bool | ternary("yes", "no") }}
+{% endif %}
+{% if item.ipv6.peerdns is defined %}
+IPV6_PEERDNS={{ item.ipv6.peerdns | bool | ternary("yes", "no") }}
+{% endif %}
+{% if item.ipv6.peerroutes is defined %}
+IPV6_PEERROUTES={{ item.ipv6.peerroutes | bool | ternary("yes", "no") }}
+{% endif %}
+{% if item.ipv6.privacy is defined %}
+IPV6_PRIVACY={{ item.ipv6.privacy | bool | ternary("yes", "no") }}
+{% endif %}
+{% if item.ipv6.address is defined %}
+IPV6ADDR={{ item.ipv6.address }}
+{% endif %}
+{% if item.ipv6.gateway is defined %}
+IPV6_DEFAULTGW="{{ item.ipv6.gateway }}"
+{% endif %}
+{% if item.ipv6.secondary_addresses is defined %}
+IPV6ADDR_SECONDARIES="{% for secondary_address in item.ipv6.secondary_addresses %}{% if loop.index > 1 %} {% endif %}{{ secondary_address.address }}{% endfor %}"
+{% endif %}
+{% endif %}
+{% else %}
+# IPV6 section is not defined
+{% endif %}

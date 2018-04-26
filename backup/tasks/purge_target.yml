@@ -1,0 +1,22 @@
+---
+# $Author:   david_rotthoff <david_rotthoff@rotthoff.home> $
+# $Date:     2017-04-23 16:46:15 -0500 $
+# $Source:   roles/backup/tasks/purge_target.yml $
+
+# tasks file for backup
+
+- name: Dump variables at the start of purge_target
+  debug:
+    var: vars
+  when:  purge_target_debug|default(false)
+
+- name: Backup - Purge Task -- Remove backup target directory
+  file:
+    path: "{{ backup_target_dir }}"
+    state: absent
+  delegate_to: 127.0.0.1
+
+- name: Dump variables at the end of purge_target
+  debug:
+    var: vars
+  when:  purge_target_debug|default(false)

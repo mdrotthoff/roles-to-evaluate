@@ -1,0 +1,71 @@
+---
+# $Author:   david_rotthoff <david_rotthoff@rotthoff.home> $
+# $Date:     2017-04-23 16:46:15 -0500 $
+# $Source:   roles/backup/tasks/main.yml $
+
+# tasks file for backup
+
+- name: Dump variables at the start of backup main
+  debug:
+    var: vars
+  when:  backup_debug|default(false)
+
+# Consider capturing the user name and group of the person executing the role
+# in the event that backup_target_owner and backup_target_group are not defined.
+# Use shell command id -un and id -gn
+
+- name: Backup - Main - Construct the backup target directory name
+  set_fact:
+    backup_target_dir: "{{ backup_target_root }}/{{ backup_target_dest }}"
+  when:
+    - backup_target_root is defined
+    - backup_target_dest is defined
+
+
+# Validate that mandatory variables are set
+#   backup_target_dir
+
+- block:
+  - name: Backup - Main Task - Purge the backup target directory
+    include: purge_target.yml
+    static: false
+    when:
+      - backup_target_purge
+
+  - name: Backup - Main Task - Create the backup target directory
+    file:
+      path: "{{ backup_target_dir }}"
+      state: directory
+      mode: "{{ backup_target_file_mode }}"
+      group: "{{ backup_target_group }}"
+      owner: "{{ backup_target_owner }}"
+  delegate_to: 127.0.0.1
+  become: true
+  become_user: root
+
+- name: Backup - Main Task - Find all source files
+  include: find_all_files.yml
+  static: false
+  when:
+    - backup_source_patterns is not defined
+
+- name: Backup - Main Task - Find source file subset
+  include: find_subset_files.yml
+  static: false
+  when:
+    - backup_source_patterns is defined
+
+- name: Backup - Main Task - Set target file ownership as desired
+  file:
+    path: "{{ backup_target_dir }}"
+    group: "{{ backup_target_group }}"
+    owner: "{{ backup_target_owner }}"
+    recurse: true
+  delegate_to: 127.0.0.1
+  become: true
+  become_user: root
+
+- name: Dump variables at the end of backup main
+  debug:
+    var: vars
+  when:  backup_debug|default(false)

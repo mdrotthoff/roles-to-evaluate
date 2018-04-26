@@ -1,0 +1,29 @@
+---
+
+- name: puppetlabs - Main - foreman_repository - Set package as not installed by default
+  set_fact:
+    foreman_package_installed: False
+
+- name: puppetlabs - Main - foreman_repository - Set package name
+  set_fact:
+    foreman_package_name: 'foreman-release'
+    foreman_version:      '1.14'
+
+- name: puppetlabs - Main - foreman_repository - Include puppetlabs_repository_check for Redhat family systems
+  include:         foreman_repository_check.yml
+  when:            ansible_os_family == 'RedHat'
+  static:          false
+  vars:
+     package_name: "{{ foreman_package_name }}"
+
+- name: puppetlabs - Main - foreman_repository - Debug puppetlabs_package_installed before include
+  debug:
+    var: foreman_package_installed
+
+- name: puppetlabs - Main - foreman_repository - Include foreman_repository_install for Redhat family systems
+  include:         foreman_repository_install.yml
+  when:            ansible_os_family == 'RedHat'
+                   and not foreman_package_installed
+  static:          false
+  vars:
+     package_name: "{{ foreman_package_name }}"

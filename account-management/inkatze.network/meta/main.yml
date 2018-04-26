@@ -1,0 +1,14 @@
+---
+galaxy_info:
+  author: Juan Diego Romero Gonzalez
+  description: Basic network configuration for Centos 7
+  license: BSD
+  min_ansible_version: 1.9
+  platforms:
+    - name: EL
+      versions:
+        - 7
+  galaxy_tags:
+    - system
+    - networking
+  dependencies: []
